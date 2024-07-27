@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException } from '@nestjs/common';
 import { MotoristasService } from './motoristas.service';
 import { CreateMotoristaDto } from './dto/create-motorista.dto';
 import { UpdateMotoristaDto } from './dto/update-motorista.dto';
@@ -9,26 +9,41 @@ export class MotoristasController {
 
     @Post()
     async create(@Body() createMotoristaDto: CreateMotoristaDto) {
-        return this.motoristasService.create(createMotoristaDto);
+        const motorista = await this.motoristasService.create(createMotoristaDto);
+        return motorista;
     }
 
     @Get()
     async findAll() {
-        return this.motoristasService.findAll();
+        const motoristas = await this.motoristasService.findAll();
+        return motoristas;
     }
 
     @Get(':id')
     async findOne(@Param('id') id: string) {
-        return this.motoristasService.findOne(+id);
+        const motorista = await this.motoristasService.findOne(+id);
+        if (!motorista) {
+            throw new HttpException('Motorista não encontrado', 404);
+        }
+        return motorista;
     }
 
     @Patch(':id')
     async update(@Param('id') id: string, @Body() updateMotoristaDto: UpdateMotoristaDto) {
-        return this.motoristasService.update(+id, updateMotoristaDto);
+        const motoristaExiste = await this.motoristasService.findOne(+id);
+        if (!motoristaExiste) {
+            throw new HttpException('Motorista não encontrado', 404);
+        }
+        const motorista = await this.motoristasService.update(+id, updateMotoristaDto);
+        return motorista;
     }
 
     @Delete(':id')
     async remove(@Param('id') id: string) {
-        return this.motoristasService.remove(+id);
+        const motoristaExiste = await this.motoristasService.findOne(+id);
+        if (!motoristaExiste) {
+            throw new HttpException('Motorista não encontrado', 404);
+        }
+        await this.motoristasService.remove(+id);
     }
 }
