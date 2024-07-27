@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Setor {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  descricao String
+  veiculos  Veiculo[]
+  motoristas Motorista[]
+}
+
+model Veiculo {
+  id              Int      @id @default(autoincrement())
+  placa           String   @unique
+  marca           String
+  modelo          String
+  ano             Int
+  cor             String
+  renavam         String   @unique
+  chassi          String   @unique
+  km              Int
+  combustivel     String
+  categoriaCNH    String
+  status          String
+  setor           Setor    @relation(fields: [setorId], references: [id])
+  setorId         Int
+  movimentos      Movimento[]
+  uploads         Upload[]
+}
+
+model Motorista {
+  id                  Int      @id @default(autoincrement())
+  nome                String
+  cpf                 String   @unique
+  rg                  String   @unique
+  categoriaCNH        String
+  numeroCNH           String   @unique
+  validadeCNH         String
+  telefone            String
+  setor               Setor    @relation(fields: [setorId], references: [id])
+  setorId             Int
+  movimentos          Movimento[]
+  uploads             Upload[]
+}
+
+model Movimento {
+  id                  Int      @id @default(autoincrement())
+  dataSaida           String
+  dataRetorno         String
+  motorista           Motorista @relation(fields: [motoristaId], references: [id])
+  motoristaId         Int
+  veiculo             Veiculo   @relation(fields: [veiculoId], references: [id])
+  veiculoId           Int
+}
+
+model Upload {
+  id                Int      @id @default(autoincrement())
+  filename          String
+  motorista         Motorista? @relation(fields: [motoristaId], references: [id])
+  motoristaId       Int?
+  veiculo           Veiculo? @relation(fields: [veiculoId], references: [id])
+  veiculoId         Int?
+}
