@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException } from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Post,
+    Body,
+    Patch,
+    Param,
+    Delete,
+    HttpException,
+    HttpStatus,
+} from '@nestjs/common';
 import { MotoristasService } from './motoristas.service';
 import { CreateMotoristaDto } from './dto/create-motorista.dto';
 import { UpdateMotoristaDto } from './dto/update-motorista.dto';
@@ -23,7 +33,7 @@ export class MotoristasController {
     async findOne(@Param('id') id: string) {
         const motorista = await this.motoristasService.findOne(+id);
         if (!motorista) {
-            throw new HttpException('Motorista não encontrado', 404);
+            throw new HttpException('Motorista não encontrado', HttpStatus.NOT_FOUND);
         }
         return motorista;
     }
@@ -32,7 +42,7 @@ export class MotoristasController {
     async update(@Param('id') id: string, @Body() updateMotoristaDto: UpdateMotoristaDto) {
         const motoristaExiste = await this.motoristasService.findOne(+id);
         if (!motoristaExiste) {
-            throw new HttpException('Motorista não encontrado', 404);
+            throw new HttpException('Motorista não encontrado', HttpStatus.NOT_FOUND);
         }
         const motorista = await this.motoristasService.update(+id, updateMotoristaDto);
         return motorista;
@@ -42,7 +52,7 @@ export class MotoristasController {
     async remove(@Param('id') id: string) {
         const motoristaExiste = await this.motoristasService.findOne(+id);
         if (!motoristaExiste) {
-            throw new HttpException('Motorista não encontrado', 404);
+            throw new HttpException('Motorista não encontrado', HttpStatus.NOT_FOUND);
         }
         await this.motoristasService.remove(+id);
     }
