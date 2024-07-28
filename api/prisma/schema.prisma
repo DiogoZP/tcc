@@ -53,6 +53,9 @@ model Movimento {
   id                  Int      @id @default(autoincrement())
   dataSaida           String
   dataRetorno         String
+  kmSaida             Int
+  kmRetorno           Int
+  itinerario          String
   motorista           Motorista @relation(fields: [motoristaId], references: [id])
   motoristaId         Int
   veiculo             Veiculo   @relation(fields: [veiculoId], references: [id])
