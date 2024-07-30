@@ -32,6 +32,7 @@ model Veiculo {
   setorId         Int
   movimentos      Movimento[]
   uploads         Upload[]
+  solicitacoes    Solicitacao[]
 }
 
 model Motorista {
@@ -62,6 +63,40 @@ model Movimento {
   veiculoId           Int
 }
 
+model Item {
+  id                  Int      @id @default(autoincrement())
+  codigo              String
+  nome                String
+  descricao           String
+  uploads             Upload[]
+  itemSolicitacao     ItemSolicitacao[]
+  itemEstoque         ItemEstoque[]
+}
+
+model ItemSolicitacao {
+  id                  Int      @id @default(autoincrement())
+  quantidade          Int
+  item                Item     @relation(fields: [itemId], references: [id])
+  itemId              Int
+  solicitacao         Solicitacao @relation(fields: [solicitacaoId], references: [id])
+  solicitacaoId       Int
+}
+
+model ItemEstoque {
+  id                  Int      @id @default(autoincrement())
+  quantidade          Int
+  item                Item     @relation(fields: [itemId], references: [id])
+  itemId              Int
+}
+
+model Solicitacao {
+  id                  Int      @id @default(autoincrement())
+  data                String
+  veiculo             Veiculo   @relation(fields: [veiculoId], references: [id])
+  veiculoId           Int
+  itens               ItemSolicitacao[]
+}
+
 model Upload {
   id                Int      @id @default(autoincrement())
   filename          String
@@ -69,4 +104,6 @@ model Upload {
   motoristaId       Int?
   veiculo           Veiculo? @relation(fields: [veiculoId], references: [id])
   veiculoId         Int?
+  item              Item? @relation(fields: [itemId], references: [id])
+  itemId            Int?
 }

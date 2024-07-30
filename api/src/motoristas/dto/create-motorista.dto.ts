@@ -1,27 +1,29 @@
 import { IsString, IsInt, IsIn } from 'class-validator';
 export class CreateMotoristaDto {
-    @IsString()
+    @IsString({ message: 'nome deve ser uma string' })
     nome: string;
 
-    @IsString()
+    @IsString({ message: 'cpf deve ser uma string' })
     cpf: string;
 
-    @IsString()
+    @IsString({ message: 'rg deve ser uma string' })
     rg: string;
 
-    @IsString()
-    @IsIn(['A', 'B', 'C', 'D', 'E', 'AB', 'AC', 'AD', 'AE'])
+    @IsString({ message: 'categoriaCNH deve ser uma string' })
+    @IsIn(['A', 'B', 'C', 'D', 'E', 'AB', 'AC', 'AD', 'AE'], {
+        message: 'categoriaCNH deve ser uma das seguintes: A, B, C, D, E, AB, AC, AD, AE',
+    })
     categoriaCNH: string;
 
-    @IsString()
+    @IsString({ message: 'numeroCNH deve ser uma string' })
     numeroCNH: string;
 
-    @IsString()
+    @IsString({ message: 'validadeCNH deve ser uma string' })
     validadeCNH: string;
 
-    @IsString()
+    @IsString({ message: 'telefone deve ser uma string' })
     telefone: string;
 
-    @IsInt()
+    @IsInt({ message: 'setorId deve ser um número inteiro' })
     setorId: number;
 }

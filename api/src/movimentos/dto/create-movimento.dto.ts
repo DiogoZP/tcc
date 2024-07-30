@@ -1,23 +1,23 @@
 import { IsInt, IsString } from 'class-validator';
 export class CreateMovimentoDto {
-    @IsString()
+    @IsString({ message: 'dataSaida deve ser uma string' })
     dataSaida: string;
 
-    @IsString()
+    @IsString({ message: 'dataRetorno deve ser uma string' })
     dataRetorno: string;
 
-    @IsInt()
+    @IsInt({ message: 'kmSaida deve ser um número inteiro' })
     kmSaida: number;
 
-    @IsInt()
+    @IsInt({ message: 'kmRetorno deve ser um número inteiro' })
     kmRetorno: number;
 
-    @IsString()
+    @IsString({ message: 'itinerario deve ser uma string' })
     itinerario: string;
 
-    @IsInt()
+    @IsInt({ message: 'motoristaId deve ser um número inteiro' })
     motoristaId: number;
 
-    @IsInt()
+    @IsInt({ message: 'veiculoId deve ser um número inteiro' })
     veiculoId: number;
 }
