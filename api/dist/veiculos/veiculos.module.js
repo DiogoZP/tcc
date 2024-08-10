@@ -10,13 +10,14 @@ exports.VeiculosModule = void 0;
 const common_1 = require("@nestjs/common");
 const veiculos_service_1 = require("./veiculos.service");
 const veiculos_controller_1 = require("./veiculos.controller");
+const prisma_service_1 = require("../database/prisma.service");
 let VeiculosModule = class VeiculosModule {
 };
 exports.VeiculosModule = VeiculosModule;
 exports.VeiculosModule = VeiculosModule = __decorate([
     (0, common_1.Module)({
         controllers: [veiculos_controller_1.VeiculosController],
-        providers: [veiculos_service_1.VeiculosService],
+        providers: [veiculos_service_1.VeiculosService, prisma_service_1.PrismaService],
     })
 ], VeiculosModule);
 //# sourceMappingURL=veiculos.module.js.map

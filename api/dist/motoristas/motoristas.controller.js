@@ -32,14 +32,14 @@ let MotoristasController = class MotoristasController {
     async findOne(id) {
         const motorista = await this.motoristasService.findOne(+id);
         if (!motorista) {
-            throw new common_1.HttpException('Motorista não encontrado', 404);
+            throw new common_1.HttpException('Motorista não encontrado', common_1.HttpStatus.NOT_FOUND);
         }
         return motorista;
     }
     async update(id, updateMotoristaDto) {
         const motoristaExiste = await this.motoristasService.findOne(+id);
         if (!motoristaExiste) {
-            throw new common_1.HttpException('Motorista não encontrado', 404);
+            throw new common_1.HttpException('Motorista não encontrado', common_1.HttpStatus.NOT_FOUND);
         }
         const motorista = await this.motoristasService.update(+id, updateMotoristaDto);
         return motorista;
@@ -47,7 +47,7 @@ let MotoristasController = class MotoristasController {
     async remove(id) {
         const motoristaExiste = await this.motoristasService.findOne(+id);
         if (!motoristaExiste) {
-            throw new common_1.HttpException('Motorista não encontrado', 404);
+            throw new common_1.HttpException('Motorista não encontrado', common_1.HttpStatus.NOT_FOUND);
         }
         await this.motoristasService.remove(+id);
     }

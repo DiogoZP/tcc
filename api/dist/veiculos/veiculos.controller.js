@@ -21,20 +21,35 @@ let VeiculosController = class VeiculosController {
     constructor(veiculosService) {
         this.veiculosService = veiculosService;
     }
-    create(createVeiculoDto) {
-        return this.veiculosService.create(createVeiculoDto);
+    async create(createVeiculoDto) {
+        const veiculo = await this.veiculosService.create(createVeiculoDto);
+        return veiculo;
     }
-    findAll() {
-        return this.veiculosService.findAll();
+    async findAll() {
+        const veiculos = await this.veiculosService.findAll();
+        return veiculos;
     }
-    findOne(id) {
-        return this.veiculosService.findOne(+id);
+    async findOne(id) {
+        const veiculo = await this.veiculosService.findOne(+id);
+        if (!veiculo) {
+            throw new common_1.HttpException('Veículo não encontrado', common_1.HttpStatus.NOT_FOUND);
+        }
+        return veiculo;
     }
-    update(id, updateVeiculoDto) {
-        return this.veiculosService.update(+id, updateVeiculoDto);
+    async update(id, updateVeiculoDto) {
+        const veiculoExiste = await this.veiculosService.findOne(+id);
+        if (!veiculoExiste) {
+            throw new common_1.HttpException('Veículo não encontrado', common_1.HttpStatus.NOT_FOUND);
+        }
+        const veiculo = await this.veiculosService.update(+id, updateVeiculoDto);
+        return veiculo;
     }
-    remove(id) {
-        return this.veiculosService.remove(+id);
+    async remove(id) {
+        const veiculoExiste = await this.veiculosService.findOne(+id);
+        if (!veiculoExiste) {
+            throw new common_1.HttpException('Veículo não encontrado', common_1.HttpStatus.NOT_FOUND);
+        }
+        await this.veiculosService.remove(+id);
     }
 };
 exports.VeiculosController = VeiculosController;
@@ -43,20 +58,20 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_veiculo_dto_1.CreateVeiculoDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], VeiculosController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], VeiculosController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], VeiculosController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
@@ -64,14 +79,14 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_veiculo_dto_1.UpdateVeiculoDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], VeiculosController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], VeiculosController.prototype, "remove", null);
 exports.VeiculosController = VeiculosController = __decorate([
     (0, common_1.Controller)('veiculos'),

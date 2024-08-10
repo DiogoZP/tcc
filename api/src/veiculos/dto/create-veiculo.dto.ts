@@ -9,6 +9,13 @@ export class CreateVeiculoDto {
     @IsString({ message: 'modelo deve ser uma string' })
     modelo: string;
 
+    @IsString({ message: 'tipo deve ser uma string' })
+    @IsIn(['Automóvel', 'Motocicleta', 'Van', 'Caminhão', 'Micro-Ônibus', 'Ônibus'], {
+        message:
+            'tipo deve ser um dos seguintes: Automóvel, Motocicleta, Van, Caminhão, Micro-Ônibus, Ônibus',
+    })
+    tipo: string;
+
     @IsInt({ message: 'ano deve ser um número inteiro' })
     ano: number;
 

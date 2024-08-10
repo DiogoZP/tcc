@@ -4,9 +4,45 @@ import { UpdateMovimentoDto } from './dto/update-movimento.dto';
 export declare class MovimentosController {
     private readonly movimentosService;
     constructor(movimentosService: MovimentosService);
-    create(createMovimentoDto: CreateMovimentoDto): string;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateMovimentoDto: UpdateMovimentoDto): string;
-    remove(id: string): string;
+    create(createMovimentoDto: CreateMovimentoDto): Promise<{
+        id: number;
+        dataSaida: string;
+        dataRetorno: string;
+        kmSaida: number;
+        kmRetorno: number;
+        itinerario: string;
+        motoristaId: number;
+        veiculoId: number;
+    }>;
+    findAll(): Promise<{
+        id: number;
+        dataSaida: string;
+        dataRetorno: string;
+        kmSaida: number;
+        kmRetorno: number;
+        itinerario: string;
+        motoristaId: number;
+        veiculoId: number;
+    }[]>;
+    findOne(id: string): Promise<{
+        id: number;
+        dataSaida: string;
+        dataRetorno: string;
+        kmSaida: number;
+        kmRetorno: number;
+        itinerario: string;
+        motoristaId: number;
+        veiculoId: number;
+    }>;
+    update(id: string, updateMovimentoDto: UpdateMovimentoDto): Promise<{
+        id: number;
+        dataSaida: string;
+        dataRetorno: string;
+        kmSaida: number;
+        kmRetorno: number;
+        itinerario: string;
+        motoristaId: number;
+        veiculoId: number;
+    }>;
+    remove(id: string): Promise<void>;
 }

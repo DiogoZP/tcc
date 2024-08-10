@@ -15,36 +15,38 @@ class CreateMotoristaDto {
 }
 exports.CreateMotoristaDto = CreateMotoristaDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'nome deve ser uma string' }),
     __metadata("design:type", String)
 ], CreateMotoristaDto.prototype, "nome", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'cpf deve ser uma string' }),
     __metadata("design:type", String)
 ], CreateMotoristaDto.prototype, "cpf", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'rg deve ser uma string' }),
     __metadata("design:type", String)
 ], CreateMotoristaDto.prototype, "rg", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsIn)(['A', 'B', 'C', 'D', 'E', 'AB', 'AC', 'AD', 'AE']),
+    (0, class_validator_1.IsString)({ message: 'categoriaCNH deve ser uma string' }),
+    (0, class_validator_1.IsIn)(['A', 'B', 'C', 'D', 'E', 'AB', 'AC', 'AD', 'AE'], {
+        message: 'categoriaCNH deve ser uma das seguintes: A, B, C, D, E, AB, AC, AD, AE',
+    }),
     __metadata("design:type", String)
 ], CreateMotoristaDto.prototype, "categoriaCNH", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'numeroCNH deve ser uma string' }),
     __metadata("design:type", String)
 ], CreateMotoristaDto.prototype, "numeroCNH", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'validadeCNH deve ser uma string' }),
     __metadata("design:type", String)
 ], CreateMotoristaDto.prototype, "validadeCNH", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'telefone deve ser uma string' }),
     __metadata("design:type", String)
 ], CreateMotoristaDto.prototype, "telefone", void 0);
 __decorate([
-    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.IsInt)({ message: 'setorId deve ser um número inteiro' }),
     __metadata("design:type", Number)
 ], CreateMotoristaDto.prototype, "setorId", void 0);
 //# sourceMappingURL=create-motorista.dto.js.map

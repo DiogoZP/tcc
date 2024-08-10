@@ -10,7 +10,6 @@ datasource db {
 model Setor {
   id        Int      @id @default(autoincrement())
   nome      String
-  descricao String
   veiculos  Veiculo[]
   motoristas Motorista[]
 }
@@ -20,6 +19,7 @@ model Veiculo {
   placa           String   @unique
   marca           String
   modelo          String
+  tipo            String
   ano             Int
   cor             String
   renavam         String   @unique

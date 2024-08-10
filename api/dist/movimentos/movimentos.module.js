@@ -10,13 +10,14 @@ exports.MovimentosModule = void 0;
 const common_1 = require("@nestjs/common");
 const movimentos_service_1 = require("./movimentos.service");
 const movimentos_controller_1 = require("./movimentos.controller");
+const prisma_service_1 = require("../database/prisma.service");
 let MovimentosModule = class MovimentosModule {
 };
 exports.MovimentosModule = MovimentosModule;
 exports.MovimentosModule = MovimentosModule = __decorate([
     (0, common_1.Module)({
         controllers: [movimentos_controller_1.MovimentosController],
-        providers: [movimentos_service_1.MovimentosService],
+        providers: [movimentos_service_1.MovimentosService, prisma_service_1.PrismaService],
     })
 ], MovimentosModule);
 //# sourceMappingURL=movimentos.module.js.map

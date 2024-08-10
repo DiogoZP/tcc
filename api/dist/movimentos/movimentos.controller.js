@@ -21,20 +21,35 @@ let MovimentosController = class MovimentosController {
     constructor(movimentosService) {
         this.movimentosService = movimentosService;
     }
-    create(createMovimentoDto) {
-        return this.movimentosService.create(createMovimentoDto);
+    async create(createMovimentoDto) {
+        const movimento = await this.movimentosService.create(createMovimentoDto);
+        return movimento;
     }
-    findAll() {
-        return this.movimentosService.findAll();
+    async findAll() {
+        const movimentos = await this.movimentosService.findAll();
+        return movimentos;
     }
-    findOne(id) {
-        return this.movimentosService.findOne(+id);
+    async findOne(id) {
+        const movimento = await this.movimentosService.findOne(+id);
+        if (!movimento) {
+            throw new common_1.HttpException('Movimento não encontrado', common_1.HttpStatus.NOT_FOUND);
+        }
+        return movimento;
     }
-    update(id, updateMovimentoDto) {
-        return this.movimentosService.update(+id, updateMovimentoDto);
+    async update(id, updateMovimentoDto) {
+        const movimentoExiste = await this.movimentosService.findOne(+id);
+        if (!movimentoExiste) {
+            throw new common_1.HttpException('Movimento não encontrado', common_1.HttpStatus.NOT_FOUND);
+        }
+        const movimento = await this.movimentosService.update(+id, updateMovimentoDto);
+        return movimento;
     }
-    remove(id) {
-        return this.movimentosService.remove(+id);
+    async remove(id) {
+        const movimentoExiste = await this.movimentosService.findOne(+id);
+        if (!movimentoExiste) {
+            throw new common_1.HttpException('Movimento não encontrado', common_1.HttpStatus.NOT_FOUND);
+        }
+        await this.movimentosService.remove(+id);
     }
 };
 exports.MovimentosController = MovimentosController;
@@ -43,20 +58,20 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_movimento_dto_1.CreateMovimentoDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MovimentosController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MovimentosController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MovimentosController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
@@ -64,14 +79,14 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_movimento_dto_1.UpdateMovimentoDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MovimentosController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MovimentosController.prototype, "remove", null);
 exports.MovimentosController = MovimentosController = __decorate([
     (0, common_1.Controller)('movimentos'),
