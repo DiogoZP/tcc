@@ -9,6 +9,7 @@ export declare class VeiculosController {
         placa: string;
         marca: string;
         modelo: string;
+        tipo: string;
         ano: number;
         cor: string;
         renavam: string;
@@ -24,6 +25,7 @@ export declare class VeiculosController {
         placa: string;
         marca: string;
         modelo: string;
+        tipo: string;
         ano: number;
         cor: string;
         renavam: string;
@@ -39,6 +41,7 @@ export declare class VeiculosController {
         placa: string;
         marca: string;
         modelo: string;
+        tipo: string;
         ano: number;
         cor: string;
         renavam: string;
@@ -54,6 +57,7 @@ export declare class VeiculosController {
         placa: string;
         marca: string;
         modelo: string;
+        tipo: string;
         ano: number;
         cor: string;
         renavam: string;

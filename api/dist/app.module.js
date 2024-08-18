@@ -12,12 +12,13 @@ const veiculos_module_1 = require("./veiculos/veiculos.module");
 const motoristas_module_1 = require("./motoristas/motoristas.module");
 const movimentos_module_1 = require("./movimentos/movimentos.module");
 const uploads_module_1 = require("./uploads/uploads.module");
+const setores_module_1 = require("./setores/setores.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [veiculos_module_1.VeiculosModule, motoristas_module_1.MotoristasModule, movimentos_module_1.MovimentosModule, uploads_module_1.UploadsModule],
+        imports: [veiculos_module_1.VeiculosModule, motoristas_module_1.MotoristasModule, movimentos_module_1.MovimentosModule, uploads_module_1.UploadsModule, setores_module_1.SetoresModule],
         controllers: [],
         providers: [],
     })

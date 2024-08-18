@@ -2,6 +2,7 @@ export declare class CreateVeiculoDto {
     placa: string;
     marca: string;
     modelo: string;
+    tipo: string;
     ano: number;
     cor: string;
     renavam: string;

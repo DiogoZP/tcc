@@ -100,6 +100,7 @@ model Solicitacao {
 model Upload {
   id                Int      @id @default(autoincrement())
   filename          String
+  mimetype          String
   motorista         Motorista? @relation(fields: [motoristaId], references: [id])
   motoristaId       Int?
   veiculo           Veiculo? @relation(fields: [veiculoId], references: [id])

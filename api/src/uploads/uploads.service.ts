@@ -7,11 +7,12 @@ import { PrismaService } from 'src/database/prisma.service';
 export class UploadsService {
     constructor(private readonly prisma: PrismaService) {}
 
-    async create(createUploadDto: CreateUploadDto, filename: string) {
+    async create(createUploadDto: CreateUploadDto, filename: string, mimetype: string) {
         return await this.prisma.upload.create({
             data: {
                 ...createUploadDto,
                 filename,
+                mimetype,
             },
         });
     }
@@ -26,12 +27,18 @@ export class UploadsService {
         });
     }
 
-    async update(id: number, updateUploadDto: UpdateUploadDto, filename: string) {
+    async update(
+        id: number,
+        updateUploadDto: UpdateUploadDto,
+        filename?: string,
+        mimetype?: string,
+    ) {
         return await this.prisma.upload.update({
             where: { id },
             data: {
                 ...updateUploadDto,
                 filename,
+                mimetype,
             },
         });
     }

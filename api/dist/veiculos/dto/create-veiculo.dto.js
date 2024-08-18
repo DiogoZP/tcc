@@ -27,6 +27,13 @@ __decorate([
     __metadata("design:type", String)
 ], CreateVeiculoDto.prototype, "modelo", void 0);
 __decorate([
+    (0, class_validator_1.IsString)({ message: 'tipo deve ser uma string' }),
+    (0, class_validator_1.IsIn)(['Automóvel', 'Motocicleta', 'Van', 'Caminhão', 'Micro-Ônibus', 'Ônibus'], {
+        message: 'tipo deve ser um dos seguintes: Automóvel, Motocicleta, Van, Caminhão, Micro-Ônibus, Ônibus',
+    }),
+    __metadata("design:type", String)
+], CreateVeiculoDto.prototype, "tipo", void 0);
+__decorate([
     (0, class_validator_1.IsInt)({ message: 'ano deve ser um número inteiro' }),
     __metadata("design:type", Number)
 ], CreateVeiculoDto.prototype, "ano", void 0);

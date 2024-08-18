@@ -11,21 +11,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUploadDto = void 0;
 const class_validator_1 = require("class-validator");
+const class_transformer_1 = require("class-transformer");
 class CreateUploadDto {
 }
 exports.CreateUploadDto = CreateUploadDto;
 __decorate([
     (0, class_validator_1.IsOptional)(),
+    (0, class_transformer_1.Transform)(({ value }) => parseInt(value)),
     (0, class_validator_1.IsInt)(),
     __metadata("design:type", Number)
 ], CreateUploadDto.prototype, "motoristaId", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
+    (0, class_transformer_1.Transform)(({ value }) => parseInt(value)),
     (0, class_validator_1.IsInt)(),
     __metadata("design:type", Number)
 ], CreateUploadDto.prototype, "veiculoId", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
+    (0, class_transformer_1.Transform)(({ value }) => parseInt(value)),
     (0, class_validator_1.IsInt)(),
     __metadata("design:type", Number)
 ], CreateUploadDto.prototype, "itemId", void 0);

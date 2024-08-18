@@ -9,49 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UploadsService = void 0;
+exports.SetoresService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../database/prisma.service");
-let UploadsService = class UploadsService {
+let SetoresService = class SetoresService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async create(createUploadDto, filename, mimetype) {
-        return await this.prisma.upload.create({
-            data: {
-                ...createUploadDto,
-                filename,
-                mimetype,
-            },
+    async create(createSetorDto) {
+        return await this.prisma.setor.create({
+            data: createSetorDto,
         });
     }
     async findAll() {
-        return await this.prisma.upload.findMany();
+        return await this.prisma.setor.findMany();
     }
     async findOne(id) {
-        return await this.prisma.upload.findUnique({
+        return await this.prisma.setor.findUnique({
             where: { id },
         });
     }
-    async update(id, updateUploadDto, filename, mimetype) {
-        return await this.prisma.upload.update({
+    async update(id, updateSetorDto) {
+        return await this.prisma.setor.update({
             where: { id },
-            data: {
-                ...updateUploadDto,
-                filename,
-                mimetype,
-            },
+            data: updateSetorDto,
         });
     }
     async remove(id) {
-        return await this.prisma.upload.delete({
+        return await this.prisma.setor.delete({
             where: { id },
         });
     }
 };
-exports.UploadsService = UploadsService;
-exports.UploadsService = UploadsService = __decorate([
+exports.SetoresService = SetoresService;
+exports.SetoresService = SetoresService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], UploadsService);
-//# sourceMappingURL=uploads.service.js.map
+], SetoresService);
+//# sourceMappingURL=setores.service.js.map

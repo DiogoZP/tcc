@@ -19,17 +19,14 @@ const multer_1 = require("multer");
 const uploads_service_1 = require("./uploads.service");
 const create_upload_dto_1 = require("./dto/create-upload.dto");
 const update_upload_dto_1 = require("./dto/update-upload.dto");
-const path_1 = require("path");
 const fs_1 = require("fs");
+const path_1 = require("path");
 let UploadsController = class UploadsController {
     constructor(uploadsService) {
         this.uploadsService = uploadsService;
     }
     async create(createUploadDto, file) {
-        if (!file) {
-            throw new common_1.HttpException('Arquivo não enviado', common_1.HttpStatus.BAD_REQUEST);
-        }
-        const upload = await this.uploadsService.create(createUploadDto, file.filename);
+        const upload = await this.uploadsService.create(createUploadDto, file.filename, file.mimetype);
         return upload;
     }
     async findAll() {
@@ -41,17 +38,22 @@ let UploadsController = class UploadsController {
         if (!upload) {
             throw new common_1.HttpException('Upload não encontrado', common_1.HttpStatus.NOT_FOUND);
         }
-        res.sendFile((0, path_1.join)('./arquivos', upload.filename));
+        res.setHeader('Content-Type', upload.mimetype);
+        res.sendFile((0, path_1.resolve)(__dirname, '..', '..', 'arquivos', upload.filename));
     }
     async update(id, updateUploadDto, file) {
         const uploadExiste = await this.uploadsService.findOne(+id);
         if (!uploadExiste) {
             throw new common_1.HttpException('Upload não encontrado', common_1.HttpStatus.NOT_FOUND);
         }
-        if (!file) {
-            throw new common_1.HttpException('Arquivo não enviado', common_1.HttpStatus.BAD_REQUEST);
+        if (file) {
+            (0, fs_1.unlink)((0, path_1.resolve)(__dirname, '..', '..', 'arquivos', uploadExiste.filename), (error) => {
+                if (error) {
+                    throw new common_1.HttpException('Erro ao atualizar o arquivo: ' + error.message, common_1.HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            });
         }
-        const upload = await this.uploadsService.update(+id, updateUploadDto, file.filename);
+        const upload = await this.uploadsService.update(+id, updateUploadDto, file?.filename, file?.mimetype);
         return upload;
     }
     async remove(id) {
@@ -60,8 +62,10 @@ let UploadsController = class UploadsController {
             throw new common_1.HttpException('Upload não encontrado', common_1.HttpStatus.NOT_FOUND);
         }
         const upload = await this.uploadsService.remove(+id);
-        (0, fs_1.unlink)((0, path_1.join)('./arquivos', upload.filename), () => {
-            throw new common_1.HttpException('Erro ao deletar o arquivo', common_1.HttpStatus.INTERNAL_SERVER_ERROR);
+        (0, fs_1.unlink)((0, path_1.resolve)(__dirname, '..', '..', 'arquivos'), (error) => {
+            if (error) {
+                throw new common_1.HttpException('Erro ao deletar o arquivo: ' + error.message, common_1.HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         });
         return upload;
     }
@@ -71,9 +75,9 @@ __decorate([
     (0, common_1.Post)(),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
-            destination: './arquivos',
+            destination: (0, path_1.resolve)(__dirname, '..', '..', 'arquivos'),
             filename: (_req, file, cb) => {
-                cb(null, file.originalname + '-' + Date.now());
+                cb(null, Date.now() + '-' + file.originalname);
             },
         }),
         limits: { fileSize: 1024 * 1024 * 10 },
@@ -93,6 +97,7 @@ __decorate([
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
@@ -101,7 +106,7 @@ __decorate([
     (0, common_1.Patch)(':id'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
-            destination: './arquivos',
+            destination: (0, path_1.resolve)(__dirname, '..', '..', 'arquivos'),
             filename: (_req, file, cb) => {
                 cb(null, file.originalname + '-' + Date.now());
             },

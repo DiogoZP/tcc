@@ -10,6 +10,7 @@ import {
     HttpStatus,
     UploadedFile,
     UseInterceptors,
+    Res,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
@@ -17,8 +18,8 @@ import { diskStorage } from 'multer';
 import { UploadsService } from './uploads.service';
 import { CreateUploadDto } from './dto/create-upload.dto';
 import { UpdateUploadDto } from './dto/update-upload.dto';
-import { join } from 'path';
 import { unlink } from 'fs';
+import { resolve } from 'path';
 
 @Controller('uploads')
 export class UploadsController {
@@ -28,9 +29,9 @@ export class UploadsController {
     @UseInterceptors(
         FileInterceptor('file', {
             storage: diskStorage({
-                destination: './arquivos',
+                destination: resolve(__dirname, '..', '..', 'arquivos'),
                 filename: (_req, file, cb) => {
-                    cb(null, file.originalname + '-' + Date.now());
+                    cb(null, Date.now() + '-' + file.originalname);
                 },
             }),
             limits: { fileSize: 1024 * 1024 * 10 },
@@ -40,10 +41,11 @@ export class UploadsController {
         @Body() createUploadDto: CreateUploadDto,
         @UploadedFile() file: Express.Multer.File,
     ) {
-        if (!file) {
-            throw new HttpException('Arquivo não enviado', HttpStatus.BAD_REQUEST);
-        }
-        const upload = await this.uploadsService.create(createUploadDto, file.filename);
+        const upload = await this.uploadsService.create(
+            createUploadDto,
+            file.filename,
+            file.mimetype,
+        );
         return upload;
     }
 
@@ -54,19 +56,20 @@ export class UploadsController {
     }
 
     @Get(':id')
-    async findOne(@Param('id') id: string, res: Response) {
+    async findOne(@Param('id') id: string, @Res() res: Response) {
         const upload = await this.uploadsService.findOne(+id);
         if (!upload) {
             throw new HttpException('Upload não encontrado', HttpStatus.NOT_FOUND);
         }
-        res.sendFile(join('./arquivos', upload.filename));
+        res.setHeader('Content-Type', upload.mimetype);
+        res.sendFile(resolve(__dirname, '..', '..', 'arquivos', upload.filename));
     }
 
     @Patch(':id')
     @UseInterceptors(
         FileInterceptor('file', {
             storage: diskStorage({
-                destination: './arquivos',
+                destination: resolve(__dirname, '..', '..', 'arquivos'),
                 filename: (_req, file, cb) => {
                     cb(null, file.originalname + '-' + Date.now());
                 },
@@ -83,10 +86,24 @@ export class UploadsController {
         if (!uploadExiste) {
             throw new HttpException('Upload não encontrado', HttpStatus.NOT_FOUND);
         }
-        if (!file) {
-            throw new HttpException('Arquivo não enviado', HttpStatus.BAD_REQUEST);
+
+        if (file) {
+            unlink(resolve(__dirname, '..', '..', 'arquivos', uploadExiste.filename), (error) => {
+                if (error) {
+                    throw new HttpException(
+                        'Erro ao atualizar o arquivo: ' + error.message,
+                        HttpStatus.INTERNAL_SERVER_ERROR,
+                    );
+                }
+            });
         }
-        const upload = await this.uploadsService.update(+id, updateUploadDto, file.filename);
+
+        const upload = await this.uploadsService.update(
+            +id,
+            updateUploadDto,
+            file?.filename,
+            file?.mimetype,
+        );
         return upload;
     }
 
@@ -97,8 +114,13 @@ export class UploadsController {
             throw new HttpException('Upload não encontrado', HttpStatus.NOT_FOUND);
         }
         const upload = await this.uploadsService.remove(+id);
-        unlink(join('./arquivos', upload.filename), () => {
-            throw new HttpException('Erro ao deletar o arquivo', HttpStatus.INTERNAL_SERVER_ERROR);
+        unlink(resolve(__dirname, '..', '..', 'arquivos'), (error) => {
+            if (error) {
+                throw new HttpException(
+                    'Erro ao deletar o arquivo: ' + error.message,
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                );
+            }
         });
         return upload;
     }
