@@ -33,6 +33,7 @@ model Veiculo {
   movimentos      Movimento[]
   uploads         Upload[]
   solicitacoes    Solicitacao[]
+  infracoes       Infracao[]
 }
 
 model Motorista {
@@ -48,6 +49,7 @@ model Motorista {
   setorId             Int
   movimentos          Movimento[]
   uploads             Upload[]
+  infracoes           Infracao[]
 }
 
 model Movimento {
@@ -57,6 +59,17 @@ model Movimento {
   kmSaida             Int
   kmRetorno           Int
   itinerario          String
+  motorista           Motorista @relation(fields: [motoristaId], references: [id])
+  motoristaId         Int
+  veiculo             Veiculo   @relation(fields: [veiculoId], references: [id])
+  veiculoId           Int
+}
+
+model Infracao {
+  id                  Int      @id @default(autoincrement())
+  data                String
+  descricao           String
+  valor               Float
   motorista           Motorista @relation(fields: [motoristaId], references: [id])
   motoristaId         Int
   veiculo             Veiculo   @relation(fields: [veiculoId], references: [id])

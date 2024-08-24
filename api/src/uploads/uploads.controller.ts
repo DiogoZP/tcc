@@ -114,7 +114,7 @@ export class UploadsController {
             throw new HttpException('Upload não encontrado', HttpStatus.NOT_FOUND);
         }
         const upload = await this.uploadsService.remove(+id);
-        unlink(resolve(__dirname, '..', '..', 'arquivos'), (error) => {
+        unlink(resolve(__dirname, '..', '..', 'arquivos', upload.filename), (error) => {
             if (error) {
                 throw new HttpException(
                     'Erro ao deletar o arquivo: ' + error.message,
