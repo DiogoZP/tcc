@@ -54,6 +54,7 @@ export class VeiculosController {
         if (!veiculoExiste) {
             throw new HttpException('Veículo não encontrado', HttpStatus.NOT_FOUND);
         }
-        await this.veiculosService.remove(+id);
+        const veiculo = await this.veiculosService.remove(+id);
+        return veiculo;
     }
 }

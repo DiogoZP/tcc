@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMotoristaDto } from './dto/create-motorista.dto';
 import { UpdateMotoristaDto } from './dto/update-motorista.dto';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '@/database/prisma.service';
 
 @Injectable()
 export class MotoristasService {
