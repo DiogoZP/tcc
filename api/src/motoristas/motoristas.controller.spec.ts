@@ -54,7 +54,7 @@ describe('MotoristasController', () => {
     });
 
     describe('findAll', () => {
-        it('deve retornar um array de motoristas', async () => {
+        it('deve retornar todos os motoristas', async () => {
             const result = [
                 {
                     id: 1,
@@ -139,7 +139,7 @@ describe('MotoristasController', () => {
     });
 
     describe('remove', () => {
-        it('deve deletar um motorista', async () => {
+        it('deve remover um motorista', async () => {
             const result = {
                 id: 1,
                 nome: 'Fulano',

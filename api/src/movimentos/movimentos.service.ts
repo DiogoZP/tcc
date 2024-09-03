@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMovimentoDto } from './dto/create-movimento.dto';
 import { UpdateMovimentoDto } from './dto/update-movimento.dto';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '@/database/prisma.service';
 
 @Injectable()
 export class MovimentosService {

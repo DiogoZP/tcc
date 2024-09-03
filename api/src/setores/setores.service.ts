@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSetorDto } from './dto/create-setor.dto';
 import { UpdateSetorDto } from './dto/update-setor.dto';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '@/database/prisma.service';
 
 @Injectable()
 export class SetoresService {

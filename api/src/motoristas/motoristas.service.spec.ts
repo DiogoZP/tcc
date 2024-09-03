@@ -56,7 +56,7 @@ describe('MotoristasService', () => {
     });
 
     describe('findAll', () => {
-        it('deve retornar um array de motoristas', async () => {
+        it('deve retornar todos os motoristas', async () => {
             const result = [
                 {
                     id: 1,
