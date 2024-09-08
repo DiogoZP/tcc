@@ -7,6 +7,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import '@mantine/core/styles.layer.css';
 import '@mantine/notifications/styles.layer.css';
 import '@mantine/dropzone/styles.layer.css';
+import 'mantine-react-table/styles.css';
 
 const queryClient = new QueryClient();
 

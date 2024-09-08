@@ -1,6 +1,6 @@
 import { CreateMovimentoDto } from './dto/create-movimento.dto';
 import { UpdateMovimentoDto } from './dto/update-movimento.dto';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '@/database/prisma.service';
 export declare class MovimentosService {
     private readonly prisma;
     constructor(prisma: PrismaService);

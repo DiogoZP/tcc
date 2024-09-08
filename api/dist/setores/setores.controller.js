@@ -49,7 +49,8 @@ let SetoresController = class SetoresController {
         if (!setorExiste) {
             throw new common_1.HttpException('Setor não encontrado', common_1.HttpStatus.NOT_FOUND);
         }
-        await this.setoresService.remove(+id);
+        const setor = await this.setoresService.remove(+id);
+        return setor;
     }
 };
 exports.SetoresController = SetoresController;

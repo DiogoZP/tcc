@@ -48,5 +48,15 @@ export declare class MotoristasController {
         telefone: string;
         setorId: number;
     }>;
-    remove(id: string): Promise<void>;
+    remove(id: string): Promise<{
+        id: number;
+        nome: string;
+        cpf: string;
+        rg: string;
+        categoriaCNH: string;
+        numeroCNH: string;
+        validadeCNH: string;
+        telefone: string;
+        setorId: number;
+    }>;
 }

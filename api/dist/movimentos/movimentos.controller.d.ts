@@ -44,5 +44,14 @@ export declare class MovimentosController {
         motoristaId: number;
         veiculoId: number;
     }>;
-    remove(id: string): Promise<void>;
+    remove(id: string): Promise<{
+        id: number;
+        dataSaida: string;
+        dataRetorno: string;
+        kmSaida: number;
+        kmRetorno: number;
+        itinerario: string;
+        motoristaId: number;
+        veiculoId: number;
+    }>;
 }

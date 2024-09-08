@@ -1,6 +1,6 @@
 import { CreateUploadDto } from './dto/create-upload.dto';
 import { UpdateUploadDto } from './dto/update-upload.dto';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '@/database/prisma.service';
 export declare class UploadsService {
     private readonly prisma;
     constructor(prisma: PrismaService);

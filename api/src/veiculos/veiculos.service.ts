@@ -14,7 +14,11 @@ export class VeiculosService {
     }
 
     async findAll() {
-        return await this.prisma.veiculo.findMany();
+        return await this.prisma.veiculo.findMany({
+            include: {
+                setor: true,
+            },
+        });
     }
 
     async findOne(id: number) {

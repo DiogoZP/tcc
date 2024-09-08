@@ -49,7 +49,8 @@ let MotoristasController = class MotoristasController {
         if (!motoristaExiste) {
             throw new common_1.HttpException('Motorista não encontrado', common_1.HttpStatus.NOT_FOUND);
         }
-        await this.motoristasService.remove(+id);
+        const motorista = await this.motoristasService.remove(+id);
+        return motorista;
     }
 };
 exports.MotoristasController = MotoristasController;

@@ -20,7 +20,12 @@ export declare class VeiculosController {
         status: string;
         setorId: number;
     }>;
-    findAll(): Promise<{
+    findAll(): Promise<({
+        setor: {
+            id: number;
+            nome: string;
+        };
+    } & {
         id: number;
         placa: string;
         marca: string;
@@ -35,7 +40,7 @@ export declare class VeiculosController {
         categoriaCNH: string;
         status: string;
         setorId: number;
-    }[]>;
+    })[]>;
     findOne(id: string): Promise<{
         id: number;
         placa: string;
@@ -68,5 +73,20 @@ export declare class VeiculosController {
         status: string;
         setorId: number;
     }>;
-    remove(id: string): Promise<void>;
+    remove(id: string): Promise<{
+        id: number;
+        placa: string;
+        marca: string;
+        modelo: string;
+        tipo: string;
+        ano: number;
+        cor: string;
+        renavam: string;
+        chassi: string;
+        km: number;
+        combustivel: string;
+        categoriaCNH: string;
+        status: string;
+        setorId: number;
+    }>;
 }

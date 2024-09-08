@@ -1,6 +1,6 @@
 import { CreateMotoristaDto } from './dto/create-motorista.dto';
 import { UpdateMotoristaDto } from './dto/update-motorista.dto';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '@/database/prisma.service';
 export declare class MotoristasService {
     private readonly prisma;
     constructor(prisma: PrismaService);

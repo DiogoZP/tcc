@@ -49,7 +49,8 @@ let MovimentosController = class MovimentosController {
         if (!movimentoExiste) {
             throw new common_1.HttpException('Movimento não encontrado', common_1.HttpStatus.NOT_FOUND);
         }
-        await this.movimentosService.remove(+id);
+        const movimento = await this.movimentosService.remove(+id);
+        return movimento;
     }
 };
 exports.MovimentosController = MovimentosController;

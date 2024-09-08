@@ -49,7 +49,8 @@ let VeiculosController = class VeiculosController {
         if (!veiculoExiste) {
             throw new common_1.HttpException('Veículo não encontrado', common_1.HttpStatus.NOT_FOUND);
         }
-        await this.veiculosService.remove(+id);
+        const veiculo = await this.veiculosService.remove(+id);
+        return veiculo;
     }
 };
 exports.VeiculosController = VeiculosController;

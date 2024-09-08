@@ -1,6 +1,6 @@
 import { CreateVeiculoDto } from './dto/create-veiculo.dto';
 import { UpdateVeiculoDto } from './dto/update-veiculo.dto';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '@/database/prisma.service';
 export declare class VeiculosService {
     private readonly prisma;
     constructor(prisma: PrismaService);
@@ -20,7 +20,12 @@ export declare class VeiculosService {
         status: string;
         setorId: number;
     }>;
-    findAll(): Promise<{
+    findAll(): Promise<({
+        setor: {
+            id: number;
+            nome: string;
+        };
+    } & {
         id: number;
         placa: string;
         marca: string;
@@ -35,7 +40,7 @@ export declare class VeiculosService {
         categoriaCNH: string;
         status: string;
         setorId: number;
-    }[]>;
+    })[]>;
     findOne(id: number): Promise<{
         id: number;
         placa: string;

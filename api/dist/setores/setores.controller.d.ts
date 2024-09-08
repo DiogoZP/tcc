@@ -20,5 +20,8 @@ export declare class SetoresController {
         id: number;
         nome: string;
     }>;
-    remove(id: string): Promise<void>;
+    remove(id: string): Promise<{
+        id: number;
+        nome: string;
+    }>;
 }

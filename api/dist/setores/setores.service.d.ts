@@ -1,6 +1,6 @@
 import { CreateSetorDto } from './dto/create-setor.dto';
 import { UpdateSetorDto } from './dto/update-setor.dto';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '@/database/prisma.service';
 export declare class SetoresService {
     private readonly prisma;
     constructor(prisma: PrismaService);
