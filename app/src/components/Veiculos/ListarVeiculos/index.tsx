@@ -1,4 +1,5 @@
 import { type MRT_ColumnDef } from 'mantine-react-table';
+import { Loader, Flex } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import DataTable from '@/components/DataTable';
 import VeiculoService from '@/services/VeiculoService';
@@ -39,7 +40,11 @@ function ListarVeiculos() {
     } = useQuery<Veiculo[]>({ queryKey: ['veiculos'], queryFn: VeiculoService.listar });
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (
+            <Flex justify="center" align='center' h="100vh">
+                <Loader size='70'/>
+            </Flex>
+        );
     }
     if (isError || !veiculos) {
         return <div>Error</div>;
