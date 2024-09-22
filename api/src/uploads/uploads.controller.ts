@@ -20,11 +20,23 @@ import { CreateUploadDto } from './dto/create-upload.dto';
 import { UpdateUploadDto } from './dto/update-upload.dto';
 import { unlink } from 'fs';
 import { resolve } from 'path';
+import {
+    ApiBadRequestResponse,
+    ApiConsumes,
+    ApiCreatedResponse,
+    ApiNotFoundResponse,
+    ApiOkResponse,
+    ApiTags,
+} from '@nestjs/swagger';
 
+@ApiTags('Uploads')
 @Controller('uploads')
 export class UploadsController {
     constructor(private readonly uploadsService: UploadsService) {}
 
+    @ApiCreatedResponse({ description: 'Upload criado com sucesso' })
+    @ApiBadRequestResponse({ description: 'Valores inválidos' })
+    @ApiConsumes('multipart/form-data')
     @Post()
     @UseInterceptors(
         FileInterceptor('file', {
@@ -49,12 +61,15 @@ export class UploadsController {
         return upload;
     }
 
+    @ApiOkResponse({ description: 'Uploads encontrados' })
     @Get()
     async findAll() {
         const uploads = await this.uploadsService.findAll();
         return uploads;
     }
 
+    @ApiOkResponse({ description: 'Upload encontrado com sucesso' })
+    @ApiNotFoundResponse({ description: 'Upload não encontrado' })
     @Get(':id')
     async findOne(@Param('id') id: string, @Res() res: Response) {
         const upload = await this.uploadsService.findOne(+id);
@@ -65,6 +80,10 @@ export class UploadsController {
         res.sendFile(resolve(__dirname, '..', '..', 'arquivos', upload.filename));
     }
 
+    @ApiOkResponse({ description: 'Upload atualizado com sucesso' })
+    @ApiNotFoundResponse({ description: 'Upload não encontrado' })
+    @ApiBadRequestResponse({ description: 'Valores inválidos' })
+    @ApiConsumes('multipart/form-data')
     @Patch(':id')
     @UseInterceptors(
         FileInterceptor('file', {
@@ -107,6 +126,8 @@ export class UploadsController {
         return upload;
     }
 
+    @ApiOkResponse({ description: 'Upload deletado com sucesso' })
+    @ApiNotFoundResponse({ description: 'Upload não encontrado' })
     @Delete(':id')
     async remove(@Param('id') id: string) {
         const uploadExiste = await this.uploadsService.findOne(+id);

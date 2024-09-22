@@ -11,9 +11,6 @@ async function bootstrap() {
         .setTitle('Gestor de Frotas')
         .setDescription('API para controle e manutenção de frotas de veículos')
         .setVersion('0.1')
-        .addTag('veiculos')
-        .addTag('motoristas')
-        .addTag('movimentos')
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, config);
     swagger_1.SwaggerModule.setup('docs', app, document);

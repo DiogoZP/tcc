@@ -2,6 +2,7 @@ import Movimento from './Movimento';
 import Upload from './Upload';
 import Solicitacao from './Solicitacao';
 import Infracao from './Infracao';
+import Setor from './Setor';
 
 type Veiculo = {
     id: number;
@@ -17,6 +18,7 @@ type Veiculo = {
     combustivel: string;
     categoriaCNH: string;
     status: string;
+    setor: Setor;
     setorId: number;
     movimentos: Movimento[];
     uploads: Upload[];

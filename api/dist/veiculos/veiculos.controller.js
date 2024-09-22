@@ -13,10 +13,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VeiculosController = void 0;
+const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const veiculos_service_1 = require("./veiculos.service");
 const create_veiculo_dto_1 = require("./dto/create-veiculo.dto");
 const update_veiculo_dto_1 = require("./dto/update-veiculo.dto");
+const swagger_1 = require("@nestjs/swagger");
 let VeiculosController = class VeiculosController {
     constructor(veiculosService) {
         this.veiculosService = veiculosService;
@@ -55,27 +57,38 @@ let VeiculosController = class VeiculosController {
 };
 exports.VeiculosController = VeiculosController;
 __decorate([
+    (0, swagger_1.ApiCreatedResponse)({ description: 'Veículo criado com sucesso' }),
+    (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
     (0, common_1.Post)(),
+    openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_veiculo_dto_1.CreateVeiculoDto]),
     __metadata("design:returntype", Promise)
 ], VeiculosController.prototype, "create", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Veículos encontrados' }),
     (0, common_1.Get)(),
+    openapi.ApiResponse({ status: 200, type: [Object] }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], VeiculosController.prototype, "findAll", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Veículo encontrado com sucesso' }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Veículo não encontrado' }),
     (0, common_1.Get)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], VeiculosController.prototype, "findOne", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Veículo atualizado com sucesso' }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Veículo não encontrado' }),
     (0, common_1.Patch)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -83,13 +96,17 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], VeiculosController.prototype, "update", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Veículo removido com sucesso' }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Veículo não encontrado' }),
     (0, common_1.Delete)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], VeiculosController.prototype, "remove", null);
 exports.VeiculosController = VeiculosController = __decorate([
+    (0, swagger_1.ApiTags)('Veículos'),
     (0, common_1.Controller)('veiculos'),
     __metadata("design:paramtypes", [veiculos_service_1.VeiculosService])
 ], VeiculosController);

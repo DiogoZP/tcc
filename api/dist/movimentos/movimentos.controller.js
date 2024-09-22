@@ -13,10 +13,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MovimentosController = void 0;
+const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const movimentos_service_1 = require("./movimentos.service");
 const create_movimento_dto_1 = require("./dto/create-movimento.dto");
 const update_movimento_dto_1 = require("./dto/update-movimento.dto");
+const swagger_1 = require("@nestjs/swagger");
 let MovimentosController = class MovimentosController {
     constructor(movimentosService) {
         this.movimentosService = movimentosService;
@@ -55,27 +57,39 @@ let MovimentosController = class MovimentosController {
 };
 exports.MovimentosController = MovimentosController;
 __decorate([
+    (0, swagger_1.ApiCreatedResponse)({ description: 'Movimento criado com sucesso' }),
+    (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
     (0, common_1.Post)(),
+    openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_movimento_dto_1.CreateMovimentoDto]),
     __metadata("design:returntype", Promise)
 ], MovimentosController.prototype, "create", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Movimentos encontrados' }),
     (0, common_1.Get)(),
+    openapi.ApiResponse({ status: 200 }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MovimentosController.prototype, "findAll", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Movimento encontrado com sucesso' }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Movimento não encontrado' }),
     (0, common_1.Get)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], MovimentosController.prototype, "findOne", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Movimento atualizado com sucesso' }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Movimento não encontrado' }),
+    (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
     (0, common_1.Patch)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -83,13 +97,17 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MovimentosController.prototype, "update", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Movimento deletado com sucesso' }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Movimento não encontrado' }),
     (0, common_1.Delete)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], MovimentosController.prototype, "remove", null);
 exports.MovimentosController = MovimentosController = __decorate([
+    (0, swagger_1.ApiTags)('Movimentos'),
     (0, common_1.Controller)('movimentos'),
     __metadata("design:paramtypes", [movimentos_service_1.MovimentosService])
 ], MovimentosController);

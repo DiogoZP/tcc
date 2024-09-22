@@ -1,4 +1,5 @@
 import { IsString, IsInt, IsIn } from 'class-validator';
+
 export class CreateMotoristaDto {
     @IsString({ message: 'nome deve ser uma string' })
     nome: string;

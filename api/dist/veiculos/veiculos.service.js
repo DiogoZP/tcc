@@ -24,7 +24,11 @@ let VeiculosService = class VeiculosService {
     async findAll() {
         return await this.prisma.veiculo.findMany({
             include: {
-                setor: true,
+                setor: {
+                    select: {
+                        nome: true,
+                    },
+                },
             },
         });
     }

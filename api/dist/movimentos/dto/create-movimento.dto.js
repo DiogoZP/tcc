@@ -10,8 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateMovimentoDto = void 0;
+const openapi = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateMovimentoDto {
+    static _OPENAPI_METADATA_FACTORY() {
+        return { dataSaida: { required: true, type: () => String }, dataRetorno: { required: true, type: () => String }, kmSaida: { required: true, type: () => Number }, kmRetorno: { required: true, type: () => Number }, itinerario: { required: true, type: () => String }, motoristaId: { required: true, type: () => Number }, veiculoId: { required: true, type: () => Number } };
+    }
 }
 exports.CreateMovimentoDto = CreateMovimentoDto;
 __decorate([

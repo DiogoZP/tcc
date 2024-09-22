@@ -22,7 +22,6 @@ export declare class VeiculosService {
     }>;
     findAll(): Promise<({
         setor: {
-            id: number;
             nome: string;
         };
     } & {

@@ -17,6 +17,7 @@ const columns: MRT_ColumnDef<Veiculo>[] = [
     {
         header: 'Marca',
         accessorKey: 'marca',
+        id: 'marca',
     },
     {
         header: 'Modelo',
@@ -50,7 +51,7 @@ function ListarVeiculos() {
         return <div>Error</div>;
     }
 
-    return <DataTable columns={columns} data={veiculos} />;
+    return <DataTable<Veiculo> columns={columns} data={veiculos} nome='veiculos' />;
 }
 
 export default ListarVeiculos;

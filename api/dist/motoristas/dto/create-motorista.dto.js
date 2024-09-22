@@ -10,8 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateMotoristaDto = void 0;
+const openapi = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateMotoristaDto {
+    static _OPENAPI_METADATA_FACTORY() {
+        return { nome: { required: true, type: () => String }, cpf: { required: true, type: () => String }, rg: { required: true, type: () => String }, categoriaCNH: { required: true, type: () => String, enum: ['A', 'B', 'C', 'D', 'E', 'AB', 'AC', 'AD', 'AE'] }, numeroCNH: { required: true, type: () => String }, validadeCNH: { required: true, type: () => String }, telefone: { required: true, type: () => String }, setorId: { required: true, type: () => Number } };
+    }
 }
 exports.CreateMotoristaDto = CreateMotoristaDto;
 __decorate([

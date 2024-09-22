@@ -13,6 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UploadsController = void 0;
+const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
@@ -21,6 +22,7 @@ const create_upload_dto_1 = require("./dto/create-upload.dto");
 const update_upload_dto_1 = require("./dto/update-upload.dto");
 const fs_1 = require("fs");
 const path_1 = require("path");
+const swagger_1 = require("@nestjs/swagger");
 let UploadsController = class UploadsController {
     constructor(uploadsService) {
         this.uploadsService = uploadsService;
@@ -72,6 +74,9 @@ let UploadsController = class UploadsController {
 };
 exports.UploadsController = UploadsController;
 __decorate([
+    (0, swagger_1.ApiCreatedResponse)({ description: 'Upload criado com sucesso' }),
+    (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
+    (0, swagger_1.ApiConsumes)('multipart/form-data'),
     (0, common_1.Post)(),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
@@ -82,6 +87,7 @@ __decorate([
         }),
         limits: { fileSize: 1024 * 1024 * 10 },
     })),
+    openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
@@ -89,13 +95,18 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UploadsController.prototype, "create", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Uploads encontrados' }),
     (0, common_1.Get)(),
+    openapi.ApiResponse({ status: 200 }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UploadsController.prototype, "findAll", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Upload encontrado com sucesso' }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Upload não encontrado' }),
     (0, common_1.Get)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -103,6 +114,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UploadsController.prototype, "findOne", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Upload atualizado com sucesso' }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Upload não encontrado' }),
+    (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
+    (0, swagger_1.ApiConsumes)('multipart/form-data'),
     (0, common_1.Patch)(':id'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
@@ -113,6 +128,7 @@ __decorate([
         }),
         limits: { fileSize: 1024 * 1024 * 10 },
     })),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, common_1.UploadedFile)()),
@@ -121,13 +137,17 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UploadsController.prototype, "update", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Upload deletado com sucesso' }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Upload não encontrado' }),
     (0, common_1.Delete)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], UploadsController.prototype, "remove", null);
 exports.UploadsController = UploadsController = __decorate([
+    (0, swagger_1.ApiTags)('Uploads'),
     (0, common_1.Controller)('uploads'),
     __metadata("design:paramtypes", [uploads_service_1.UploadsService])
 ], UploadsController);

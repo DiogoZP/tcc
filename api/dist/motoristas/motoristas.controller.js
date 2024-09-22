@@ -13,10 +13,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MotoristasController = void 0;
+const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const motoristas_service_1 = require("./motoristas.service");
 const create_motorista_dto_1 = require("./dto/create-motorista.dto");
 const update_motorista_dto_1 = require("./dto/update-motorista.dto");
+const swagger_1 = require("@nestjs/swagger");
 let MotoristasController = class MotoristasController {
     constructor(motoristasService) {
         this.motoristasService = motoristasService;
@@ -55,27 +57,39 @@ let MotoristasController = class MotoristasController {
 };
 exports.MotoristasController = MotoristasController;
 __decorate([
+    (0, swagger_1.ApiCreatedResponse)({ description: 'Motorista criado com sucesso' }),
+    (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
     (0, common_1.Post)(),
+    openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_motorista_dto_1.CreateMotoristaDto]),
     __metadata("design:returntype", Promise)
 ], MotoristasController.prototype, "create", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Motoristas encontrados' }),
     (0, common_1.Get)(),
+    openapi.ApiResponse({ status: 200 }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MotoristasController.prototype, "findAll", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Motorista encontrado com sucesso' }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Motorista não encontrado' }),
     (0, common_1.Get)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], MotoristasController.prototype, "findOne", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Motorista atualizado com sucesso' }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Motorista não encontrado' }),
+    (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
     (0, common_1.Patch)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -83,13 +97,17 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotoristasController.prototype, "update", null);
 __decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Motorista deletado com sucesso' }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Motorista não encontrado' }),
     (0, common_1.Delete)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], MotoristasController.prototype, "remove", null);
 exports.MotoristasController = MotoristasController = __decorate([
+    (0, swagger_1.ApiTags)('Motoristas'),
     (0, common_1.Controller)('motoristas'),
     __metadata("design:paramtypes", [motoristas_service_1.MotoristasService])
 ], MotoristasController);
