@@ -61,8 +61,7 @@ const columns: MRT_ColumnDef<Veiculo>[] = [
     {
         header: 'Categoria CNH',
         accessorKey: 'categoriaCNH',
-        
-    }
+    },
 ];
 
 function ListarVeiculos() {
@@ -74,8 +73,8 @@ function ListarVeiculos() {
 
     if (isLoading) {
         return (
-            <Flex justify="center" align='center' h="100vh">
-                <Loader size='70'/>
+            <Flex justify="center" align="center" h="100vh">
+                <Loader size="70" />
             </Flex>
         );
     }
@@ -83,7 +82,7 @@ function ListarVeiculos() {
         return <div>Error</div>;
     }
 
-    return <DataTable<Veiculo> columns={columns} data={veiculos} nome='veiculos' />;
+    return <DataTable<Veiculo> columns={columns} data={veiculos} nome="veiculos" />;
 }
 
 export default ListarVeiculos;

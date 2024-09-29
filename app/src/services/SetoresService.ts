@@ -1,23 +1,23 @@
 import axios from 'axios';
-import Setor from '@/types/Setor';
+import { Setor } from '@/types/Setor';
 
 class SetoresService {
-    static async listar() {
+    static async listar(): Promise<Setor[]> {
         const { data } = await axios.get('http://localhost:3000/setores');
         return data;
     }
     
-    static async criar(setor: Setor) {
+    static async criar(setor: Setor): Promise<Setor> {
         const { data } = await axios.post('http://localhost:3000/setores', setor);
         return data;
     }
     
-    static async atualizar(setor: Setor) {
-        const { data } = await axios.put(`http://localhost:3000/setores/${setor.id}`, setor);
+    static async atualizar(setor: Setor): Promise<Setor> {
+        const { data } = await axios.patch(`http://localhost:3000/setores/${setor.id}`, setor);
         return data;
     }
     
-    static async remover(id: number) {
+    static async remover(id: number): Promise<Setor> {
         const { data } = await axios.delete(`http://localhost:3000/setores/${id}`);
         return data;
     }

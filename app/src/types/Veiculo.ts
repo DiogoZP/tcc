@@ -28,7 +28,7 @@ type Veiculo = {
 };
 
 const veiculoSchema = z.object({
-    id: z.number().optional(),
+    id: z.coerce.number().optional(),
     placa: z.string(),
     marca: z.string(),
     modelo: z.string(),

@@ -33,13 +33,13 @@ function DataTable<T extends MRT_RowData>({ columns, data, nome }: DataTableProp
                     km: false,
                     combustivel: false,
                     categoriaCNH: false,
-                }
+                },
             }}
             renderRowActions={({ row }) => (
                 <Flex gap="md">
                     <Tooltip label="Editar">
                         <ActionIcon
-                            onClick={() => navigate(`/admin/${nome}/${row.getValue('id')}`)}
+                            onClick={() => navigate(`/admin/${nome}/editar/${row.getValue('id')}`)}
                         >
                             <TbEdit />
                         </ActionIcon>

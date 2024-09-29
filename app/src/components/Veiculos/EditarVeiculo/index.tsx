@@ -1,33 +1,51 @@
+import { useParams } from 'react-router-dom';
 import { Form, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TextInput, NumberInput, Select } from 'react-hook-form-mantine';
 import { Button, Fieldset, Flex, Loader } from '@mantine/core';
-import { TbDeviceFloppy, TbX, TbCheck, TbArrowLeft } from 'react-icons/tb';
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { TbDeviceFloppy, TbArrowLeft, TbCheck, TbX } from 'react-icons/tb';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { notifications } from '@mantine/notifications';
 import { useNavigate } from 'react-router-dom';
 import SetoresService from '@/services/SetoresService';
 import VeiculosService from '@/services/VeiculosService';
 import { Setor } from '@/types/Setor';
-import { veiculoSchema, VeiculoForm } from '@/types/Veiculo';
+import { Veiculo, veiculoSchema, VeiculoForm } from '@/types/Veiculo';
 
-function CriarVeiculo() {
+function EditarVeiculo() {
+    const { id } = useParams();
+
+    const navigate = useNavigate();
+
+    const queryClient = useQueryClient();
+
+    const {
+        data: veiculo,
+        isError: isVeiculoError,
+        isLoading: isVeiculoLoading,
+    } = useQuery<Veiculo>({
+        queryKey: ['veiculos', id],
+        queryFn: () => VeiculosService.buscar(Number(id)),
+    });
+
     const {
         data: setores,
-        isError,
-        isLoading,
+        isError: isSetoresError,
+        isLoading: isSetoresLoading,
     } = useQuery<Setor[]>({ queryKey: ['setores'], queryFn: SetoresService.listar });
 
     const mutation = useMutation({
-        mutationFn: VeiculosService.criar,
+        mutationFn: VeiculosService.atualizar,
         onSuccess: () => {
             notifications.show({
                 title: 'Sucesso',
-                message: 'Veículo cadastrado com sucesso',
+                message: 'Veículo atualizado com sucesso',
                 color: 'teal',
                 icon: <TbCheck size="20" />,
             });
-            navigate('/admin/veiculos');
+            queryClient.invalidateQueries({
+                queryKey: ['veiculos', id],
+            });
         },
         onError: (error) => {
             notifications.show({
@@ -39,25 +57,11 @@ function CriarVeiculo() {
         },
     });
 
-    const navigate = useNavigate();
-
     const { control } = useForm<VeiculoForm>({
         resolver: zodResolver(veiculoSchema),
-        defaultValues: {
-            placa: '',
-            marca: '',
-            modelo: '',
-            tipo: '',
-            cor: '',
-            renavam: '',
-            chassi: '',
-            combustivel: '',
-            categoriaCNH: '',
-            status: '',
-        },
     });
 
-    if (isLoading) {
+    if (isVeiculoLoading || isSetoresLoading) {
         return (
             <Flex justify="center" align="center" h="100vh">
                 <Loader size="70" />
@@ -65,42 +69,51 @@ function CriarVeiculo() {
         );
     }
 
-    if (isError || !setores) {
-        return <div>Error</div>;
+    if (isVeiculoError || isSetoresError || !veiculo || !setores) {
+        return <div>Erro ao buscar veículo</div>;
     }
 
     return (
-        <Fieldset legend="Cadastro de Veículo">
-            <Form
-                control={control}
-                onSubmit={({ data }) => mutation.mutate(data)}
-                onError={(e) => console.log(e)}
-            >
-                <Flex gap={10} direction="column">
+        <Fieldset legend="Editar Veículo">
+            <Form onSubmit={({ data }) => mutation.mutate(data)} control={control}>
+            <Flex gap={10} direction="column">
                     <Flex gap={10} wrap={'wrap'}>
+                        <TextInput
+                            label="ID"
+                            placeholder="ID do veículo"
+                            control={control}
+                            name="id"
+                            flex={1}
+                            miw={10}
+                            defaultValue={veiculo.id.toString()}
+                            readOnly
+                        />
                         <TextInput
                             label="Placa"
                             placeholder="Placa do veículo"
                             control={control}
                             name="placa"
-                            flex={1}
+                            flex={2}
                             miw={200}
+                            defaultValue={veiculo.placa}
                         />
                         <TextInput
                             label="Marca"
                             placeholder="Marca do veículo"
                             control={control}
                             name="marca"
-                            flex={2}
+                            flex={3}
                             miw={200}
+                            defaultValue={veiculo.marca}
                         />
                         <TextInput
                             label="Modelo"
                             placeholder="Modelo do veículo"
                             control={control}
                             name="modelo"
-                            flex={2}
+                            flex={3}
                             miw={200}
+                            defaultValue={veiculo.modelo}
                         />
                     </Flex>
                     <Flex gap={10} wrap={'wrap'}>
@@ -113,6 +126,7 @@ function CriarVeiculo() {
                             flex={1}
                             miw={200}
                             searchable
+                            defaultValue={veiculo.status}
                         />
                         <Select
                             label="Setor"
@@ -126,6 +140,7 @@ function CriarVeiculo() {
                             flex={1}
                             miw={200}
                             searchable
+                            defaultValue={veiculo.setorId.toString()}
                         />
                     </Flex>
                     <Flex gap={10} wrap={'wrap'}>
@@ -145,6 +160,7 @@ function CriarVeiculo() {
                             flex={1}
                             miw={200}
                             searchable
+                            defaultValue={veiculo.tipo}
                         />
                         <NumberInput
                             label="Ano"
@@ -153,6 +169,7 @@ function CriarVeiculo() {
                             name="ano"
                             flex={1}
                             miw={200}
+                            defaultValue={veiculo.ano}
                         />
                         <TextInput
                             label="Cor"
@@ -161,6 +178,7 @@ function CriarVeiculo() {
                             name="cor"
                             flex={1}
                             miw={200}
+                            defaultValue={veiculo.cor}
                         />
                     </Flex>
                     <Flex gap={10} wrap={'wrap'}>
@@ -171,6 +189,7 @@ function CriarVeiculo() {
                             name="renavam"
                             flex={1}
                             miw={200}
+                            defaultValue={veiculo.renavam}
                         />
                         <TextInput
                             label="Chassi"
@@ -179,6 +198,7 @@ function CriarVeiculo() {
                             name="chassi"
                             flex={1}
                             miw={200}
+                            defaultValue={veiculo.chassi}
                         />
                     </Flex>
                     <Flex gap={10} wrap={'wrap'}>
@@ -189,6 +209,7 @@ function CriarVeiculo() {
                             name="km"
                             flex={1}
                             miw={200}
+                            defaultValue={veiculo.km}
                         />
                         <Select
                             label="Combustível"
@@ -206,6 +227,7 @@ function CriarVeiculo() {
                             flex={1}
                             miw={200}
                             searchable
+                            defaultValue={veiculo.combustivel}
                         />
                         <Select
                             label="Categoria CNH"
@@ -216,18 +238,19 @@ function CriarVeiculo() {
                             flex={1}
                             miw={200}
                             searchable
+                            defaultValue={veiculo.categoriaCNH}
                         />
                     </Flex>
                     <Flex justify="space-between" w="100%" mt={10}>
                         <Button
                             onClick={() => navigate('/admin/veiculos')}
-                            variant="light"
+                            variant='light'
                             leftSection={<TbArrowLeft size="20" />}
                         >
                             Voltar
                         </Button>
                         <Button type="submit" leftSection={<TbDeviceFloppy size="20" />}>
-                            Cadastrar
+                            Salvar
                         </Button>
                     </Flex>
                 </Flex>
@@ -236,4 +259,4 @@ function CriarVeiculo() {
     );
 }
 
-export default CriarVeiculo;
+export default EditarVeiculo;
