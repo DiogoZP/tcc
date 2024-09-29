@@ -3,7 +3,7 @@ import { Loader, Flex } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import DataTable from '@/components/DataTable';
 import VeiculosService from '@/services/VeiculosService';
-import Veiculo from '@/types/Veiculo';
+import { Veiculo } from '@/types/Veiculo';
 
 const columns: MRT_ColumnDef<Veiculo>[] = [
     {
@@ -23,6 +23,10 @@ const columns: MRT_ColumnDef<Veiculo>[] = [
         accessorKey: 'modelo',
     },
     {
+        header: 'Tipo',
+        accessorKey: 'tipo',
+    },
+    {
         header: 'Status',
         accessorKey: 'status',
     },
@@ -30,6 +34,35 @@ const columns: MRT_ColumnDef<Veiculo>[] = [
         header: 'Setor',
         accessorKey: 'setor.nome',
     },
+    {
+        header: 'Ano',
+        accessorKey: 'ano',
+    },
+    {
+        header: 'Cor',
+        accessorKey: 'cor',
+    },
+    {
+        header: 'Renavam',
+        accessorKey: 'renavam',
+    },
+    {
+        header: 'Chassi',
+        accessorKey: 'chassi',
+    },
+    {
+        header: 'Km',
+        accessorKey: 'km',
+    },
+    {
+        header: 'Combustível',
+        accessorKey: 'combustivel',
+    },
+    {
+        header: 'Categoria CNH',
+        accessorKey: 'categoriaCNH',
+        
+    }
 ];
 
 function ListarVeiculos() {

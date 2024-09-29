@@ -1,30 +1,15 @@
 import { Form, useForm } from 'react-hook-form';
-import z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TextInput, NumberInput, Select } from 'react-hook-form-mantine';
 import { Button, Fieldset, Flex, Loader } from '@mantine/core';
-import { TbDeviceFloppy, TbX } from 'react-icons/tb';
-import { useQuery } from '@tanstack/react-query';
+import { TbDeviceFloppy, TbX, TbCheck } from 'react-icons/tb';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { notifications } from '@mantine/notifications';
+import { useNavigate } from 'react-router-dom';
 import SetoresService from '@/services/SetoresService';
-import Setor from '@/types/Setor';
-
-const veiculoSchema = z.object({
-    placa: z.string(),
-    marca: z.string(),
-    modelo: z.string(),
-    tipo: z.string(),
-    ano: z.number(),
-    cor: z.string(),
-    renavam: z.string(),
-    chassi: z.string(),
-    km: z.number(),
-    combustivel: z.string(),
-    categoriaCNH: z.string(),
-    status: z.string(),
-    setorId: z.coerce.number(),
-});
-
-type VeiculoForm = z.infer<typeof veiculoSchema>;
+import VeiculosService from '@/services/VeiculosService';
+import { Setor } from '@/types/Setor';
+import { veiculoSchema, VeiculoForm } from '@/types/Veiculo';
 
 function CriarVeiculo() {
     const {
@@ -32,6 +17,29 @@ function CriarVeiculo() {
         isError,
         isLoading,
     } = useQuery<Setor[]>({ queryKey: ['setores'], queryFn: SetoresService.listar });
+
+    const mutation = useMutation({
+        mutationFn: VeiculosService.criar,
+        onSuccess: () => {
+            notifications.show({
+                title: 'Sucesso',
+                message: 'Veículo cadastrado com sucesso',
+                color: 'teal',
+                icon: <TbCheck size="20" />,
+            });
+            navigate('/admin/veiculos');
+        },
+        onError: (error) => {
+            notifications.show({
+                title: 'Erro',
+                message: error.message,
+                color: 'red',
+                icon: <TbX size="20" />,
+            });
+        },
+    });
+
+    const navigate = useNavigate();
 
     const { control } = useForm<VeiculoForm>({
         resolver: zodResolver(veiculoSchema),
@@ -65,7 +73,7 @@ function CriarVeiculo() {
         <Fieldset legend="Cadastro de Veículo">
             <Form
                 control={control}
-                onSubmit={(e) => console.log(e.data)}
+                onSubmit={({ data }) => mutation.mutate(data)}
                 onError={(e) => console.log(e)}
             >
                 <Flex gap={10} direction="column">
@@ -211,7 +219,13 @@ function CriarVeiculo() {
                         />
                     </Flex>
                     <Flex justify="space-between" w="100%" mt={10}>
-                        <Button color='red' leftSection={<TbX size='20' />}>Cancelar</Button>
+                        <Button
+                            onClick={() => navigate('/admin/veiculos')}
+                            color="red"
+                            leftSection={<TbX size="20" />}
+                        >
+                            Cancelar
+                        </Button>
                         <Button type="submit" leftSection={<TbDeviceFloppy size="20" />}>
                             Cadastrar
                         </Button>

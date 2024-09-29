@@ -7,4 +7,4 @@ type Infracao = {
     veiculoId: number;
 }
 
-export default Infracao;
+export { type Infracao };

@@ -1,4 +1,4 @@
-import ItemSolicitacao from './ItemSolicitacao';
+import { ItemSolicitacao } from './ItemSolicitacao';
 
 type Solicitacao = {
     id: number;
@@ -7,4 +7,4 @@ type Solicitacao = {
     itens: ItemSolicitacao[];
 }
 
-export default Solicitacao;
+export { type Solicitacao };

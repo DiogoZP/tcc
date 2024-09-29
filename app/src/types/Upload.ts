@@ -7,4 +7,4 @@ type Upload = {
     itemId?: number;
 };
 
-export default Upload;
+export { type Upload };

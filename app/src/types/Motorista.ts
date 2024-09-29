@@ -1,6 +1,6 @@
-import Movimento from './Movimento';
-import Upload from './Upload';
-import Infracao from './Infracao';
+import { Movimento } from './Movimento';
+import { Upload } from './Upload';
+import { Infracao } from './Infracao';
 
 type Motorista = {
     id: number;
@@ -17,4 +17,4 @@ type Motorista = {
     infracoes: Infracao[];
 };
 
-export default Motorista;
+export { type Motorista };

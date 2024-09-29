@@ -28,7 +28,6 @@ const links = data.map((item) => (
             <NavLink
                 key={route.label}
                 to={route.link}
-                end
                 className={({ isActive }) => (isActive ? classes.activeLink : classes.link)}
             >
                 <route.icon className={classes.linkIcon} />

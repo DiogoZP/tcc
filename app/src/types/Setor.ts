@@ -1,5 +1,5 @@
-import Veiculo from './Veiculo';
-import Motorista from './Motorista';
+import { Veiculo } from './Veiculo';
+import { Motorista } from './Motorista';
 
 type Setor = {
     id: number;
@@ -8,4 +8,4 @@ type Setor = {
     motoristas: Motorista[];
 }
 
-export default Setor;
+export { type Setor };

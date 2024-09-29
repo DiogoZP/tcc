@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Veiculo from '@/types/Veiculo';
+import { VeiculoForm } from '@/types/Veiculo';
 
 class VeiculosService {
   static async listar() {
@@ -7,12 +7,12 @@ class VeiculosService {
     return data;
   }
 
-  static async criar(veiculo: Veiculo) {
+  static async criar(veiculo: VeiculoForm) {
     const { data } = await axios.post('http://localhost:3000/veiculos', veiculo);
     return data;
   }
 
-  static async atualizar(veiculo: Veiculo) {
+  static async atualizar(veiculo: Partial<VeiculoForm>) {
     const { data } = await axios.put(`http://localhost:3000/veiculos/${veiculo.id}`, veiculo);
     return data;
   }

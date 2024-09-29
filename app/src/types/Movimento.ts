@@ -1,5 +1,5 @@
-import Motorista from './Motorista';
-import Veiculo from './Veiculo';
+import { Motorista } from './Motorista';
+import { Veiculo } from './Veiculo';
 
 type Movimento = {
     id: number;
@@ -14,4 +14,4 @@ type Movimento = {
     veiculoId: number;
 }
 
-export default Movimento;
+export { type Movimento };

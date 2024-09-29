@@ -25,6 +25,15 @@ function DataTable<T extends MRT_RowData>({ columns, data, nome }: DataTableProp
             positionActionsColumn="last"
             initialState={{
                 density: 'xs',
+                columnVisibility: {
+                    ano: false,
+                    cor: false,
+                    renavam: false,
+                    chassi: false,
+                    km: false,
+                    combustivel: false,
+                    categoriaCNH: false,
+                }
             }}
             renderRowActions={({ row }) => (
                 <Flex gap="md">

@@ -5,4 +5,4 @@ type ItemSolicitacao = {
     solicitacaoId: number;
 }
 
-export default ItemSolicitacao;
+export { type ItemSolicitacao };
