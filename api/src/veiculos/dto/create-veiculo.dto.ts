@@ -39,7 +39,7 @@ export class CreateVeiculoDto {
     combustivel: string;
 
     @IsString({ message: 'categoriaCNH deve ser uma string' })
-    @IsIn(['A', 'B', 'C', 'D', 'E', 'AB', 'AC', 'AD', 'AE'], {
+    @IsIn(['A', 'B', 'C', 'D', 'E'], {
         message: 'categoriaCNH deve ser uma das seguintes: A, B, C, D, E, AB, AC, AD, AE',
     })
     categoriaCNH: string;

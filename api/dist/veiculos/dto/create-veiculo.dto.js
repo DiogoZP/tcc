@@ -14,7 +14,7 @@ const openapi = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateVeiculoDto {
     static _OPENAPI_METADATA_FACTORY() {
-        return { placa: { required: true, type: () => String }, marca: { required: true, type: () => String }, modelo: { required: true, type: () => String }, tipo: { required: true, type: () => String, enum: ['Automóvel', 'Motocicleta', 'Van', 'Caminhão', 'Micro-Ônibus', 'Ônibus'] }, ano: { required: true, type: () => Number }, cor: { required: true, type: () => String }, renavam: { required: true, type: () => String }, chassi: { required: true, type: () => String }, km: { required: true, type: () => Number }, combustivel: { required: true, type: () => String, enum: ['Álcool', 'Gasolina', 'Flex', 'Diesel', 'Diesel S10', 'Elétrico'] }, categoriaCNH: { required: true, type: () => String, enum: ['A', 'B', 'C', 'D', 'E', 'AB', 'AC', 'AD', 'AE'] }, status: { required: true, type: () => String, enum: ['Disponível', 'Em Manutenção', 'Em Uso'] }, setorId: { required: true, type: () => Number } };
+        return { placa: { required: true, type: () => String }, marca: { required: true, type: () => String }, modelo: { required: true, type: () => String }, tipo: { required: true, type: () => String, enum: ['Automóvel', 'Motocicleta', 'Van', 'Caminhão', 'Micro-Ônibus', 'Ônibus'] }, ano: { required: true, type: () => Number }, cor: { required: true, type: () => String }, renavam: { required: true, type: () => String }, chassi: { required: true, type: () => String }, km: { required: true, type: () => Number }, combustivel: { required: true, type: () => String, enum: ['Álcool', 'Gasolina', 'Flex', 'Diesel', 'Diesel S10', 'Elétrico'] }, categoriaCNH: { required: true, type: () => String, enum: ['A', 'B', 'C', 'D', 'E'] }, status: { required: true, type: () => String, enum: ['Disponível', 'Em Manutenção', 'Em Uso'] }, setorId: { required: true, type: () => Number } };
     }
 }
 exports.CreateVeiculoDto = CreateVeiculoDto;
@@ -66,7 +66,7 @@ __decorate([
 ], CreateVeiculoDto.prototype, "combustivel", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'categoriaCNH deve ser uma string' }),
-    (0, class_validator_1.IsIn)(['A', 'B', 'C', 'D', 'E', 'AB', 'AC', 'AD', 'AE'], {
+    (0, class_validator_1.IsIn)(['A', 'B', 'C', 'D', 'E'], {
         message: 'categoriaCNH deve ser uma das seguintes: A, B, C, D, E, AB, AC, AD, AE',
     }),
     __metadata("design:type", String)

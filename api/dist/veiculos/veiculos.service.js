@@ -18,33 +18,56 @@ let VeiculosService = class VeiculosService {
     }
     async create(createVeiculoDto) {
         return await this.prisma.veiculo.create({
+            include: {
+                setor: true,
+                movimentos: true,
+                uploads: true,
+                infracoes: true,
+            },
             data: createVeiculoDto,
         });
     }
     async findAll() {
         return await this.prisma.veiculo.findMany({
             include: {
-                setor: {
-                    select: {
-                        nome: true,
-                    },
-                },
+                setor: true,
+                movimentos: true,
+                uploads: true,
+                infracoes: true,
             },
         });
     }
     async findOne(id) {
         return await this.prisma.veiculo.findUnique({
+            include: {
+                setor: true,
+                movimentos: true,
+                uploads: true,
+                infracoes: true,
+            },
             where: { id },
         });
     }
     async update(id, updateVeiculoDto) {
         return await this.prisma.veiculo.update({
+            include: {
+                setor: true,
+                movimentos: true,
+                uploads: true,
+                infracoes: true,
+            },
             where: { id },
             data: updateVeiculoDto,
         });
     }
     async remove(id) {
         return await this.prisma.veiculo.delete({
+            include: {
+                setor: true,
+                movimentos: true,
+                uploads: true,
+                infracoes: true,
+            },
             where: { id },
         });
     }

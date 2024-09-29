@@ -2,7 +2,7 @@ import { type MRT_ColumnDef } from 'mantine-react-table';
 import { Loader, Flex } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import DataTable from '@/components/DataTable';
-import VeiculoService from '@/services/VeiculoService';
+import VeiculosService from '@/services/VeiculosService';
 import Veiculo from '@/types/Veiculo';
 
 const columns: MRT_ColumnDef<Veiculo>[] = [
@@ -17,7 +17,6 @@ const columns: MRT_ColumnDef<Veiculo>[] = [
     {
         header: 'Marca',
         accessorKey: 'marca',
-        id: 'marca',
     },
     {
         header: 'Modelo',
@@ -38,7 +37,7 @@ function ListarVeiculos() {
         data: veiculos,
         isError,
         isLoading,
-    } = useQuery<Veiculo[]>({ queryKey: ['veiculos'], queryFn: VeiculoService.listar });
+    } = useQuery<Veiculo[]>({ queryKey: ['veiculos'], queryFn: VeiculosService.listar });
 
     if (isLoading) {
         return (

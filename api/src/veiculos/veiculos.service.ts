@@ -9,6 +9,12 @@ export class VeiculosService {
 
     async create(createVeiculoDto: CreateVeiculoDto) {
         return await this.prisma.veiculo.create({
+            include: {
+                setor: true,
+                movimentos: true,
+                uploads: true,
+                infracoes: true,
+            },
             data: createVeiculoDto,
         });
     }
@@ -16,23 +22,34 @@ export class VeiculosService {
     async findAll() {
         return await this.prisma.veiculo.findMany({
             include: {
-                setor: {
-                    select: {
-                        nome: true,
-                    },
-                },
+                setor: true,
+                movimentos: true,
+                uploads: true,
+                infracoes: true,
             },
         });
     }
 
     async findOne(id: number) {
         return await this.prisma.veiculo.findUnique({
+            include: {
+                setor: true,
+                movimentos: true,
+                uploads: true,
+                infracoes: true,
+            },
             where: { id },
         });
     }
 
     async update(id: number, updateVeiculoDto: UpdateVeiculoDto) {
         return await this.prisma.veiculo.update({
+            include: {
+                setor: true,
+                movimentos: true,
+                uploads: true,
+                infracoes: true,
+            },
             where: { id },
             data: updateVeiculoDto,
         });
@@ -40,6 +57,12 @@ export class VeiculosService {
 
     async remove(id: number) {
         return await this.prisma.veiculo.delete({
+            include: {
+                setor: true,
+                movimentos: true,
+                uploads: true,
+                infracoes: true,
+            },
             where: { id },
         });
     }

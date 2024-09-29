@@ -11,11 +11,7 @@ type DataTableProps<T extends MRT_RowData> = {
     nome: string;
 };
 
-function DataTable<T extends MRT_RowData>({
-    columns,
-    data,
-    nome
-}: DataTableProps<T>) {
+function DataTable<T extends MRT_RowData>({ columns, data, nome }: DataTableProps<T>) {
     const navigate = useNavigate();
 
     return (
@@ -33,7 +29,9 @@ function DataTable<T extends MRT_RowData>({
             renderRowActions={({ row }) => (
                 <Flex gap="md">
                     <Tooltip label="Editar">
-                        <ActionIcon onClick={() => navigate(`/admin/${nome}/${row.getValue('id')}`)}>
+                        <ActionIcon
+                            onClick={() => navigate(`/admin/${nome}/${row.getValue('id')}`)}
+                        >
                             <TbEdit />
                         </ActionIcon>
                     </Tooltip>

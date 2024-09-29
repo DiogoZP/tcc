@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Veiculo from '@/types/Veiculo';
 
-export default class VeiculoService {
+class VeiculosService {
   static async listar() {
     const { data } = await axios.get('http://localhost:3000/veiculos');
     return data;
@@ -22,3 +22,5 @@ export default class VeiculoService {
     return data;
   }
 }
+
+export default VeiculosService;
