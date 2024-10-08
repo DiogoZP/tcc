@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from '@/components/Dashboard';
 import Login from '@/components/Login';
 import App from '@/components/App';
-import NotFound from '@/components/NotFound';
+import NotFound from '@/components/Notfound';
 
 function Router() {
     return (

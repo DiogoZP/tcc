@@ -1,7 +1,7 @@
 import { type MRT_ColumnDef } from 'mantine-react-table';
 import { Loader, Flex } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
-import DataTable from '@/components/DataTable';
+import VeiculosTable from '@/components/Tables/VeiculosTable';
 import VeiculosService from '@/services/VeiculosService';
 import { Veiculo } from '@/types/Veiculo';
 
@@ -82,7 +82,7 @@ function ListarVeiculos() {
         return <div>Error</div>;
     }
 
-    return <DataTable<Veiculo> columns={columns} data={veiculos} nome="veiculos" />;
+    return <VeiculosTable columns={columns} data={veiculos} />;
 }
 
 export default ListarVeiculos;

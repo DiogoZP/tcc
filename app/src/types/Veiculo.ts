@@ -1,11 +1,11 @@
-import z from 'zod';
 import { Movimento } from './Movimento';
 import { Upload } from './Upload';
 import { Solicitacao } from './Solicitacao';
 import { Infracao } from './Infracao';
 import { Setor } from './Setor';
+import z from 'zod';
 
-type Veiculo = {
+export type Veiculo = {
     id: number;
     placa: string;
     marca: string;
@@ -27,7 +27,7 @@ type Veiculo = {
     infracoes: Infracao[];
 };
 
-const veiculoSchema = z.object({
+export const veiculoSchema = z.object({
     id: z.coerce.number().optional(),
     placa: z.string(),
     marca: z.string(),
@@ -44,6 +44,4 @@ const veiculoSchema = z.object({
     setorId: z.coerce.number(),
 });
 
-type VeiculoForm = z.infer<typeof veiculoSchema>;
-
-export { type Veiculo, type VeiculoForm, veiculoSchema };
+export type VeiculoForm = z.infer<typeof veiculoSchema>;

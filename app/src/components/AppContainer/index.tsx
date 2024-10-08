@@ -1,4 +1,4 @@
-import { AppShell, Burger, Group } from '@mantine/core';
+import { AppShell, Burger, Flex } from '@mantine/core';
 import Navbar from '@/components/Navbar';
 import { useDisclosure } from '@mantine/hooks';
 
@@ -20,10 +20,13 @@ function AppContainer({ children }: AppContainerProps) {
             padding="md"
         >
             <AppShell.Header>
-                <Group px="md">
+                <Flex px="md" align='center' h={'100%'}>
                     <Burger opened={opened} onClick={toggle} size="sm" />
-                    <h2>Logo</h2>
-                </Group>
+                    <img src='/favicon.png' alt="Logo" style={{
+                        height: 40,
+                        width: 'auto',
+                    }} />
+                </Flex>
             </AppShell.Header>
             <AppShell.Navbar>
                 <Navbar />

@@ -5,6 +5,37 @@ export declare class MotoristasService {
     private readonly prisma;
     constructor(prisma: PrismaService);
     create(createMotoristaDto: CreateMotoristaDto): Promise<{
+        setor: {
+            id: number;
+            nome: string;
+        };
+        movimentos: {
+            id: number;
+            dataSaida: string;
+            dataRetorno: string;
+            kmSaida: number;
+            kmRetorno: number;
+            itinerario: string;
+            motoristaId: number;
+            veiculoId: number;
+        }[];
+        uploads: {
+            id: number;
+            filename: string;
+            mimetype: string;
+            motoristaId: number | null;
+            veiculoId: number | null;
+            itemId: number | null;
+        }[];
+        infracoes: {
+            id: number;
+            data: string;
+            descricao: string;
+            valor: number;
+            motoristaId: number;
+            veiculoId: number;
+        }[];
+    } & {
         id: number;
         nome: string;
         cpf: string;
@@ -15,7 +46,38 @@ export declare class MotoristasService {
         telefone: string;
         setorId: number;
     }>;
-    findAll(): Promise<{
+    findAll(): Promise<({
+        setor: {
+            id: number;
+            nome: string;
+        };
+        movimentos: {
+            id: number;
+            dataSaida: string;
+            dataRetorno: string;
+            kmSaida: number;
+            kmRetorno: number;
+            itinerario: string;
+            motoristaId: number;
+            veiculoId: number;
+        }[];
+        uploads: {
+            id: number;
+            filename: string;
+            mimetype: string;
+            motoristaId: number | null;
+            veiculoId: number | null;
+            itemId: number | null;
+        }[];
+        infracoes: {
+            id: number;
+            data: string;
+            descricao: string;
+            valor: number;
+            motoristaId: number;
+            veiculoId: number;
+        }[];
+    } & {
         id: number;
         nome: string;
         cpf: string;
@@ -25,8 +87,39 @@ export declare class MotoristasService {
         validadeCNH: string;
         telefone: string;
         setorId: number;
-    }[]>;
-    findOne(id: number): Promise<{
+    })[]>;
+    findOne(id: number): Promise<({
+        setor: {
+            id: number;
+            nome: string;
+        };
+        movimentos: {
+            id: number;
+            dataSaida: string;
+            dataRetorno: string;
+            kmSaida: number;
+            kmRetorno: number;
+            itinerario: string;
+            motoristaId: number;
+            veiculoId: number;
+        }[];
+        uploads: {
+            id: number;
+            filename: string;
+            mimetype: string;
+            motoristaId: number | null;
+            veiculoId: number | null;
+            itemId: number | null;
+        }[];
+        infracoes: {
+            id: number;
+            data: string;
+            descricao: string;
+            valor: number;
+            motoristaId: number;
+            veiculoId: number;
+        }[];
+    } & {
         id: number;
         nome: string;
         cpf: string;
@@ -36,8 +129,39 @@ export declare class MotoristasService {
         validadeCNH: string;
         telefone: string;
         setorId: number;
-    } | null>;
+    }) | null>;
     update(id: number, updateMotoristaDto: UpdateMotoristaDto): Promise<{
+        setor: {
+            id: number;
+            nome: string;
+        };
+        movimentos: {
+            id: number;
+            dataSaida: string;
+            dataRetorno: string;
+            kmSaida: number;
+            kmRetorno: number;
+            itinerario: string;
+            motoristaId: number;
+            veiculoId: number;
+        }[];
+        uploads: {
+            id: number;
+            filename: string;
+            mimetype: string;
+            motoristaId: number | null;
+            veiculoId: number | null;
+            itemId: number | null;
+        }[];
+        infracoes: {
+            id: number;
+            data: string;
+            descricao: string;
+            valor: number;
+            motoristaId: number;
+            veiculoId: number;
+        }[];
+    } & {
         id: number;
         nome: string;
         cpf: string;
@@ -49,6 +173,37 @@ export declare class MotoristasService {
         setorId: number;
     }>;
     remove(id: number): Promise<{
+        setor: {
+            id: number;
+            nome: string;
+        };
+        movimentos: {
+            id: number;
+            dataSaida: string;
+            dataRetorno: string;
+            kmSaida: number;
+            kmRetorno: number;
+            itinerario: string;
+            motoristaId: number;
+            veiculoId: number;
+        }[];
+        uploads: {
+            id: number;
+            filename: string;
+            mimetype: string;
+            motoristaId: number | null;
+            veiculoId: number | null;
+            itemId: number | null;
+        }[];
+        infracoes: {
+            id: number;
+            data: string;
+            descricao: string;
+            valor: number;
+            motoristaId: number;
+            veiculoId: number;
+        }[];
+    } & {
         id: number;
         nome: string;
         cpf: string;
