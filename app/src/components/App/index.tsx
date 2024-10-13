@@ -1,12 +1,10 @@
 import AdminRouter from "@/adminRouter";
 import AppContainer from "@/components/AppContainer";
 
-function App() {
+export default function App() {
     return (
         <AppContainer>
             <AdminRouter />
         </AppContainer>
     );
 }
-
-export default App;

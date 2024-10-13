@@ -3,7 +3,7 @@ import { Container, Title, Text, Button, Group } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import classes from './notfound.module.scss';
 
-function NotFound() {
+export default function NotFound() {
     return (
         <Container className={classes.root}>
             <div className={classes.inner}>
@@ -24,5 +24,3 @@ function NotFound() {
         </Container>
     );
 }
-
-export default NotFound;

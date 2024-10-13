@@ -1,9 +1,8 @@
 import { MantineReactTable } from 'mantine-react-table';
 import { ActionIcon, Flex, Tooltip, Button, Text } from '@mantine/core';
-import { TbCheck, TbX } from 'react-icons/tb';
+import { TbCheck, TbX, TbEdit, TbTrash, TbPlus } from 'react-icons/tb';
 import { notifications } from '@mantine/notifications';
 import { modals } from '@mantine/modals';
-import { TbEdit, TbTrash, TbPlus } from 'react-icons/tb';
 import { MRT_ColumnDef } from 'mantine-react-table';
 import { MRT_Localization_PT_BR } from 'mantine-react-table/locales/pt-BR/index.cjs';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -16,7 +15,7 @@ type DataTableProps = {
     data: Veiculo[];
 };
 
-function VeiculosTable({ columns, data }: DataTableProps) {
+export default function VeiculosTable({ columns, data }: DataTableProps) {
     const navigate = useNavigate();
 
     const queryClient = useQueryClient();
@@ -73,16 +72,25 @@ function VeiculosTable({ columns, data }: DataTableProps) {
                         </ActionIcon>
                     </Tooltip>
                     <Tooltip label="Deletar">
-                        <ActionIcon color="red" onClick={() => {
-                            modals.openConfirmModal({
-                                title: 'Deletar veículo',
-                                children: <Text>Tem certeza que deseja deletar este veículo?<br/>Essa ação não poderá ser desfeita!</Text>,
-                                labels: { cancel: 'Cancelar', confirm: 'Deletar' },
-                                confirmProps: { color: 'red' },
-                                centered: true,
-                                onConfirm: () => mutate.mutate(row.getValue('id')),
-                            });
-                        }}>
+                        <ActionIcon
+                            color="red"
+                            onClick={() => {
+                                modals.openConfirmModal({
+                                    title: 'Deletar veículo',
+                                    children: (
+                                        <Text>
+                                            Tem certeza que deseja deletar este veículo?
+                                            <br />
+                                            Essa ação não poderá ser desfeita!
+                                        </Text>
+                                    ),
+                                    labels: { cancel: 'Cancelar', confirm: 'Deletar' },
+                                    confirmProps: { color: 'red' },
+                                    centered: true,
+                                    onConfirm: () => mutate.mutate(row.getValue('id')),
+                                });
+                            }}
+                        >
                             <TbTrash />
                         </ActionIcon>
                     </Tooltip>
@@ -98,8 +106,12 @@ function VeiculosTable({ columns, data }: DataTableProps) {
                     </Button>
                 </Flex>
             )}
+            mantineTableBodyRowProps={({ row }) => ({
+                style: {
+                    cursor: 'pointer',
+                },
+                onDoubleClick: () => navigate(`/admin/veiculos/visualizar/${row.getValue('id')}`),
+            })}
         />
     );
 }
-
-export default VeiculosTable;

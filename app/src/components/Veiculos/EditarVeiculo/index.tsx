@@ -12,7 +12,7 @@ import VeiculosService from '@/services/VeiculosService';
 import { Setor } from '@/types/Setor';
 import { Veiculo, veiculoSchema, VeiculoForm } from '@/types/Veiculo';
 
-function EditarVeiculo() {
+export default function EditarVeiculo() {
     const { id } = useParams();
 
     const navigate = useNavigate();
@@ -76,15 +76,15 @@ function EditarVeiculo() {
     return (
         <Fieldset legend="Editar Veículo">
             <Form onSubmit={({ data }) => mutation.mutate(data)} control={control}>
-            <Flex gap={10} direction="column">
-                    <Flex gap={10} wrap={'wrap'}>
+            <Flex gap="sm" direction="column">
+                    <Flex gap="sm" wrap={'wrap'}>
                         <TextInput
                             label="ID"
                             placeholder="ID do veículo"
                             control={control}
                             name="id"
                             flex={1}
-                            miw={10}
+                            miw="sm"
                             defaultValue={veiculo.id.toString()}
                             readOnly
                         />
@@ -116,7 +116,7 @@ function EditarVeiculo() {
                             defaultValue={veiculo.modelo}
                         />
                     </Flex>
-                    <Flex gap={10} wrap={'wrap'}>
+                    <Flex gap="sm" wrap={'wrap'}>
                         <Select
                             label="Status"
                             placeholder="Status do veículo"
@@ -143,7 +143,7 @@ function EditarVeiculo() {
                             defaultValue={veiculo.setorId.toString()}
                         />
                     </Flex>
-                    <Flex gap={10} wrap={'wrap'}>
+                    <Flex gap="sm" wrap={'wrap'}>
                         <Select
                             label="Tipo"
                             placeholder="Tipo do veículo"
@@ -181,7 +181,7 @@ function EditarVeiculo() {
                             defaultValue={veiculo.cor}
                         />
                     </Flex>
-                    <Flex gap={10} wrap={'wrap'}>
+                    <Flex gap="sm" wrap={'wrap'}>
                         <TextInput
                             label="Renavam"
                             placeholder="Renavam do veículo"
@@ -201,7 +201,7 @@ function EditarVeiculo() {
                             defaultValue={veiculo.chassi}
                         />
                     </Flex>
-                    <Flex gap={10} wrap={'wrap'}>
+                    <Flex gap="sm" wrap={'wrap'}>
                         <NumberInput
                             label="Km"
                             placeholder="Km do veículo"
@@ -241,9 +241,9 @@ function EditarVeiculo() {
                             defaultValue={veiculo.categoriaCNH}
                         />
                     </Flex>
-                    <Flex justify="space-between" w="100%" mt={10}>
+                    <Flex justify="space-between" w="100%" mt="sm">
                         <Button
-                            onClick={() => navigate('/admin/veiculos')}
+                            onClick={() => navigate(-1)}
                             variant='light'
                             leftSection={<TbArrowLeft size="20" />}
                         >
@@ -258,5 +258,3 @@ function EditarVeiculo() {
         </Fieldset>
     );
 }
-
-export default EditarVeiculo;

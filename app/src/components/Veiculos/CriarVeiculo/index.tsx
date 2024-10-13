@@ -11,7 +11,7 @@ import VeiculosService from '@/services/VeiculosService';
 import { Setor } from '@/types/Setor';
 import { veiculoSchema, VeiculoForm } from '@/types/Veiculo';
 
-function CriarVeiculo() {
+export default function CriarVeiculo() {
     const {
         data: setores,
         isError,
@@ -76,8 +76,8 @@ function CriarVeiculo() {
                 onSubmit={({ data }) => mutation.mutate(data)}
                 onError={(e) => console.log(e)}
             >
-                <Flex gap={10} direction="column">
-                    <Flex gap={10} wrap={'wrap'}>
+                <Flex gap="sm" direction="column">
+                    <Flex gap="sm" wrap={'wrap'}>
                         <TextInput
                             label="Placa"
                             placeholder="Placa do veículo"
@@ -103,7 +103,7 @@ function CriarVeiculo() {
                             miw={200}
                         />
                     </Flex>
-                    <Flex gap={10} wrap={'wrap'}>
+                    <Flex gap="sm" wrap={'wrap'}>
                         <Select
                             label="Status"
                             placeholder="Status do veículo"
@@ -128,7 +128,7 @@ function CriarVeiculo() {
                             searchable
                         />
                     </Flex>
-                    <Flex gap={10} wrap={'wrap'}>
+                    <Flex gap="sm" wrap={'wrap'}>
                         <Select
                             label="Tipo"
                             placeholder="Tipo do veículo"
@@ -163,7 +163,7 @@ function CriarVeiculo() {
                             miw={200}
                         />
                     </Flex>
-                    <Flex gap={10} wrap={'wrap'}>
+                    <Flex gap="sm" wrap={'wrap'}>
                         <TextInput
                             label="Renavam"
                             placeholder="Renavam do veículo"
@@ -181,7 +181,7 @@ function CriarVeiculo() {
                             miw={200}
                         />
                     </Flex>
-                    <Flex gap={10} wrap={'wrap'}>
+                    <Flex gap="sm" wrap={'wrap'}>
                         <NumberInput
                             label="Km"
                             placeholder="Km do veículo"
@@ -218,7 +218,7 @@ function CriarVeiculo() {
                             searchable
                         />
                     </Flex>
-                    <Flex justify="space-between" w="100%" mt={10}>
+                    <Flex justify="space-between" w="100%" mt="sm">
                         <Button
                             onClick={() => navigate('/admin/veiculos')}
                             variant="light"
@@ -235,5 +235,3 @@ function CriarVeiculo() {
         </Fieldset>
     );
 }
-
-export default CriarVeiculo;

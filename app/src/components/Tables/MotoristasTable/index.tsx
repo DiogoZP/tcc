@@ -16,7 +16,7 @@ type DataTableProps = {
     data: Motorista[];
 };
 
-function MotoristasTable({ columns, data }: DataTableProps) {
+export default function MotoristasTable({ columns, data }: DataTableProps) {
     const navigate = useNavigate();
 
     const queryClient = useQueryClient();
@@ -110,5 +110,3 @@ function MotoristasTable({ columns, data }: DataTableProps) {
         />
     );
 }
-
-export default MotoristasTable;

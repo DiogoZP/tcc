@@ -37,7 +37,7 @@ const links = data.map((item) => (
     </NavGroup>
 ));
 
-function Navbar() {
+export default function Navbar() {
     return (
         <nav className={classes.navbar}>
             <div className={classes.navbarMain}>
@@ -62,5 +62,3 @@ function Navbar() {
         </nav>
     );
 }
-
-export default Navbar;

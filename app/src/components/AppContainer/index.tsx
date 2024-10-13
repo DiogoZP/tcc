@@ -6,7 +6,7 @@ type AppContainerProps = {
     children: React.ReactNode;
 };
 
-function AppContainer({ children }: AppContainerProps) {
+export default function AppContainer({ children }: AppContainerProps) {
     const [opened, { toggle }] = useDisclosure(true);
 
     return (
@@ -35,5 +35,3 @@ function AppContainer({ children }: AppContainerProps) {
         </AppShell>
     );
 }
-
-export default AppContainer;

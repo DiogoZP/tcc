@@ -1,7 +1,7 @@
 import { Paper, TextInput, PasswordInput, Button, Title } from '@mantine/core';
 import classes from './login.module.scss';
 
-function Login() {
+export default function Login() {
     return (
         <div className={classes.wrapper}>
             <Paper className={classes.form} radius={0} p={30}>
@@ -18,5 +18,3 @@ function Login() {
         </div>
     );
 }
-
-export default Login;

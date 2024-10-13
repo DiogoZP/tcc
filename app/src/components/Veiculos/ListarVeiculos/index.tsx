@@ -64,7 +64,7 @@ const columns: MRT_ColumnDef<Veiculo>[] = [
     },
 ];
 
-function ListarVeiculos() {
+export default function ListarVeiculos() {
     const {
         data: veiculos,
         isError,
@@ -84,5 +84,3 @@ function ListarVeiculos() {
 
     return <VeiculosTable columns={columns} data={veiculos} />;
 }
-
-export default ListarVeiculos;
