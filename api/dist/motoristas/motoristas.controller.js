@@ -59,6 +59,7 @@ exports.MotoristasController = MotoristasController;
 __decorate([
     (0, swagger_1.ApiCreatedResponse)({ description: 'Motorista criado com sucesso' }),
     (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, common_1.Post)(),
     openapi.ApiResponse({ status: 201, type: Object }),
     __param(0, (0, common_1.Body)()),
@@ -68,6 +69,7 @@ __decorate([
 ], MotoristasController.prototype, "create", null);
 __decorate([
     (0, swagger_1.ApiOkResponse)({ description: 'Motoristas encontrados' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, common_1.Get)(),
     openapi.ApiResponse({ status: 200, type: [Object] }),
     __metadata("design:type", Function),
@@ -77,6 +79,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOkResponse)({ description: 'Motorista encontrado com sucesso' }),
     (0, swagger_1.ApiNotFoundResponse)({ description: 'Motorista não encontrado' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, common_1.Get)(':id'),
     openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
@@ -88,6 +91,7 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({ description: 'Motorista atualizado com sucesso' }),
     (0, swagger_1.ApiNotFoundResponse)({ description: 'Motorista não encontrado' }),
     (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, common_1.Patch)(':id'),
     openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
@@ -99,6 +103,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOkResponse)({ description: 'Motorista deletado com sucesso' }),
     (0, swagger_1.ApiNotFoundResponse)({ description: 'Motorista não encontrado' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, common_1.Delete)(':id'),
     openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
@@ -108,6 +113,7 @@ __decorate([
 ], MotoristasController.prototype, "remove", null);
 exports.MotoristasController = MotoristasController = __decorate([
     (0, swagger_1.ApiTags)('Motoristas'),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Controller)('motoristas'),
     __metadata("design:paramtypes", [motoristas_service_1.MotoristasService])
 ], MotoristasController);

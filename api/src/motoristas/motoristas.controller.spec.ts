@@ -46,7 +46,46 @@ describe('MotoristasController', () => {
                 telefone: '11987654321',
                 setorId: 1,
             };
-            const result = { id: 1, ...createMotoristaDto };
+            const result = {
+                id: 1,
+                movimentos: [
+                    {
+                        id: 1,
+                        dataSaida: '2021-12-31',
+                        dataRetorno: '2021-12-31',
+                        kmSaida: 0,
+                        kmRetorno: 0,
+                        itinerario: 'Teste',
+                        motoristaId: 1,
+                        veiculoId: 1,
+                    },
+                ],
+                uploads: [
+                    {
+                        id: 1,
+                        filename: 'teste.jpg',
+                        mimetype: 'image/jpeg',
+                        motoristaId: 1,
+                        veiculoId: null,
+                        itemId: null,
+                    },
+                ],
+                infracoes: [
+                    {
+                        id: 1,
+                        data: '2021-12-31',
+                        descricao: 'Teste',
+                        valor: 100,
+                        motoristaId: 1,
+                        veiculoId: 1,
+                    },
+                ],
+                setor: {
+                    id: 1,
+                    nome: 'Teste',
+                },
+                ...createMotoristaDto,
+            };
             jest.spyOn(service, 'create').mockResolvedValue(result);
 
             expect(await controller.create(createMotoristaDto)).toEqual(result);
@@ -66,6 +105,42 @@ describe('MotoristasController', () => {
                     validadeCNH: '2025-12-31',
                     telefone: '11987654321',
                     setorId: 1,
+                    movimentos: [
+                        {
+                            id: 1,
+                            dataSaida: '2021-12-31',
+                            dataRetorno: '2021-12-31',
+                            kmSaida: 0,
+                            kmRetorno: 0,
+                            itinerario: 'Teste',
+                            motoristaId: 1,
+                            veiculoId: 1,
+                        },
+                    ],
+                    uploads: [
+                        {
+                            id: 1,
+                            filename: 'teste.jpg',
+                            mimetype: 'image/jpeg',
+                            motoristaId: 1,
+                            veiculoId: null,
+                            itemId: null,
+                        },
+                    ],
+                    infracoes: [
+                        {
+                            id: 1,
+                            data: '2021-12-31',
+                            descricao: 'Teste',
+                            valor: 100,
+                            motoristaId: 1,
+                            veiculoId: 1,
+                        },
+                    ],
+                    setor: {
+                        id: 1,
+                        nome: 'Teste',
+                    },
                 },
             ];
             jest.spyOn(service, 'findAll').mockResolvedValue(result);
@@ -86,6 +161,42 @@ describe('MotoristasController', () => {
                 validadeCNH: '2025-12-31',
                 telefone: '11987654321',
                 setorId: 1,
+                movimentos: [
+                    {
+                        id: 1,
+                        dataSaida: '2021-12-31',
+                        dataRetorno: '2021-12-31',
+                        kmSaida: 0,
+                        kmRetorno: 0,
+                        itinerario: 'Teste',
+                        motoristaId: 1,
+                        veiculoId: 1,
+                    },
+                ],
+                uploads: [
+                    {
+                        id: 1,
+                        filename: 'teste.jpg',
+                        mimetype: 'image/jpeg',
+                        motoristaId: 1,
+                        veiculoId: null,
+                        itemId: null,
+                    },
+                ],
+                infracoes: [
+                    {
+                        id: 1,
+                        data: '2021-12-31',
+                        descricao: 'Teste',
+                        valor: 100,
+                        motoristaId: 1,
+                        veiculoId: 1,
+                    },
+                ],
+                setor: {
+                    id: 1,
+                    nome: 'Teste',
+                },
             };
             jest.spyOn(service, 'findOne').mockResolvedValue(result);
 
@@ -118,6 +229,42 @@ describe('MotoristasController', () => {
                 validadeCNH: '2025-12-31',
                 telefone: '11987654321',
                 setorId: 1,
+                movimentos: [
+                    {
+                        id: 1,
+                        dataSaida: '2021-12-31',
+                        dataRetorno: '2021-12-31',
+                        kmSaida: 0,
+                        kmRetorno: 0,
+                        itinerario: 'Teste',
+                        motoristaId: 1,
+                        veiculoId: 1,
+                    },
+                ],
+                uploads: [
+                    {
+                        id: 1,
+                        filename: 'teste.jpg',
+                        mimetype: 'image/jpeg',
+                        motoristaId: 1,
+                        veiculoId: null,
+                        itemId: null,
+                    },
+                ],
+                infracoes: [
+                    {
+                        id: 1,
+                        data: '2021-12-31',
+                        descricao: 'Teste',
+                        valor: 100,
+                        motoristaId: 1,
+                        veiculoId: 1,
+                    },
+                ],
+                setor: {
+                    id: 1,
+                    nome: 'Teste',
+                },
             };
             jest.spyOn(service, 'findOne').mockResolvedValue(result);
             jest.spyOn(service, 'update').mockResolvedValue(result);
@@ -150,6 +297,42 @@ describe('MotoristasController', () => {
                 validadeCNH: '2025-12-31',
                 telefone: '11987654321',
                 setorId: 1,
+                movimentos: [
+                    {
+                        id: 1,
+                        dataSaida: '2021-12-31',
+                        dataRetorno: '2021-12-31',
+                        kmSaida: 0,
+                        kmRetorno: 0,
+                        itinerario: 'Teste',
+                        motoristaId: 1,
+                        veiculoId: 1,
+                    },
+                ],
+                uploads: [
+                    {
+                        id: 1,
+                        filename: 'teste.jpg',
+                        mimetype: 'image/jpeg',
+                        motoristaId: 1,
+                        veiculoId: null,
+                        itemId: null,
+                    },
+                ],
+                infracoes: [
+                    {
+                        id: 1,
+                        data: '2021-12-31',
+                        descricao: 'Teste',
+                        valor: 100,
+                        motoristaId: 1,
+                        veiculoId: 1,
+                    },
+                ],
+                setor: {
+                    id: 1,
+                    nome: 'Teste',
+                },
             };
             jest.spyOn(service, 'findOne').mockResolvedValue(result);
             jest.spyOn(service, 'remove').mockResolvedValue(result);

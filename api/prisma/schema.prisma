@@ -2,6 +2,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
@@ -12,6 +16,16 @@ model Setor {
   nome      String
   veiculos  Veiculo[]
   motoristas Motorista[]
+  usuarios  Usuario[]
+}
+
+model Usuario {
+  id        Int     @id @default(autoincrement())
+  nome      String
+  email     String  @unique
+  senha     String
+  setor           Setor    @relation(fields: [setorId], references: [id])
+  setorId         Int
 }
 
 model Veiculo {

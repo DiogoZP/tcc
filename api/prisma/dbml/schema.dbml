@@ -1,0 +1,156 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Setor {
+  id Int [pk, increment]
+  nome String [not null]
+  veiculos Veiculo [not null]
+  motoristas Motorista [not null]
+  usuarios Usuario [not null]
+}
+
+Table Usuario {
+  id Int [pk, increment]
+  nome String [not null]
+  email String [unique, not null]
+  senha String [not null]
+  setor Setor [not null]
+  setorId Int [not null]
+}
+
+Table Veiculo {
+  id Int [pk, increment]
+  placa String [unique, not null]
+  marca String [not null]
+  modelo String [not null]
+  tipo String [not null]
+  ano Int [not null]
+  cor String [not null]
+  renavam String [unique, not null]
+  chassi String [unique, not null]
+  km Int [not null]
+  combustivel String [not null]
+  categoriaCNH String [not null]
+  status String [not null]
+  setor Setor [not null]
+  setorId Int [not null]
+  movimentos Movimento [not null]
+  uploads Upload [not null]
+  solicitacoes Solicitacao [not null]
+  infracoes Infracao [not null]
+}
+
+Table Motorista {
+  id Int [pk, increment]
+  nome String [not null]
+  cpf String [unique, not null]
+  rg String [unique, not null]
+  categoriaCNH String [not null]
+  numeroCNH String [unique, not null]
+  validadeCNH String [not null]
+  telefone String [not null]
+  setor Setor [not null]
+  setorId Int [not null]
+  movimentos Movimento [not null]
+  uploads Upload [not null]
+  infracoes Infracao [not null]
+}
+
+Table Movimento {
+  id Int [pk, increment]
+  dataSaida String [not null]
+  dataRetorno String [not null]
+  kmSaida Int [not null]
+  kmRetorno Int [not null]
+  itinerario String [not null]
+  motorista Motorista [not null]
+  motoristaId Int [not null]
+  veiculo Veiculo [not null]
+  veiculoId Int [not null]
+}
+
+Table Infracao {
+  id Int [pk, increment]
+  data String [not null]
+  descricao String [not null]
+  valor Float [not null]
+  motorista Motorista [not null]
+  motoristaId Int [not null]
+  veiculo Veiculo [not null]
+  veiculoId Int [not null]
+}
+
+Table Item {
+  id Int [pk, increment]
+  codigo String [not null]
+  nome String [not null]
+  descricao String [not null]
+  uploads Upload [not null]
+  itemSolicitacao ItemSolicitacao [not null]
+  itemEstoque ItemEstoque [not null]
+}
+
+Table ItemSolicitacao {
+  id Int [pk, increment]
+  quantidade Int [not null]
+  item Item [not null]
+  itemId Int [not null]
+  solicitacao Solicitacao [not null]
+  solicitacaoId Int [not null]
+}
+
+Table ItemEstoque {
+  id Int [pk, increment]
+  quantidade Int [not null]
+  item Item [not null]
+  itemId Int [not null]
+}
+
+Table Solicitacao {
+  id Int [pk, increment]
+  data String [not null]
+  veiculo Veiculo [not null]
+  veiculoId Int [not null]
+  itens ItemSolicitacao [not null]
+}
+
+Table Upload {
+  id Int [pk, increment]
+  filename String [not null]
+  mimetype String [not null]
+  motorista Motorista
+  motoristaId Int
+  veiculo Veiculo
+  veiculoId Int
+  item Item
+  itemId Int
+}
+
+Ref: Usuario.setorId > Setor.id
+
+Ref: Veiculo.setorId > Setor.id
+
+Ref: Motorista.setorId > Setor.id
+
+Ref: Movimento.motoristaId > Motorista.id
+
+Ref: Movimento.veiculoId > Veiculo.id
+
+Ref: Infracao.motoristaId > Motorista.id
+
+Ref: Infracao.veiculoId > Veiculo.id
+
+Ref: ItemSolicitacao.itemId > Item.id
+
+Ref: ItemSolicitacao.solicitacaoId > Solicitacao.id
+
+Ref: ItemEstoque.itemId > Item.id
+
+Ref: Solicitacao.veiculoId > Veiculo.id
+
+Ref: Upload.motoristaId > Motorista.id
+
+Ref: Upload.veiculoId > Veiculo.id
+
+Ref: Upload.itemId > Item.id

@@ -14,12 +14,14 @@ import { CreateVeiculoDto } from './dto/create-veiculo.dto';
 import { UpdateVeiculoDto } from './dto/update-veiculo.dto';
 import {
     ApiBadRequestResponse,
+    ApiBearerAuth,
     ApiCreatedResponse,
     ApiNotFoundResponse,
     ApiOkResponse,
     ApiTags,
 } from '@nestjs/swagger';
 @ApiTags('Veículos')
+@ApiBearerAuth()
 @Controller('veiculos')
 export class VeiculosController {
     constructor(private readonly veiculosService: VeiculosService) {}

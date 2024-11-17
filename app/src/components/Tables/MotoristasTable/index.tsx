@@ -5,7 +5,7 @@ import { notifications } from '@mantine/notifications';
 import { modals } from '@mantine/modals';
 import { TbEdit, TbTrash, TbPlus } from 'react-icons/tb';
 import { MRT_ColumnDef } from 'mantine-react-table';
-import { MRT_Localization_PT_BR } from 'mantine-react-table/locales/pt-BR/index.cjs';
+import tablesConfig from '@/components/Tables/tablesConfig';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { Motorista } from '@/types/Motorista';
@@ -46,21 +46,7 @@ export default function MotoristasTable({ columns, data }: DataTableProps) {
         <MantineReactTable
             data={data}
             columns={columns}
-            localization={MRT_Localization_PT_BR}
-            enableRowActions
-            enableDensityToggle={false}
-            defaultColumn={{ maxSize: 100 }}
-            positionActionsColumn="last"
-            initialState={{
-                density: 'xs',
-                columnVisibility: {
-                    cpf: false,
-                    rg: false,
-                    numeroCNH: false,
-                    validadeCNH: false,
-                    telefone: false,
-                },
-            }}
+            {...tablesConfig}
             renderRowActions={({ row }) => (
                 <Flex gap="md">
                     <Tooltip label="Editar">
@@ -107,6 +93,12 @@ export default function MotoristasTable({ columns, data }: DataTableProps) {
                     </Button>
                 </Flex>
             )}
+            mantineTableBodyRowProps={({ row }) => ({
+                style: {
+                    cursor: 'pointer',
+                },
+                onDoubleClick: () => navigate(`/admin/motoristas/visualizar/${row.getValue('id')}`),
+            })}
         />
     );
 }

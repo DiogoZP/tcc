@@ -1,4 +1,6 @@
-type Upload = {
+import z from 'zod';
+
+export type Upload = {
     id: number;
     filename: string;
     mimetype: string;
@@ -7,4 +9,9 @@ type Upload = {
     itemId?: number;
 };
 
-export { type Upload };
+export const uploadSchema = z.object({
+    file: z.instanceof(File),
+});
+
+export type UploadForm = z.infer<typeof uploadSchema>;
+

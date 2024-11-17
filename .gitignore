@@ -6,13 +6,10 @@
 /app/yarn-error.log*
 /app/pnpm-debug.log*
 /app/lerna-debug.log*
-
 /app/node_modules
 /app/dist
 /app/dist-ssr
 /app/*.local
-
-# Editor directories and files
 /app/.vscode/*
 !/app/.vscode/extensions.json
 /app/.idea
@@ -22,9 +19,9 @@
 /app/*.njsproj
 /app/*.sln
 /app/*.sw?
+/app/.env
 
 
 ### API ###
 /api/node_modules
-# Keep environment variables out of version control
 /api/.env

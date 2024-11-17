@@ -2,8 +2,9 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Loader, Flex, Tabs } from '@mantine/core';
 import { Veiculo } from '@/types/Veiculo';
-import { TbInfoCircle, TbTool } from 'react-icons/tb';
+import { TbInfoCircle, TbTool, TbUpload } from 'react-icons/tb';
 import VeiculoInfo from '@/components/Veiculos/VisualizarVeiculo/VeiculoInfo';
+import VeiculoUploads from '@/components/Veiculos/VisualizarVeiculo/VeiculoUploads';
 import VeiculosService from '@/services/VeiculosService';
 
 export default function VisualizarVeiculo() {
@@ -14,7 +15,7 @@ export default function VisualizarVeiculo() {
         isLoading,
         error,
     } = useQuery<Veiculo>({
-        queryKey: ['veiculos', Number(id)],
+        queryKey: ['veiculo' + id],
         queryFn: () => VeiculosService.buscar(Number(id)),
     });
 
@@ -40,8 +41,11 @@ export default function VisualizarVeiculo() {
                 <Tabs.Tab value="informacoes" leftSection={<TbInfoCircle size={20} />}>
                     Informações
                 </Tabs.Tab>
-                <Tabs.Tab value="manutencoes" leftSection={<TbTool size={20} />}>
+                <Tabs.Tab value="manutencoes"  leftSection={<TbTool size={20} />}>
                     Manutenções
+                </Tabs.Tab>
+                <Tabs.Tab value="uploads" leftSection={<TbUpload size={20} />}>
+                    Uploads
                 </Tabs.Tab>
             </Tabs.List>
             <Tabs.Panel value="informacoes">
@@ -51,6 +55,9 @@ export default function VisualizarVeiculo() {
             </Tabs.Panel>
             <Tabs.Panel value="manutencoes">
                 <h1>Manutenções</h1>
+            </Tabs.Panel>
+            <Tabs.Panel value="uploads">
+                <VeiculoUploads veiculo={veiculo} />
             </Tabs.Panel>
         </Tabs>
     );

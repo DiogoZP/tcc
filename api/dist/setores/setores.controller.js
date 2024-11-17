@@ -59,6 +59,7 @@ exports.SetoresController = SetoresController;
 __decorate([
     (0, swagger_1.ApiCreatedResponse)({ description: 'Setor criado com sucesso' }),
     (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, common_1.Post)(),
     openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Body)()),
@@ -68,6 +69,7 @@ __decorate([
 ], SetoresController.prototype, "create", null);
 __decorate([
     (0, swagger_1.ApiOkResponse)({ description: 'Setores encontrados' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, common_1.Get)(),
     openapi.ApiResponse({ status: 200 }),
     __metadata("design:type", Function),
@@ -77,6 +79,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOkResponse)({ description: 'Setor encontrado com sucesso' }),
     (0, swagger_1.ApiNotFoundResponse)({ description: 'Setor não encontrado' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, common_1.Get)(':id'),
     openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
@@ -88,6 +91,7 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({ description: 'Setor atualizado com sucesso' }),
     (0, swagger_1.ApiNotFoundResponse)({ description: 'Setor não encontrado' }),
     (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, common_1.Patch)(':id'),
     openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
@@ -99,6 +103,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOkResponse)({ description: 'Setor deletado com sucesso' }),
     (0, swagger_1.ApiNotFoundResponse)({ description: 'Setor não encontrado' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, common_1.Delete)(':id'),
     openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
@@ -108,6 +113,7 @@ __decorate([
 ], SetoresController.prototype, "remove", null);
 exports.SetoresController = SetoresController = __decorate([
     (0, swagger_1.ApiTags)('Setores'),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Controller)('setores'),
     __metadata("design:paramtypes", [setores_service_1.SetoresService])
 ], SetoresController);

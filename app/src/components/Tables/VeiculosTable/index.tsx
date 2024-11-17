@@ -4,11 +4,11 @@ import { TbCheck, TbX, TbEdit, TbTrash, TbPlus } from 'react-icons/tb';
 import { notifications } from '@mantine/notifications';
 import { modals } from '@mantine/modals';
 import { MRT_ColumnDef } from 'mantine-react-table';
-import { MRT_Localization_PT_BR } from 'mantine-react-table/locales/pt-BR/index.cjs';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { Veiculo } from '@/types/Veiculo';
 import VeiculosService from '@/services/VeiculosService';
+import tablesConfig from '@/components/Tables/tablesConfig';
 
 type DataTableProps = {
     columns: MRT_ColumnDef<Veiculo>[];
@@ -45,23 +45,7 @@ export default function VeiculosTable({ columns, data }: DataTableProps) {
         <MantineReactTable
             data={data}
             columns={columns}
-            localization={MRT_Localization_PT_BR}
-            enableRowActions
-            enableDensityToggle={false}
-            defaultColumn={{ maxSize: 100 }}
-            positionActionsColumn="last"
-            initialState={{
-                density: 'xs',
-                columnVisibility: {
-                    ano: false,
-                    cor: false,
-                    renavam: false,
-                    chassi: false,
-                    km: false,
-                    combustivel: false,
-                    categoriaCNH: false,
-                },
-            }}
+            {...tablesConfig}
             renderRowActions={({ row }) => (
                 <Flex gap="md">
                     <Tooltip label="Editar">

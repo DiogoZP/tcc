@@ -24,7 +24,7 @@ export default function EditarVeiculo() {
         isError: isVeiculoError,
         isLoading: isVeiculoLoading,
     } = useQuery<Veiculo>({
-        queryKey: ['veiculos', id],
+        queryKey: ['veiculos', 'veiculo' + id],
         queryFn: () => VeiculosService.buscar(Number(id)),
     });
 

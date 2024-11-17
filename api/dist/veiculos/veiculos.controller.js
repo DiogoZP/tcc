@@ -107,6 +107,7 @@ __decorate([
 ], VeiculosController.prototype, "remove", null);
 exports.VeiculosController = VeiculosController = __decorate([
     (0, swagger_1.ApiTags)('Veículos'),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Controller)('veiculos'),
     __metadata("design:paramtypes", [veiculos_service_1.VeiculosService])
 ], VeiculosController);

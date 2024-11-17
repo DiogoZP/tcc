@@ -14,19 +14,23 @@ import { CreateSetorDto } from './dto/create-setor.dto';
 import { UpdateSetorDto } from './dto/update-setor.dto';
 import {
     ApiBadRequestResponse,
+    ApiBearerAuth,
     ApiCreatedResponse,
     ApiNotFoundResponse,
     ApiOkResponse,
     ApiTags,
+    ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 
 @ApiTags('Setores')
+@ApiBearerAuth()
 @Controller('setores')
 export class SetoresController {
     constructor(private readonly setoresService: SetoresService) {}
 
     @ApiCreatedResponse({ description: 'Setor criado com sucesso' })
     @ApiBadRequestResponse({ description: 'Valores inválidos' })
+    @ApiUnauthorizedResponse({ description: 'Autenticação inválida' })
     @Post()
     async create(@Body() createSetorDto: CreateSetorDto) {
         const setor = await this.setoresService.create(createSetorDto);
@@ -34,6 +38,7 @@ export class SetoresController {
     }
 
     @ApiOkResponse({ description: 'Setores encontrados' })
+    @ApiUnauthorizedResponse({ description: 'Autenticação inválida' })
     @Get()
     async findAll() {
         const setores = await this.setoresService.findAll();
@@ -42,6 +47,7 @@ export class SetoresController {
 
     @ApiOkResponse({ description: 'Setor encontrado com sucesso' })
     @ApiNotFoundResponse({ description: 'Setor não encontrado' })
+    @ApiUnauthorizedResponse({ description: 'Autenticação inválida' })
     @Get(':id')
     async findOne(@Param('id') id: string) {
         const setor = await this.setoresService.findOne(+id);
@@ -54,6 +60,7 @@ export class SetoresController {
     @ApiOkResponse({ description: 'Setor atualizado com sucesso' })
     @ApiNotFoundResponse({ description: 'Setor não encontrado' })
     @ApiBadRequestResponse({ description: 'Valores inválidos' })
+    @ApiUnauthorizedResponse({ description: 'Autenticação inválida' })
     @Patch(':id')
     async update(@Param('id') id: string, @Body() updateSetorDto: UpdateSetorDto) {
         const setorExiste = await this.setoresService.findOne(+id);
@@ -66,6 +73,7 @@ export class SetoresController {
 
     @ApiOkResponse({ description: 'Setor deletado com sucesso' })
     @ApiNotFoundResponse({ description: 'Setor não encontrado' })
+    @ApiUnauthorizedResponse({ description: 'Autenticação inválida' })
     @Delete(':id')
     async remove(@Param('id') id: string) {
         const setorExiste = await this.setoresService.findOne(+id);

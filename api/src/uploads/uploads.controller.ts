@@ -22,20 +22,25 @@ import { unlink } from 'fs';
 import { resolve } from 'path';
 import {
     ApiBadRequestResponse,
+    ApiBearerAuth,
     ApiConsumes,
     ApiCreatedResponse,
     ApiNotFoundResponse,
     ApiOkResponse,
     ApiTags,
+    ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { Public } from '@/auth/public.decorator';
 
 @ApiTags('Uploads')
 @Controller('uploads')
 export class UploadsController {
     constructor(private readonly uploadsService: UploadsService) {}
 
+    @ApiBearerAuth()
     @ApiCreatedResponse({ description: 'Upload criado com sucesso' })
     @ApiBadRequestResponse({ description: 'Valores inválidos' })
+    @ApiUnauthorizedResponse({ description: 'Autenticação inválida' })
     @ApiConsumes('multipart/form-data')
     @Post()
     @UseInterceptors(
@@ -62,6 +67,7 @@ export class UploadsController {
     }
 
     @ApiOkResponse({ description: 'Uploads encontrados' })
+    @Public()
     @Get()
     async findAll() {
         const uploads = await this.uploadsService.findAll();
@@ -70,6 +76,7 @@ export class UploadsController {
 
     @ApiOkResponse({ description: 'Upload encontrado com sucesso' })
     @ApiNotFoundResponse({ description: 'Upload não encontrado' })
+    @Public()
     @Get(':id')
     async findOne(@Param('id') id: string, @Res() res: Response) {
         const upload = await this.uploadsService.findOne(+id);
@@ -80,9 +87,11 @@ export class UploadsController {
         res.sendFile(resolve(__dirname, '..', '..', 'arquivos', upload.filename));
     }
 
+    @ApiBearerAuth()
     @ApiOkResponse({ description: 'Upload atualizado com sucesso' })
     @ApiNotFoundResponse({ description: 'Upload não encontrado' })
     @ApiBadRequestResponse({ description: 'Valores inválidos' })
+    @ApiUnauthorizedResponse({ description: 'Autenticação inválida' })
     @ApiConsumes('multipart/form-data')
     @Patch(':id')
     @UseInterceptors(
@@ -126,8 +135,10 @@ export class UploadsController {
         return upload;
     }
 
+    @ApiBearerAuth()
     @ApiOkResponse({ description: 'Upload deletado com sucesso' })
     @ApiNotFoundResponse({ description: 'Upload não encontrado' })
+    @ApiUnauthorizedResponse({ description: 'Autenticação inválida' })
     @Delete(':id')
     async remove(@Param('id') id: string) {
         const uploadExiste = await this.uploadsService.findOne(+id);

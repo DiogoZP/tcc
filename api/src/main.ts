@@ -11,6 +11,15 @@ async function bootstrap() {
         .setTitle('Gestor de Frotas')
         .setDescription('API para controle e manutenção de frotas de veículos')
         .setVersion('0.1')
+        .addBearerAuth({
+            type: 'http',
+            scheme: 'bearer',
+            bearerFormat: 'JWT',
+            in: 'header',
+            name: 'Token JWT',
+            description: 'Adicione seu token JWT',
+        })
+        .addSecurityRequirements('bearer')
         .build();
 
     const document = SwaggerModule.createDocument(app, config);

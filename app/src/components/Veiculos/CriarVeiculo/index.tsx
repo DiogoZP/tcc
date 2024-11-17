@@ -3,13 +3,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { TextInput, NumberInput, Select } from 'react-hook-form-mantine';
 import { Button, Fieldset, Flex, Loader } from '@mantine/core';
 import { TbDeviceFloppy, TbX, TbCheck, TbArrowLeft } from 'react-icons/tb';
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { notifications } from '@mantine/notifications';
 import { useNavigate } from 'react-router-dom';
 import SetoresService from '@/services/SetoresService';
 import VeiculosService from '@/services/VeiculosService';
 import { Setor } from '@/types/Setor';
 import { veiculoSchema, VeiculoForm } from '@/types/Veiculo';
+import MaskedInput from '@/components/MaskedInput';
 
 export default function CriarVeiculo() {
     const {
@@ -17,6 +18,8 @@ export default function CriarVeiculo() {
         isError,
         isLoading,
     } = useQuery<Setor[]>({ queryKey: ['setores'], queryFn: SetoresService.listar });
+
+    const queryClient = useQueryClient();
 
     const mutation = useMutation({
         mutationFn: VeiculosService.criar,
@@ -27,6 +30,11 @@ export default function CriarVeiculo() {
                 color: 'teal',
                 icon: <TbCheck size="20" />,
             });
+
+            queryClient.invalidateQueries({
+                queryKey: ['veiculos'],
+            });
+            
             navigate('/admin/veiculos');
         },
         onError: (error) => {
@@ -43,18 +51,6 @@ export default function CriarVeiculo() {
 
     const { control } = useForm<VeiculoForm>({
         resolver: zodResolver(veiculoSchema),
-        defaultValues: {
-            placa: '',
-            marca: '',
-            modelo: '',
-            tipo: '',
-            cor: '',
-            renavam: '',
-            chassi: '',
-            combustivel: '',
-            categoriaCNH: '',
-            status: '',
-        },
     });
 
     if (isLoading) {
@@ -78,11 +74,12 @@ export default function CriarVeiculo() {
             >
                 <Flex gap="sm" direction="column">
                     <Flex gap="sm" wrap={'wrap'}>
-                        <TextInput
+                        <MaskedInput
                             label="Placa"
-                            placeholder="Placa do veículo"
+                            placeholder="XXX-XXXX"
                             control={control}
                             name="placa"
+                            mask='***-****'
                             flex={1}
                             miw={200}
                         />

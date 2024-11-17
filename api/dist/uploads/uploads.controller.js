@@ -23,6 +23,7 @@ const update_upload_dto_1 = require("./dto/update-upload.dto");
 const fs_1 = require("fs");
 const path_1 = require("path");
 const swagger_1 = require("@nestjs/swagger");
+const public_decorator_1 = require("../auth/public.decorator");
 let UploadsController = class UploadsController {
     constructor(uploadsService) {
         this.uploadsService = uploadsService;
@@ -74,8 +75,10 @@ let UploadsController = class UploadsController {
 };
 exports.UploadsController = UploadsController;
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiCreatedResponse)({ description: 'Upload criado com sucesso' }),
     (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, swagger_1.ApiConsumes)('multipart/form-data'),
     (0, common_1.Post)(),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
@@ -96,6 +99,7 @@ __decorate([
 ], UploadsController.prototype, "create", null);
 __decorate([
     (0, swagger_1.ApiOkResponse)({ description: 'Uploads encontrados' }),
+    (0, public_decorator_1.Public)(),
     (0, common_1.Get)(),
     openapi.ApiResponse({ status: 200 }),
     __metadata("design:type", Function),
@@ -105,6 +109,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOkResponse)({ description: 'Upload encontrado com sucesso' }),
     (0, swagger_1.ApiNotFoundResponse)({ description: 'Upload não encontrado' }),
+    (0, public_decorator_1.Public)(),
     (0, common_1.Get)(':id'),
     openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
@@ -114,9 +119,11 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UploadsController.prototype, "findOne", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiOkResponse)({ description: 'Upload atualizado com sucesso' }),
     (0, swagger_1.ApiNotFoundResponse)({ description: 'Upload não encontrado' }),
     (0, swagger_1.ApiBadRequestResponse)({ description: 'Valores inválidos' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, swagger_1.ApiConsumes)('multipart/form-data'),
     (0, common_1.Patch)(':id'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
@@ -137,8 +144,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UploadsController.prototype, "update", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiOkResponse)({ description: 'Upload deletado com sucesso' }),
     (0, swagger_1.ApiNotFoundResponse)({ description: 'Upload não encontrado' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, common_1.Delete)(':id'),
     openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
