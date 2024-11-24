@@ -11,6 +11,7 @@ export declare class UploadsService {
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
+        deleted: boolean;
     }>;
     findAll(): Promise<{
         id: number;
@@ -19,6 +20,7 @@ export declare class UploadsService {
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
+        deleted: boolean;
     }[]>;
     findOne(id: number): Promise<{
         id: number;
@@ -27,6 +29,7 @@ export declare class UploadsService {
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
+        deleted: boolean;
     } | null>;
     update(id: number, updateUploadDto: UpdateUploadDto, filename?: string, mimetype?: string): Promise<{
         id: number;
@@ -35,6 +38,7 @@ export declare class UploadsService {
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
+        deleted: boolean;
     }>;
     remove(id: number): Promise<{
         id: number;
@@ -43,5 +47,6 @@ export declare class UploadsService {
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
+        deleted: boolean;
     }>;
 }

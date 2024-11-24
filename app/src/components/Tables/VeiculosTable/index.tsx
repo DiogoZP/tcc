@@ -46,6 +46,18 @@ export default function VeiculosTable({ columns, data }: DataTableProps) {
             data={data}
             columns={columns}
             {...tablesConfig}
+            initialState={{
+                density: 'xs' as const,
+                columnVisibility: {
+                    ano: false,
+                    cor: false,
+                    renavam: false,
+                    chassi: false,
+                    km: false,
+                    combustivel: false,
+                    categoriaCNH: false,
+                },
+            }}
             renderRowActions={({ row }) => (
                 <Flex gap="md">
                     <Tooltip label="Editar">

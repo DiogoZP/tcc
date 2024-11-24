@@ -47,6 +47,17 @@ export default function MotoristasTable({ columns, data }: DataTableProps) {
             data={data}
             columns={columns}
             {...tablesConfig}
+            initialState={{
+                density: 'xs' as const,
+                columnVisibility: {
+                    cpf: false,
+                    rg: false,
+                    numeroCNH: false,
+                    validadeCNH: false,
+                    telefone: false,
+                    endereco: false,
+                },
+            }}
             renderRowActions={({ row }) => (
                 <Flex gap="md">
                     <Tooltip label="Editar">

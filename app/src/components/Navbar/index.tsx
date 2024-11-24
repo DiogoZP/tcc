@@ -1,10 +1,26 @@
-import { Divider, NavLink as NavGroup } from '@mantine/core';
-import { FaCar } from 'react-icons/fa6';
+import { Button, Divider, NavLink as NavGroup } from '@mantine/core';
+import { FaCar, FaBuildingUser, FaUser } from 'react-icons/fa6';
 import { TbLogout2, TbSteeringWheel, TbDashboard } from 'react-icons/tb';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import classes from './navbar.module.scss';
 
 const data = [
+    {
+        group: 'Cadastros',
+        routes: [
+            {
+                link: '/admin/setores',
+                label: 'Setores',
+                icon: FaBuildingUser,
+            },
+            {
+                link: '/admin/usuarios',
+                label: 'Usuários',
+                icon: FaUser,
+            },
+        ],
+    },
     {
         group: 'Frota',
         routes: [
@@ -38,6 +54,8 @@ const links = data.map((item) => (
 ));
 
 export default function Navbar() {
+    const navigate = useNavigate();
+
     return (
         <nav className={classes.navbar}>
             <div className={classes.navbarMain}>
@@ -49,15 +67,20 @@ export default function Navbar() {
                     <TbDashboard className={classes.linkIcon} />
                     <span>Dashboard</span>
                 </NavLink>
-                <Divider my="md"/>
+                <Divider my="md" />
                 {links}
             </div>
 
             <div className={classes.footer}>
-                <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+                <Button
+                    className={classes.link}
+                    onClick={() => {
+                        navigate('/');
+                    }}
+                >
                     <TbLogout2 className={classes.linkIcon} />
                     <span>Sair</span>
-                </a>
+                </Button>
             </div>
         </nav>
     );

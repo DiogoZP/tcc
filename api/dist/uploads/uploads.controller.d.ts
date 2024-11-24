@@ -12,6 +12,7 @@ export declare class UploadsController {
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
+        deleted: boolean;
     }>;
     findAll(): Promise<{
         id: number;
@@ -20,6 +21,7 @@ export declare class UploadsController {
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
+        deleted: boolean;
     }[]>;
     findOne(id: string, res: Response): Promise<void>;
     update(id: string, updateUploadDto: UpdateUploadDto, file: Express.Multer.File): Promise<{
@@ -29,6 +31,7 @@ export declare class UploadsController {
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
+        deleted: boolean;
     }>;
     remove(id: string): Promise<{
         id: number;
@@ -37,5 +40,6 @@ export declare class UploadsController {
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
+        deleted: boolean;
     }>;
 }

@@ -10,8 +10,7 @@ export type Upload = {
 };
 
 export const uploadSchema = z.object({
-    file: z.instanceof(File),
+    file: z.instanceof(File, { message: 'selecione um arquivo' }),
 });
 
 export type UploadForm = z.infer<typeof uploadSchema>;
-

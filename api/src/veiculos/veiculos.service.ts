@@ -27,6 +27,9 @@ export class VeiculosService {
                 uploads: true,
                 infracoes: true,
             },
+            where: {
+                deleted: false,
+            },
         });
     }
 
@@ -38,7 +41,7 @@ export class VeiculosService {
                 uploads: true,
                 infracoes: true,
             },
-            where: { id },
+            where: { id, deleted: false },
         });
     }
 
@@ -50,20 +53,23 @@ export class VeiculosService {
                 uploads: true,
                 infracoes: true,
             },
-            where: { id },
+            where: { id, deleted: false },
             data: updateVeiculoDto,
         });
     }
 
     async remove(id: number) {
-        return await this.prisma.veiculo.delete({
+        return await this.prisma.veiculo.update({
+            data: {
+                deleted: true,
+            },
             include: {
                 setor: true,
                 movimentos: true,
                 uploads: true,
                 infracoes: true,
             },
-            where: { id },
+            where: { id, deleted: false },
         });
     }
 }

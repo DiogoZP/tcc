@@ -8,16 +8,19 @@ export declare class UsuariosController {
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         id: number;
         nome: string;
         email: string;
         setorId: number;
+        deleted: boolean;
     }>;
     findAll(): Promise<({
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
     } & {
         id: number;
@@ -25,35 +28,42 @@ export declare class UsuariosController {
         email: string;
         senha: string;
         setorId: number;
+        deleted: boolean;
     })[]>;
     findOne(id: string): Promise<{
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         id: number;
         nome: string;
         email: string;
         setorId: number;
+        deleted: boolean;
     }>;
     update(id: string, updateUsuarioDto: UpdateUsuarioDto): Promise<{
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         id: number;
         nome: string;
         email: string;
         setorId: number;
+        deleted: boolean;
     }>;
     remove(id: string): Promise<{
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         id: number;
         nome: string;
         email: string;
         setorId: number;
+        deleted: boolean;
     }>;
 }

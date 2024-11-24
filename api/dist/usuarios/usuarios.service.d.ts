@@ -8,6 +8,7 @@ export declare class UsuariosService {
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
     } & {
         id: number;
@@ -15,11 +16,13 @@ export declare class UsuariosService {
         email: string;
         senha: string;
         setorId: number;
+        deleted: boolean;
     }>;
     findAll(): Promise<({
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
     } & {
         id: number;
@@ -27,6 +30,7 @@ export declare class UsuariosService {
         email: string;
         senha: string;
         setorId: number;
+        deleted: boolean;
     })[]>;
     findOne(params: {
         id?: number;
@@ -35,6 +39,7 @@ export declare class UsuariosService {
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
     } & {
         id: number;
@@ -42,11 +47,13 @@ export declare class UsuariosService {
         email: string;
         senha: string;
         setorId: number;
+        deleted: boolean;
     }) | null>;
     update(id: number, updateUsuarioDto: UpdateUsuarioDto): Promise<{
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
     } & {
         id: number;
@@ -54,11 +61,13 @@ export declare class UsuariosService {
         email: string;
         senha: string;
         setorId: number;
+        deleted: boolean;
     }>;
     remove(id: number): Promise<{
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
     } & {
         id: number;
@@ -66,5 +75,6 @@ export declare class UsuariosService {
         email: string;
         senha: string;
         setorId: number;
+        deleted: boolean;
     }>;
 }

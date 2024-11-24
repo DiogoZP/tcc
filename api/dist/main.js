@@ -6,7 +6,14 @@ const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
-    app.enableCors();
+    app.enableCors({
+        origin: [
+            'http://127.0.0.1:5173/',
+            'http://localhost:5173/',
+            'http://127.0.0.1:5173',
+            'http://localhost:5173',
+        ],
+    });
     const config = new swagger_1.DocumentBuilder()
         .setTitle('Gestor de Frotas')
         .setDescription('API para controle e manutenção de frotas de veículos')

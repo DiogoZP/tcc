@@ -27,6 +27,9 @@ export class MotoristasService {
                 uploads: true,
                 infracoes: true,
             },
+            where: {
+                deleted: false,
+            },
         });
     }
 
@@ -38,7 +41,7 @@ export class MotoristasService {
                 uploads: true,
                 infracoes: true,
             },
-            where: { id },
+            where: { id, deleted: false },
         });
     }
 
@@ -50,20 +53,23 @@ export class MotoristasService {
                 uploads: true,
                 infracoes: true,
             },
-            where: { id },
+            where: { id, deleted: false },
             data: updateMotoristaDto,
         });
     }
 
     async remove(id: number) {
-        return await this.prisma.motorista.delete({
+        return await this.prisma.motorista.update({
+            data: {
+                deleted: true,
+            },
             include: {
                 setor: true,
                 movimentos: true,
                 uploads: true,
                 infracoes: true,
             },
-            where: { id },
+            where: { id, deleted: false },
         });
     }
 }

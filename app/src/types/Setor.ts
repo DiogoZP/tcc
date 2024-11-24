@@ -1,11 +1,18 @@
+import z from 'zod';
 import { Veiculo } from './Veiculo';
 import { Motorista } from './Motorista';
 
-type Setor = {
+export type Setor = {
     id: number;
     nome: string;
     veiculos: Veiculo[];
     motoristas: Motorista[];
 }
 
-export { type Setor };
+export const setorSchema = z.object({
+    id: z.coerce.number().optional(),
+    nome: z.string({ required_error: 'Nome é obrigatório' }),
+});
+
+export type SetorForm = z.infer<typeof setorSchema>;
+

@@ -22,22 +22,29 @@ let SetoresService = class SetoresService {
         });
     }
     async findAll() {
-        return await this.prisma.setor.findMany();
+        return await this.prisma.setor.findMany({
+            where: {
+                deleted: false,
+            },
+        });
     }
     async findOne(id) {
         return await this.prisma.setor.findUnique({
-            where: { id },
+            where: { id, deleted: false },
         });
     }
     async update(id, updateSetorDto) {
         return await this.prisma.setor.update({
-            where: { id },
+            where: { id, deleted: false },
             data: updateSetorDto,
         });
     }
     async remove(id) {
-        return await this.prisma.setor.delete({
-            where: { id },
+        return await this.prisma.setor.update({
+            data: {
+                deleted: true,
+            },
+            where: { id, deleted: false },
         });
     }
 };

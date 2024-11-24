@@ -8,6 +8,7 @@ export declare class MotoristasController {
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         movimentos: {
             id: number;
@@ -18,6 +19,7 @@ export declare class MotoristasController {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
         uploads: {
             id: number;
@@ -26,6 +28,7 @@ export declare class MotoristasController {
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
+            deleted: boolean;
         }[];
         infracoes: {
             id: number;
@@ -34,6 +37,7 @@ export declare class MotoristasController {
             valor: number;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
     } & {
         id: number;
@@ -42,14 +46,17 @@ export declare class MotoristasController {
         rg: string;
         categoriaCNH: string;
         numeroCNH: string;
-        validadeCNH: string;
+        validadeCNH: Date;
         telefone: string;
+        endereco: string;
         setorId: number;
+        deleted: boolean;
     }>;
     findAll(): Promise<({
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         movimentos: {
             id: number;
@@ -60,6 +67,7 @@ export declare class MotoristasController {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
         uploads: {
             id: number;
@@ -68,6 +76,7 @@ export declare class MotoristasController {
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
+            deleted: boolean;
         }[];
         infracoes: {
             id: number;
@@ -76,6 +85,7 @@ export declare class MotoristasController {
             valor: number;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
     } & {
         id: number;
@@ -84,14 +94,17 @@ export declare class MotoristasController {
         rg: string;
         categoriaCNH: string;
         numeroCNH: string;
-        validadeCNH: string;
+        validadeCNH: Date;
         telefone: string;
+        endereco: string;
         setorId: number;
+        deleted: boolean;
     })[]>;
     findOne(id: string): Promise<{
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         movimentos: {
             id: number;
@@ -102,6 +115,7 @@ export declare class MotoristasController {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
         uploads: {
             id: number;
@@ -110,6 +124,7 @@ export declare class MotoristasController {
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
+            deleted: boolean;
         }[];
         infracoes: {
             id: number;
@@ -118,6 +133,7 @@ export declare class MotoristasController {
             valor: number;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
     } & {
         id: number;
@@ -126,14 +142,17 @@ export declare class MotoristasController {
         rg: string;
         categoriaCNH: string;
         numeroCNH: string;
-        validadeCNH: string;
+        validadeCNH: Date;
         telefone: string;
+        endereco: string;
         setorId: number;
+        deleted: boolean;
     }>;
     update(id: string, updateMotoristaDto: UpdateMotoristaDto): Promise<{
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         movimentos: {
             id: number;
@@ -144,6 +163,7 @@ export declare class MotoristasController {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
         uploads: {
             id: number;
@@ -152,6 +172,7 @@ export declare class MotoristasController {
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
+            deleted: boolean;
         }[];
         infracoes: {
             id: number;
@@ -160,6 +181,7 @@ export declare class MotoristasController {
             valor: number;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
     } & {
         id: number;
@@ -168,14 +190,17 @@ export declare class MotoristasController {
         rg: string;
         categoriaCNH: string;
         numeroCNH: string;
-        validadeCNH: string;
+        validadeCNH: Date;
         telefone: string;
+        endereco: string;
         setorId: number;
+        deleted: boolean;
     }>;
     remove(id: string): Promise<{
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         movimentos: {
             id: number;
@@ -186,6 +211,7 @@ export declare class MotoristasController {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
         uploads: {
             id: number;
@@ -194,6 +220,7 @@ export declare class MotoristasController {
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
+            deleted: boolean;
         }[];
         infracoes: {
             id: number;
@@ -202,6 +229,7 @@ export declare class MotoristasController {
             valor: number;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
     } & {
         id: number;
@@ -210,8 +238,10 @@ export declare class MotoristasController {
         rg: string;
         categoriaCNH: string;
         numeroCNH: string;
-        validadeCNH: string;
+        validadeCNH: Date;
         telefone: string;
+        endereco: string;
         setorId: number;
+        deleted: boolean;
     }>;
 }

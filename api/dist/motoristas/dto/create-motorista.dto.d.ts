@@ -6,5 +6,6 @@ export declare class CreateMotoristaDto {
     numeroCNH: string;
     validadeCNH: string;
     telefone: string;
+    endereco: string;
     setorId: number;
 }

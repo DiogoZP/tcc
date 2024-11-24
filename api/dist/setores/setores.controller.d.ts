@@ -7,21 +7,26 @@ export declare class SetoresController {
     create(createSetorDto: CreateSetorDto): Promise<{
         id: number;
         nome: string;
+        deleted: boolean;
     }>;
     findAll(): Promise<{
         id: number;
         nome: string;
+        deleted: boolean;
     }[]>;
     findOne(id: string): Promise<{
         id: number;
         nome: string;
+        deleted: boolean;
     }>;
     update(id: string, updateSetorDto: UpdateSetorDto): Promise<{
         id: number;
         nome: string;
+        deleted: boolean;
     }>;
     remove(id: string): Promise<{
         id: number;
         nome: string;
+        deleted: boolean;
     }>;
 }

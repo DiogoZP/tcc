@@ -6,12 +6,12 @@ import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AuthService {
     constructor(
-        private readonly prisma: UsuariosService,
+        private readonly usuarioService: UsuariosService,
         private readonly jwt: JwtService,
     ) {}
 
     async login(email: string, senha: string) {
-        const usuario = await this.prisma.findOne({ email: email });
+        const usuario = await this.usuarioService.findOne({ email: email });
         if (!usuario) {
             throw new HttpException('Autenticação inválida', HttpStatus.UNAUTHORIZED);
         }
@@ -21,9 +21,7 @@ export class AuthService {
             throw new HttpException('Autenticação inválida', HttpStatus.UNAUTHORIZED);
         }
 
-        const payload = { username: usuario.email, sub: usuario.id };
-        return {
-            access_token: this.jwt.sign(payload),
-        };
+        const payload = { email: usuario.email, id: usuario.id };
+        return this.jwt.sign(payload);
     }
 }

@@ -97,7 +97,7 @@ export default function VeiculoUploads({ veiculo }: VeiculoUploadsProps) {
                                             leftSection={<TbFile />}
                                             control={control}
                                         />
-                                        <Flex justify='flex-end'>
+                                        <Flex justify="flex-end">
                                             <Button
                                                 type="submit"
                                                 leftSection={<TbUpload size="20" />}
@@ -121,7 +121,7 @@ export default function VeiculoUploads({ veiculo }: VeiculoUploadsProps) {
             </Flex>
             <Fieldset legend="Uploads" w="100%">
                 <Flex wrap="wrap" gap="md" p="sm">
-                    {veiculo.uploads.length === 0 && (
+                    {veiculo.uploads.length == 0 && (
                         <Text size="xl" c="gray" w="100%">
                             Não há uploads cadastrados!
                         </Text>

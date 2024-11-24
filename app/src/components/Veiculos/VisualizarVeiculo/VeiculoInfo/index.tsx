@@ -11,31 +11,31 @@ export default function VeiculoInfo({ veiculo }: InfoTabProps) {
     const navigate = useNavigate();
 
     return (
-        <Flex gap="sm" direction="column" p='sm'>
+        <Flex gap="sm" direction="column" p="sm">
             <Flex gap="sm" wrap={'wrap'}>
                 <TextInput
-                    label="ID"
+                    label="Id:"
                     flex={1}
                     miw="sm"
                     readOnly
-                    defaultValue={veiculo.id.toString()}
+                    defaultValue={veiculo.id}
                 />
                 <TextInput
-                    label="Placa"
+                    label="Placa:"
                     flex={2}
                     miw={200}
                     readOnly
                     defaultValue={veiculo.placa}
                 />
                 <TextInput
-                    label="Marca"
+                    label="Marca:"
                     flex={3}
                     miw={200}
                     readOnly
                     defaultValue={veiculo.marca}
                 />
                 <TextInput
-                    label="Modelo"
+                    label="Modelo:"
                     flex={3}
                     miw={200}
                     readOnly
@@ -43,29 +43,53 @@ export default function VeiculoInfo({ veiculo }: InfoTabProps) {
                 />
             </Flex>
             <Flex gap="sm" wrap={'wrap'}>
-                <TextInput label="Status" flex={1} miw={200} readOnly defaultValue={veiculo.status} />
-                <TextInput label="Setor" flex={1} miw={200} readOnly defaultValue={veiculo.setor.nome} />
-            </Flex>
-            <Flex gap="sm" wrap={'wrap'}>
-                <TextInput label="Tipo" flex={1} miw={200} readOnly defaultValue={veiculo.tipo} />
-                <TextInput label="Ano" flex={1} miw={200} readOnly defaultValue={veiculo.ano} />
-                <TextInput label="Cor" flex={1} miw={200} readOnly defaultValue={veiculo.cor} />
-            </Flex>
-            <Flex gap="sm" wrap={'wrap'}>
-                <TextInput label="Renavam" flex={1} miw={200} readOnly defaultValue={veiculo.renavam} />
-                <TextInput label="Chassi" flex={1} miw={200} readOnly defaultValue={veiculo.chassi} />
-            </Flex>
-            <Flex gap="sm" wrap={'wrap'}>
-                <TextInput label="Km" flex={1} miw={200} readOnly defaultValue={veiculo.km} />
                 <TextInput
-                    label="Combustível"
+                    label="Status:"
+                    flex={1}
+                    miw={200}
+                    readOnly
+                    defaultValue={veiculo.status}
+                />
+                <TextInput
+                    label="Setor:"
+                    flex={1}
+                    miw={200}
+                    readOnly
+                    defaultValue={veiculo.setor.nome}
+                />
+            </Flex>
+            <Flex gap="sm" wrap={'wrap'}>
+                <TextInput label="Tipo:" flex={1} miw={200} readOnly defaultValue={veiculo.tipo} />
+                <TextInput label="Ano:" flex={1} miw={200} readOnly defaultValue={veiculo.ano} />
+                <TextInput label="Cor:" flex={1} miw={200} readOnly defaultValue={veiculo.cor} />
+            </Flex>
+            <Flex gap="sm" wrap={'wrap'}>
+                <TextInput
+                    label="Renavam:"
+                    flex={1}
+                    miw={200}
+                    readOnly
+                    defaultValue={veiculo.renavam}
+                />
+                <TextInput
+                    label="Chassi:"
+                    flex={1}
+                    miw={200}
+                    readOnly
+                    defaultValue={veiculo.chassi}
+                />
+            </Flex>
+            <Flex gap="sm" wrap={'wrap'}>
+                <TextInput label="Km:" flex={1} miw={200} readOnly defaultValue={veiculo.km} />
+                <TextInput
+                    label="Combustível:"
                     flex={1}
                     miw={200}
                     readOnly
                     defaultValue={veiculo.combustivel}
                 />
                 <TextInput
-                    label="Categoria CNH"
+                    label="Categoria CNH:"
                     flex={1}
                     miw={200}
                     readOnly

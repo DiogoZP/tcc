@@ -1,4 +1,4 @@
-import { IsString, IsInt, IsIn } from 'class-validator';
+import { IsString, IsInt, IsIn, IsDateString } from 'class-validator';
 
 export class CreateMotoristaDto {
     @IsString({ message: 'nome deve ser uma string' })
@@ -19,11 +19,14 @@ export class CreateMotoristaDto {
     @IsString({ message: 'numeroCNH deve ser uma string' })
     numeroCNH: string;
 
-    @IsString({ message: 'validadeCNH deve ser uma string' })
+    @IsDateString()
     validadeCNH: string;
 
     @IsString({ message: 'telefone deve ser uma string' })
     telefone: string;
+
+    @IsString({ message: 'endereco deve ser uma string ' })
+    endereco: string;
 
     @IsInt({ message: 'setorId deve ser um número inteiro' })
     setorId: number;

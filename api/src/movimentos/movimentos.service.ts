@@ -14,25 +14,48 @@ export class MovimentosService {
     }
 
     async findAll() {
-        return await this.prisma.movimento.findMany();
+        return await this.prisma.movimento.findMany({
+            include: {
+                veiculo: true,
+                motorista: true,
+            },
+            where: {
+                deleted: false,
+            },
+        });
     }
 
     async findOne(id: number) {
         return await this.prisma.movimento.findUnique({
-            where: { id },
+            include: {
+                veiculo: true,
+                motorista: true,
+            },
+            where: { id, deleted: false },
         });
     }
 
     async update(id: number, updateMovimentoDto: UpdateMovimentoDto) {
         return await this.prisma.movimento.update({
-            where: { id },
+            include: {
+                veiculo: true,
+                motorista: true,
+            },
+            where: { id, deleted: false },
             data: updateMovimentoDto,
         });
     }
 
     async remove(id: number) {
-        return await this.prisma.movimento.delete({
-            where: { id },
+        return await this.prisma.movimento.update({
+            data: {
+                deleted: true,
+            },
+            include: {
+                veiculo: true,
+                motorista: true,
+            },
+            where: { id, deleted: false },
         });
     }
 }

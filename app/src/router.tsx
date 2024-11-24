@@ -8,9 +8,15 @@ function Router() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Login />} />
+                <Route
+                    path="/"
+                    element={<Login />}
+                />
                 <Route path="/home" element={<Home />} />
-                <Route path="/admin/*" element={<App />} />
+                <Route
+                    path="/admin/*"
+                    element={<App />}
+                />
                 <Route path="/404" element={<NotFound />} />
                 <Route path="*" element={<Navigate to="404" />} />
             </Routes>

@@ -35,6 +35,9 @@ let VeiculosService = class VeiculosService {
                 uploads: true,
                 infracoes: true,
             },
+            where: {
+                deleted: false,
+            },
         });
     }
     async findOne(id) {
@@ -45,7 +48,7 @@ let VeiculosService = class VeiculosService {
                 uploads: true,
                 infracoes: true,
             },
-            where: { id },
+            where: { id, deleted: false },
         });
     }
     async update(id, updateVeiculoDto) {
@@ -56,19 +59,22 @@ let VeiculosService = class VeiculosService {
                 uploads: true,
                 infracoes: true,
             },
-            where: { id },
+            where: { id, deleted: false },
             data: updateVeiculoDto,
         });
     }
     async remove(id) {
-        return await this.prisma.veiculo.delete({
+        return await this.prisma.veiculo.update({
+            data: {
+                deleted: true,
+            },
             include: {
                 setor: true,
                 movimentos: true,
                 uploads: true,
                 infracoes: true,
             },
-            where: { id },
+            where: { id, deleted: false },
         });
     }
 };

@@ -14,7 +14,7 @@ const openapi = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateMotoristaDto {
     static _OPENAPI_METADATA_FACTORY() {
-        return { nome: { required: true, type: () => String }, cpf: { required: true, type: () => String }, rg: { required: true, type: () => String }, categoriaCNH: { required: true, type: () => String, enum: ['A', 'B', 'C', 'D', 'E', 'AB', 'AC', 'AD', 'AE'] }, numeroCNH: { required: true, type: () => String }, validadeCNH: { required: true, type: () => String }, telefone: { required: true, type: () => String }, setorId: { required: true, type: () => Number } };
+        return { nome: { required: true, type: () => String }, cpf: { required: true, type: () => String }, rg: { required: true, type: () => String }, categoriaCNH: { required: true, type: () => String, enum: ['A', 'B', 'C', 'D', 'E', 'AB', 'AC', 'AD', 'AE'] }, numeroCNH: { required: true, type: () => String }, validadeCNH: { required: true, type: () => String }, telefone: { required: true, type: () => String }, endereco: { required: true, type: () => String }, setorId: { required: true, type: () => Number } };
     }
 }
 exports.CreateMotoristaDto = CreateMotoristaDto;
@@ -42,13 +42,17 @@ __decorate([
     __metadata("design:type", String)
 ], CreateMotoristaDto.prototype, "numeroCNH", void 0);
 __decorate([
-    (0, class_validator_1.IsString)({ message: 'validadeCNH deve ser uma string' }),
+    (0, class_validator_1.IsDateString)(),
     __metadata("design:type", String)
 ], CreateMotoristaDto.prototype, "validadeCNH", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'telefone deve ser uma string' }),
     __metadata("design:type", String)
 ], CreateMotoristaDto.prototype, "telefone", void 0);
+__decorate([
+    (0, class_validator_1.IsString)({ message: 'endereco deve ser uma string ' }),
+    __metadata("design:type", String)
+], CreateMotoristaDto.prototype, "endereco", void 0);
 __decorate([
     (0, class_validator_1.IsInt)({ message: 'setorId deve ser um número inteiro' }),
     __metadata("design:type", Number)

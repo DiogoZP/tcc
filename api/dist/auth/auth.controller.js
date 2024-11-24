@@ -18,26 +18,41 @@ const common_1 = require("@nestjs/common");
 const auth_service_1 = require("./auth.service");
 const login_dto_1 = require("./dto/login.dto");
 const swagger_1 = require("@nestjs/swagger");
+const public_decorator_1 = require("./public.decorator");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
     }
     async login(loginDto) {
-        return this.authService.login(loginDto.email, loginDto.senha);
+        const token = await this.authService.login(loginDto.email, loginDto.senha);
+        return token;
+    }
+    async validate() {
+        return true;
     }
 };
 exports.AuthController = AuthController;
 __decorate([
     (0, swagger_1.ApiOkResponse)({ description: 'Login realizado com sucesso' }),
-    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
     (0, common_1.HttpCode)(200),
+    (0, public_decorator_1.Public)(),
     (0, common_1.Post)('/login'),
-    openapi.ApiResponse({ status: 200 }),
+    openapi.ApiResponse({ status: 200, type: String }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [login_dto_1.LoginDto]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
+__decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'Autenticação válida' }),
+    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
+    (0, common_1.HttpCode)(200),
+    (0, common_1.Get)('/validate'),
+    openapi.ApiResponse({ status: 200, type: Boolean }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "validate", null);
 exports.AuthController = AuthController = __decorate([
     (0, swagger_1.ApiTags)('Auth'),
     (0, common_1.Controller)('auth'),

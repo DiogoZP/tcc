@@ -1,31 +1,28 @@
-import axios from 'axios';
+import axios from '@/axios';
 import { UploadForm, Upload } from '@/types/Upload';
-
-const url = process.env.API_URL;
-
 export default class UploadsService {
     static async criar(upload: FormData): Promise<Upload> {
-        const { data } = await axios.post<Upload>(`${url}/uploads`, upload);
+        const { data } = await axios.post<Upload>(`/uploads`, upload);
         return data;
     }
 
     static async listar(): Promise<Upload[]> {
-        const { data } = await axios.get<Upload[]>(`${url}/uploads`);
+        const { data } = await axios.get<Upload[]>(`/uploads`);
         return data;
     }
 
     static async buscar(id: number): Promise<Upload> {
-        const { data } = await axios.get<Upload>(`${url}/uploads/${id}`);
+        const { data } = await axios.get<Upload>(`/uploads/${id}`);
         return data;
     }
 
     static async atualizar(id: number, upload: UploadForm): Promise<Upload> {
-        const { data } = await axios.patch<Upload>(`${url}/uploads/${id}`, upload);
+        const { data } = await axios.patch<Upload>(`/uploads/${id}`, upload);
         return data;
     }
 
     static async deletar(id: number): Promise<Upload> {
-        const { data } = await axios.delete<Upload>(`${url}/uploads/${id}`);
+        const { data } = await axios.delete<Upload>(`/uploads/${id}`);
         return data;
     }
 }

@@ -1,10 +1,8 @@
 import { UsuariosService } from '@/usuarios/usuarios.service';
 import { JwtService } from '@nestjs/jwt';
 export declare class AuthService {
-    private readonly prisma;
+    private readonly usuarioService;
     private readonly jwt;
-    constructor(prisma: UsuariosService, jwt: JwtService);
-    login(email: string, senha: string): Promise<{
-        access_token: string;
-    }>;
+    constructor(usuarioService: UsuariosService, jwt: JwtService);
+    login(email: string, senha: string): Promise<string>;
 }

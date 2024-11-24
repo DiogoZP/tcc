@@ -27,6 +27,9 @@ export class UsuariosService {
             include: {
                 setor: true,
             },
+            where: {
+                deleted: false,
+            },
         });
     }
 
@@ -35,6 +38,7 @@ export class UsuariosService {
             where: {
                 id: params.id,
                 email: params.email,
+                deleted: false,
             },
             include: {
                 setor: true,
@@ -45,7 +49,8 @@ export class UsuariosService {
     async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
         return await this.prisma.usuario.update({
             where: {
-                id: id,
+                id,
+                deleted: false,
             },
             data: {
                 nome: updateUsuarioDto.nome,
@@ -62,9 +67,13 @@ export class UsuariosService {
     }
 
     async remove(id: number) {
-        return await this.prisma.usuario.delete({
+        return await this.prisma.usuario.update({
+            data: {
+                deleted: true,
+            },
             where: {
                 id: id,
+                deleted: false,
             },
             include: {
                 setor: true,

@@ -70,12 +70,11 @@ export default function CriarVeiculo() {
             <Form
                 control={control}
                 onSubmit={({ data }) => mutation.mutate(data)}
-                onError={(e) => console.log(e)}
             >
                 <Flex gap="sm" direction="column">
                     <Flex gap="sm" wrap={'wrap'}>
                         <MaskedInput
-                            label="Placa"
+                            label="Placa:"
                             placeholder="XXX-XXXX"
                             control={control}
                             name="placa"
@@ -84,7 +83,7 @@ export default function CriarVeiculo() {
                             miw={200}
                         />
                         <TextInput
-                            label="Marca"
+                            label="Marca:"
                             placeholder="Marca do veículo"
                             control={control}
                             name="marca"
@@ -92,7 +91,7 @@ export default function CriarVeiculo() {
                             miw={200}
                         />
                         <TextInput
-                            label="Modelo"
+                            label="Modelo:"
                             placeholder="Modelo do veículo"
                             control={control}
                             name="modelo"
@@ -102,7 +101,7 @@ export default function CriarVeiculo() {
                     </Flex>
                     <Flex gap="sm" wrap={'wrap'}>
                         <Select
-                            label="Status"
+                            label="Status:"
                             placeholder="Status do veículo"
                             data={['Disponível', 'Em Manutenção', 'Em Uso']}
                             control={control}
@@ -112,7 +111,7 @@ export default function CriarVeiculo() {
                             searchable
                         />
                         <Select
-                            label="Setor"
+                            label="Setor:"
                             placeholder="Setor do veículo"
                             data={setores.map((setor) => ({
                                 value: setor.id.toString(),
@@ -127,7 +126,7 @@ export default function CriarVeiculo() {
                     </Flex>
                     <Flex gap="sm" wrap={'wrap'}>
                         <Select
-                            label="Tipo"
+                            label="Tipo:"
                             placeholder="Tipo do veículo"
                             data={[
                                 'Automóvel',
@@ -144,7 +143,7 @@ export default function CriarVeiculo() {
                             searchable
                         />
                         <NumberInput
-                            label="Ano"
+                            label="Ano:"
                             placeholder="Ano do veículo"
                             control={control}
                             name="ano"
@@ -162,7 +161,7 @@ export default function CriarVeiculo() {
                     </Flex>
                     <Flex gap="sm" wrap={'wrap'}>
                         <TextInput
-                            label="Renavam"
+                            label="Renavam:"
                             placeholder="Renavam do veículo"
                             control={control}
                             name="renavam"
@@ -170,7 +169,7 @@ export default function CriarVeiculo() {
                             miw={200}
                         />
                         <TextInput
-                            label="Chassi"
+                            label="Chassi:"
                             placeholder="Chassi do veículo"
                             control={control}
                             name="chassi"
@@ -180,7 +179,7 @@ export default function CriarVeiculo() {
                     </Flex>
                     <Flex gap="sm" wrap={'wrap'}>
                         <NumberInput
-                            label="Km"
+                            label="Km:"
                             placeholder="Km do veículo"
                             control={control}
                             name="km"
@@ -188,7 +187,7 @@ export default function CriarVeiculo() {
                             miw={200}
                         />
                         <Select
-                            label="Combustível"
+                            label="Combustível:"
                             placeholder="Combustível do veículo"
                             data={[
                                 'Álcool',
@@ -205,7 +204,7 @@ export default function CriarVeiculo() {
                             searchable
                         />
                         <Select
-                            label="Categoria CNH"
+                            label="Categoria CNH:"
                             placeholder="Categoria CNH do veículo"
                             data={['A', 'B', 'C', 'D', 'E']}
                             control={control}

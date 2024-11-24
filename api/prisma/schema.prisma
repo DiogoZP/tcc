@@ -17,27 +17,29 @@ model Setor {
   veiculos  Veiculo[]
   motoristas Motorista[]
   usuarios  Usuario[]
+  deleted Boolean @default(false)
 }
 
 model Usuario {
-  id        Int     @id @default(autoincrement())
-  nome      String
-  email     String  @unique
-  senha     String
+  id              Int     @id @default(autoincrement())
+  nome            String
+  email           String  
+  senha           String
   setor           Setor    @relation(fields: [setorId], references: [id])
   setorId         Int
+  deleted Boolean @default(false)
 }
 
 model Veiculo {
   id              Int      @id @default(autoincrement())
-  placa           String   @unique
+  placa           String   
   marca           String
   modelo          String
   tipo            String
   ano             Int
   cor             String
-  renavam         String   @unique
-  chassi          String   @unique
+  renavam         String   
+  chassi          String   
   km              Int
   combustivel     String
   categoriaCNH    String
@@ -48,22 +50,25 @@ model Veiculo {
   uploads         Upload[]
   solicitacoes    Solicitacao[]
   infracoes       Infracao[]
+  deleted Boolean @default(false)
 }
 
 model Motorista {
   id                  Int      @id @default(autoincrement())
   nome                String
-  cpf                 String   @unique
-  rg                  String   @unique
+  cpf                 String   
+  rg                  String   
   categoriaCNH        String
-  numeroCNH           String   @unique
-  validadeCNH         String
+  numeroCNH           String   
+  validadeCNH         DateTime
   telefone            String
+  endereco            String
   setor               Setor    @relation(fields: [setorId], references: [id])
   setorId             Int
   movimentos          Movimento[]
   uploads             Upload[]
   infracoes           Infracao[]
+  deleted Boolean @default(false)
 }
 
 model Movimento {
@@ -77,6 +82,7 @@ model Movimento {
   motoristaId         Int
   veiculo             Veiculo   @relation(fields: [veiculoId], references: [id])
   veiculoId           Int
+  deleted Boolean @default(false)
 }
 
 model Infracao {
@@ -88,6 +94,7 @@ model Infracao {
   motoristaId         Int
   veiculo             Veiculo   @relation(fields: [veiculoId], references: [id])
   veiculoId           Int
+  deleted Boolean @default(false)
 }
 
 model Item {
@@ -98,6 +105,7 @@ model Item {
   uploads             Upload[]
   itemSolicitacao     ItemSolicitacao[]
   itemEstoque         ItemEstoque[]
+  deleted Boolean @default(false)
 }
 
 model ItemSolicitacao {
@@ -107,6 +115,7 @@ model ItemSolicitacao {
   itemId              Int
   solicitacao         Solicitacao @relation(fields: [solicitacaoId], references: [id])
   solicitacaoId       Int
+  deleted Boolean @default(false)
 }
 
 model ItemEstoque {
@@ -114,6 +123,7 @@ model ItemEstoque {
   quantidade          Int
   item                Item     @relation(fields: [itemId], references: [id])
   itemId              Int
+  deleted Boolean @default(false)
 }
 
 model Solicitacao {
@@ -122,6 +132,7 @@ model Solicitacao {
   veiculo             Veiculo   @relation(fields: [veiculoId], references: [id])
   veiculoId           Int
   itens               ItemSolicitacao[]
+  deleted Boolean @default(false)
 }
 
 model Upload {
@@ -134,4 +145,5 @@ model Upload {
   veiculoId         Int?
   item              Item? @relation(fields: [itemId], references: [id])
   itemId            Int?
+  deleted Boolean @default(false)
 }

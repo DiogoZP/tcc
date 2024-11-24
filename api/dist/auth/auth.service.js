@@ -15,12 +15,12 @@ const usuarios_service_1 = require("../usuarios/usuarios.service");
 const jwt_1 = require("@nestjs/jwt");
 const bcrypt = require("bcrypt");
 let AuthService = class AuthService {
-    constructor(prisma, jwt) {
-        this.prisma = prisma;
+    constructor(usuarioService, jwt) {
+        this.usuarioService = usuarioService;
         this.jwt = jwt;
     }
     async login(email, senha) {
-        const usuario = await this.prisma.findOne({ email: email });
+        const usuario = await this.usuarioService.findOne({ email: email });
         if (!usuario) {
             throw new common_1.HttpException('Autenticação inválida', common_1.HttpStatus.UNAUTHORIZED);
         }
@@ -28,10 +28,8 @@ let AuthService = class AuthService {
         if (!senhaValida) {
             throw new common_1.HttpException('Autenticação inválida', common_1.HttpStatus.UNAUTHORIZED);
         }
-        const payload = { username: usuario.email, sub: usuario.id };
-        return {
-            access_token: this.jwt.sign(payload),
-        };
+        const payload = { email: usuario.email, id: usuario.id };
+        return this.jwt.sign(payload);
     }
 };
 exports.AuthService = AuthService;

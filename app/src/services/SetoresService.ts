@@ -1,29 +1,29 @@
-import axios from 'axios';
-import { Setor } from '@/types/Setor';
+import axios from '@/axios';
+import { Setor, SetorForm } from '@/types/Setor';
 
 export default class SetoresService {
     static async listar(): Promise<Setor[]> {
-        const { data } = await axios.get<Setor[]>('http://localhost:3000/setores');
+        const { data } = await axios.get<Setor[]>('/setores');
         return data;
     }
 
     static async buscar(id: number): Promise<Setor> {
-        const { data } = await axios.get<Setor>(`http://localhost:3000/setores/${id}`);
+        const { data } = await axios.get<Setor>(`/setores/${id}`);
         return data;
     }
 
-    static async criar(setor: Setor): Promise<Setor> {
-        const { data } = await axios.post<Setor>('http://localhost:3000/setores', setor);
+    static async criar(setor: SetorForm): Promise<Setor> {
+        const { data } = await axios.post<Setor>('/setores', setor);
         return data;
     }
 
-    static async atualizar(setor: Setor): Promise<Setor> {
-        const { data } = await axios.patch<Setor>(`http://localhost:3000/setores/${setor.id}`, setor);
+    static async atualizar(setor: SetorForm): Promise<Setor> {
+        const { data } = await axios.patch<Setor>(`/setores/${setor.id}`, setor);
         return data;
     }
 
     static async remover(id: number): Promise<Setor> {
-        const { data } = await axios.delete<Setor>(`http://localhost:3000/setores/${id}`);
+        const { data } = await axios.delete<Setor>(`/setores/${id}`);
         return data;
     }
 }

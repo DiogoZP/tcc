@@ -5,7 +5,14 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
-    app.enableCors();
+    app.enableCors({
+        origin: [
+            'http://127.0.0.1:5173/',
+            'http://localhost:5173/',
+            'http://127.0.0.1:5173',
+            'http://localhost:5173',
+        ],
+    });
 
     const config = new DocumentBuilder()
         .setTitle('Gestor de Frotas')

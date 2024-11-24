@@ -11,6 +11,7 @@ import SetoresService from '@/services/SetoresService';
 import VeiculosService from '@/services/VeiculosService';
 import { Setor } from '@/types/Setor';
 import { Veiculo, veiculoSchema, VeiculoForm } from '@/types/Veiculo';
+import MaskedInput from '@/components/MaskedInput';
 
 export default function EditarVeiculo() {
     const { id } = useParams();
@@ -44,7 +45,7 @@ export default function EditarVeiculo() {
                 icon: <TbCheck size="20" />,
             });
             queryClient.invalidateQueries({
-                queryKey: ['veiculos', id],
+                queryKey: ['veiculos', 'veiculo' + id],
             });
         },
         onError: (error) => {
@@ -79,7 +80,7 @@ export default function EditarVeiculo() {
             <Flex gap="sm" direction="column">
                     <Flex gap="sm" wrap={'wrap'}>
                         <TextInput
-                            label="ID"
+                            label="Id:"
                             placeholder="ID do veículo"
                             control={control}
                             name="id"
@@ -88,17 +89,18 @@ export default function EditarVeiculo() {
                             defaultValue={veiculo.id.toString()}
                             readOnly
                         />
-                        <TextInput
-                            label="Placa"
+                        <MaskedInput
+                            label="Placa:"
                             placeholder="Placa do veículo"
                             control={control}
                             name="placa"
+                            mask='***-****'
                             flex={2}
                             miw={200}
                             defaultValue={veiculo.placa}
                         />
                         <TextInput
-                            label="Marca"
+                            label="Marca:"
                             placeholder="Marca do veículo"
                             control={control}
                             name="marca"
@@ -107,7 +109,7 @@ export default function EditarVeiculo() {
                             defaultValue={veiculo.marca}
                         />
                         <TextInput
-                            label="Modelo"
+                            label="Modelo:"
                             placeholder="Modelo do veículo"
                             control={control}
                             name="modelo"
@@ -118,7 +120,7 @@ export default function EditarVeiculo() {
                     </Flex>
                     <Flex gap="sm" wrap={'wrap'}>
                         <Select
-                            label="Status"
+                            label="Status:"
                             placeholder="Status do veículo"
                             data={['Disponível', 'Em Manutenção', 'Em Uso']}
                             control={control}
@@ -129,7 +131,7 @@ export default function EditarVeiculo() {
                             defaultValue={veiculo.status}
                         />
                         <Select
-                            label="Setor"
+                            label="Setor:"
                             placeholder="Setor do veículo"
                             data={setores.map((setor) => ({
                                 value: setor.id.toString(),
@@ -145,7 +147,7 @@ export default function EditarVeiculo() {
                     </Flex>
                     <Flex gap="sm" wrap={'wrap'}>
                         <Select
-                            label="Tipo"
+                            label="Tipo:"
                             placeholder="Tipo do veículo"
                             data={[
                                 'Automóvel',
@@ -163,7 +165,7 @@ export default function EditarVeiculo() {
                             defaultValue={veiculo.tipo}
                         />
                         <NumberInput
-                            label="Ano"
+                            label="Ano:"
                             placeholder="Ano do veículo"
                             control={control}
                             name="ano"
@@ -172,7 +174,7 @@ export default function EditarVeiculo() {
                             defaultValue={veiculo.ano}
                         />
                         <TextInput
-                            label="Cor"
+                            label="Cor:"
                             placeholder="Cor do veículo"
                             control={control}
                             name="cor"
@@ -183,7 +185,7 @@ export default function EditarVeiculo() {
                     </Flex>
                     <Flex gap="sm" wrap={'wrap'}>
                         <TextInput
-                            label="Renavam"
+                            label="Renavam:"
                             placeholder="Renavam do veículo"
                             control={control}
                             name="renavam"
@@ -192,7 +194,7 @@ export default function EditarVeiculo() {
                             defaultValue={veiculo.renavam}
                         />
                         <TextInput
-                            label="Chassi"
+                            label="Chassi:"
                             placeholder="Chassi do veículo"
                             control={control}
                             name="chassi"
@@ -203,7 +205,7 @@ export default function EditarVeiculo() {
                     </Flex>
                     <Flex gap="sm" wrap={'wrap'}>
                         <NumberInput
-                            label="Km"
+                            label="Km:"
                             placeholder="Km do veículo"
                             control={control}
                             name="km"
@@ -212,7 +214,7 @@ export default function EditarVeiculo() {
                             defaultValue={veiculo.km}
                         />
                         <Select
-                            label="Combustível"
+                            label="Combustível:"
                             placeholder="Combustível do veículo"
                             data={[
                                 'Álcool',
@@ -230,7 +232,7 @@ export default function EditarVeiculo() {
                             defaultValue={veiculo.combustivel}
                         />
                         <Select
-                            label="Categoria CNH"
+                            label="Categoria CNH:"
                             placeholder="Categoria CNH do veículo"
                             data={['A', 'B', 'C', 'D', 'E']}
                             control={control}

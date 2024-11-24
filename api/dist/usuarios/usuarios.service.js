@@ -35,6 +35,9 @@ let UsuariosService = class UsuariosService {
             include: {
                 setor: true,
             },
+            where: {
+                deleted: false,
+            },
         });
     }
     async findOne(params) {
@@ -42,6 +45,7 @@ let UsuariosService = class UsuariosService {
             where: {
                 id: params.id,
                 email: params.email,
+                deleted: false,
             },
             include: {
                 setor: true,
@@ -51,7 +55,8 @@ let UsuariosService = class UsuariosService {
     async update(id, updateUsuarioDto) {
         return await this.prisma.usuario.update({
             where: {
-                id: id,
+                id,
+                deleted: false,
             },
             data: {
                 nome: updateUsuarioDto.nome,
@@ -67,9 +72,13 @@ let UsuariosService = class UsuariosService {
         });
     }
     async remove(id) {
-        return await this.prisma.usuario.delete({
+        return await this.prisma.usuario.update({
+            data: {
+                deleted: true,
+            },
             where: {
                 id: id,
+                deleted: false,
             },
             include: {
                 setor: true,

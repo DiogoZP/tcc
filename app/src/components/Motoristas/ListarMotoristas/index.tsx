@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import MotoristasTable from '@/components/Tables/MotoristasTable';
 import MotoristasService from '@/services/MotoristasService';
 import { Motorista } from '@/types/Motorista';
+import dayjs from 'dayjs'
 
 const columns: MRT_ColumnDef<Motorista>[] = [
     {
@@ -32,7 +33,9 @@ const columns: MRT_ColumnDef<Motorista>[] = [
     },
     {
         header: 'Validade CNH',
-        accessorKey: 'validadeCNH',
+        accessorFn(originalRow) {
+            return dayjs(originalRow.validadeCNH).format('DD/MM/YYYY');
+        },
     },
     {
         header: 'Telefone',

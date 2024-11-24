@@ -8,6 +8,7 @@ export declare class VeiculosService {
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         movimentos: {
             id: number;
@@ -18,6 +19,7 @@ export declare class VeiculosService {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
         uploads: {
             id: number;
@@ -26,6 +28,7 @@ export declare class VeiculosService {
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
+            deleted: boolean;
         }[];
         infracoes: {
             id: number;
@@ -34,6 +37,7 @@ export declare class VeiculosService {
             valor: number;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
     } & {
         id: number;
@@ -50,11 +54,13 @@ export declare class VeiculosService {
         categoriaCNH: string;
         status: string;
         setorId: number;
+        deleted: boolean;
     }>;
     findAll(): Promise<({
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         movimentos: {
             id: number;
@@ -65,6 +71,7 @@ export declare class VeiculosService {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
         uploads: {
             id: number;
@@ -73,6 +80,7 @@ export declare class VeiculosService {
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
+            deleted: boolean;
         }[];
         infracoes: {
             id: number;
@@ -81,6 +89,7 @@ export declare class VeiculosService {
             valor: number;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
     } & {
         id: number;
@@ -97,11 +106,13 @@ export declare class VeiculosService {
         categoriaCNH: string;
         status: string;
         setorId: number;
+        deleted: boolean;
     })[]>;
     findOne(id: number): Promise<({
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         movimentos: {
             id: number;
@@ -112,6 +123,7 @@ export declare class VeiculosService {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
         uploads: {
             id: number;
@@ -120,6 +132,7 @@ export declare class VeiculosService {
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
+            deleted: boolean;
         }[];
         infracoes: {
             id: number;
@@ -128,6 +141,7 @@ export declare class VeiculosService {
             valor: number;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
     } & {
         id: number;
@@ -144,11 +158,13 @@ export declare class VeiculosService {
         categoriaCNH: string;
         status: string;
         setorId: number;
+        deleted: boolean;
     }) | null>;
     update(id: number, updateVeiculoDto: UpdateVeiculoDto): Promise<{
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         movimentos: {
             id: number;
@@ -159,6 +175,7 @@ export declare class VeiculosService {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
         uploads: {
             id: number;
@@ -167,6 +184,7 @@ export declare class VeiculosService {
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
+            deleted: boolean;
         }[];
         infracoes: {
             id: number;
@@ -175,6 +193,7 @@ export declare class VeiculosService {
             valor: number;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
     } & {
         id: number;
@@ -191,11 +210,13 @@ export declare class VeiculosService {
         categoriaCNH: string;
         status: string;
         setorId: number;
+        deleted: boolean;
     }>;
     remove(id: number): Promise<{
         setor: {
             id: number;
             nome: string;
+            deleted: boolean;
         };
         movimentos: {
             id: number;
@@ -206,6 +227,7 @@ export declare class VeiculosService {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
         uploads: {
             id: number;
@@ -214,6 +236,7 @@ export declare class VeiculosService {
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
+            deleted: boolean;
         }[];
         infracoes: {
             id: number;
@@ -222,6 +245,7 @@ export declare class VeiculosService {
             valor: number;
             motoristaId: number;
             veiculoId: number;
+            deleted: boolean;
         }[];
     } & {
         id: number;
@@ -238,5 +262,6 @@ export declare class VeiculosService {
         categoriaCNH: string;
         status: string;
         setorId: number;
+        deleted: boolean;
     }>;
 }

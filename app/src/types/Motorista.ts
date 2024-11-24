@@ -11,8 +11,9 @@ export type Motorista = {
     rg: string;
     categoriaCNH: string;
     numeroCNH: string;
-    validadeCNH: string;
+    validadeCNH: Date;
     telefone: string;
+    endereco: string;
     setor: Setor;
     setorId: number;
     movimentos: Movimento[];
@@ -22,14 +23,15 @@ export type Motorista = {
 
 export const motoristaSchema = z.object({
     id: z.coerce.number().optional(),
-    nome: z.string(),
-    cpf: z.string(),
-    rg: z.string(),
-    categoriaCNH: z.string(),
-    numeroCNH: z.string(),
-    validadeCNH: z.string(),
-    telefone: z.string(),
-    setorId: z.coerce.number(),
+    nome: z.string({ required_error: 'nome é obrigatório' }),
+    cpf: z.string({ required_error: 'cpf é obrigatório' }),
+    rg: z.string({ required_error: 'rg é obrigatório' }),
+    categoriaCNH: z.string({ required_error: 'categoria da CNH é obrigatório' }),
+    numeroCNH: z.string({ required_error: 'numero da CNH é obrigatório' }),
+    validadeCNH: z.date({ required_error: 'validade da CNH é obrigatório' }),
+    telefone: z.string({ required_error: 'telefone é obrigatório' }),
+    endereco: z.string({ required_error: 'endereço é obrigatório' }),
+    setorId: z.coerce.number({ required_error: 'setor é obrigatório', message: 'Setor é obrigatório' }),
 });
 
 export type MotoristaForm = z.infer<typeof motoristaSchema>;
