@@ -8,27 +8,29 @@ Table Setor {
   veiculos Veiculo [not null]
   motoristas Motorista [not null]
   usuarios Usuario [not null]
+  deleted Boolean [not null, default: false]
 }
 
 Table Usuario {
   id Int [pk, increment]
   nome String [not null]
-  email String [unique, not null]
+  email String [not null]
   senha String [not null]
   setor Setor [not null]
   setorId Int [not null]
+  deleted Boolean [not null, default: false]
 }
 
 Table Veiculo {
   id Int [pk, increment]
-  placa String [unique, not null]
+  placa String [not null]
   marca String [not null]
   modelo String [not null]
   tipo String [not null]
   ano Int [not null]
   cor String [not null]
-  renavam String [unique, not null]
-  chassi String [unique, not null]
+  renavam String [not null]
+  chassi String [not null]
   km Int [not null]
   combustivel String [not null]
   categoriaCNH String [not null]
@@ -39,15 +41,16 @@ Table Veiculo {
   uploads Upload [not null]
   solicitacoes Solicitacao [not null]
   infracoes Infracao [not null]
+  deleted Boolean [not null, default: false]
 }
 
 Table Motorista {
   id Int [pk, increment]
   nome String [not null]
-  cpf String [unique, not null]
-  rg String [unique, not null]
+  cpf String [not null]
+  rg String [not null]
   categoriaCNH String [not null]
-  numeroCNH String [unique, not null]
+  numeroCNH String [not null]
   validadeCNH DateTime [not null]
   telefone String [not null]
   endereco String [not null]
@@ -56,6 +59,7 @@ Table Motorista {
   movimentos Movimento [not null]
   uploads Upload [not null]
   infracoes Infracao [not null]
+  deleted Boolean [not null, default: false]
 }
 
 Table Movimento {
@@ -69,6 +73,7 @@ Table Movimento {
   motoristaId Int [not null]
   veiculo Veiculo [not null]
   veiculoId Int [not null]
+  deleted Boolean [not null, default: false]
 }
 
 Table Infracao {
@@ -80,6 +85,7 @@ Table Infracao {
   motoristaId Int [not null]
   veiculo Veiculo [not null]
   veiculoId Int [not null]
+  deleted Boolean [not null, default: false]
 }
 
 Table Item {
@@ -90,6 +96,7 @@ Table Item {
   uploads Upload [not null]
   itemSolicitacao ItemSolicitacao [not null]
   itemEstoque ItemEstoque [not null]
+  deleted Boolean [not null, default: false]
 }
 
 Table ItemSolicitacao {
@@ -99,6 +106,7 @@ Table ItemSolicitacao {
   itemId Int [not null]
   solicitacao Solicitacao [not null]
   solicitacaoId Int [not null]
+  deleted Boolean [not null, default: false]
 }
 
 Table ItemEstoque {
@@ -106,6 +114,7 @@ Table ItemEstoque {
   quantidade Int [not null]
   item Item [not null]
   itemId Int [not null]
+  deleted Boolean [not null, default: false]
 }
 
 Table Solicitacao {
@@ -114,6 +123,7 @@ Table Solicitacao {
   veiculo Veiculo [not null]
   veiculoId Int [not null]
   itens ItemSolicitacao [not null]
+  deleted Boolean [not null, default: false]
 }
 
 Table Upload {
@@ -126,6 +136,7 @@ Table Upload {
   veiculoId Int
   item Item
   itemId Int
+  deleted Boolean [not null, default: false]
 }
 
 Ref: Usuario.setorId > Setor.id
