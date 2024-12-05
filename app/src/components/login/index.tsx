@@ -24,7 +24,7 @@ export default function Login() {
                     Bem-vindo de volta!
                 </Title>
 
-                <Form control={control} onSubmit={() => navigate('/admin')}>
+                <Form control={control} onSubmit={() => navigate('/admin/veiculos')}>
                     <TextInput
                         name="email"
                         control={control}
