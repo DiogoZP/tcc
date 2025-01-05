@@ -7,11 +7,12 @@ export declare class MotoristasController {
     create(createMotoristaDto: CreateMotoristaDto): Promise<{
         setor: {
             id: number;
-            nome: string;
             deleted: boolean;
+            nome: string;
         };
         movimentos: {
             id: number;
+            deleted: boolean;
             dataSaida: string;
             dataRetorno: string;
             kmSaida: number;
@@ -19,47 +20,47 @@ export declare class MotoristasController {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
-            deleted: boolean;
         }[];
         uploads: {
             id: number;
-            filename: string;
-            mimetype: string;
+            deleted: boolean;
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
-            deleted: boolean;
+            filename: string;
+            mimetype: string;
         }[];
         infracoes: {
             id: number;
+            deleted: boolean;
             data: string;
-            descricao: string;
-            valor: number;
             motoristaId: number;
             veiculoId: number;
-            deleted: boolean;
+            descricao: string;
+            valor: number;
         }[];
     } & {
+        categoriaCNH: string;
+        setorId: number;
         id: number;
+        deleted: boolean;
         nome: string;
         cpf: string;
         rg: string;
-        categoriaCNH: string;
         numeroCNH: string;
         validadeCNH: Date;
         telefone: string;
         endereco: string;
-        setorId: number;
-        deleted: boolean;
     }>;
     findAll(): Promise<({
         setor: {
             id: number;
-            nome: string;
             deleted: boolean;
+            nome: string;
         };
         movimentos: {
             id: number;
+            deleted: boolean;
             dataSaida: string;
             dataRetorno: string;
             kmSaida: number;
@@ -67,47 +68,47 @@ export declare class MotoristasController {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
-            deleted: boolean;
         }[];
         uploads: {
             id: number;
-            filename: string;
-            mimetype: string;
+            deleted: boolean;
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
-            deleted: boolean;
+            filename: string;
+            mimetype: string;
         }[];
         infracoes: {
             id: number;
+            deleted: boolean;
             data: string;
-            descricao: string;
-            valor: number;
             motoristaId: number;
             veiculoId: number;
-            deleted: boolean;
+            descricao: string;
+            valor: number;
         }[];
     } & {
+        categoriaCNH: string;
+        setorId: number;
         id: number;
+        deleted: boolean;
         nome: string;
         cpf: string;
         rg: string;
-        categoriaCNH: string;
         numeroCNH: string;
         validadeCNH: Date;
         telefone: string;
         endereco: string;
-        setorId: number;
-        deleted: boolean;
     })[]>;
     findOne(id: string): Promise<{
         setor: {
             id: number;
-            nome: string;
             deleted: boolean;
+            nome: string;
         };
         movimentos: {
             id: number;
+            deleted: boolean;
             dataSaida: string;
             dataRetorno: string;
             kmSaida: number;
@@ -115,47 +116,47 @@ export declare class MotoristasController {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
-            deleted: boolean;
         }[];
         uploads: {
             id: number;
-            filename: string;
-            mimetype: string;
+            deleted: boolean;
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
-            deleted: boolean;
+            filename: string;
+            mimetype: string;
         }[];
         infracoes: {
             id: number;
+            deleted: boolean;
             data: string;
-            descricao: string;
-            valor: number;
             motoristaId: number;
             veiculoId: number;
-            deleted: boolean;
+            descricao: string;
+            valor: number;
         }[];
     } & {
+        categoriaCNH: string;
+        setorId: number;
         id: number;
+        deleted: boolean;
         nome: string;
         cpf: string;
         rg: string;
-        categoriaCNH: string;
         numeroCNH: string;
         validadeCNH: Date;
         telefone: string;
         endereco: string;
-        setorId: number;
-        deleted: boolean;
     }>;
     update(id: string, updateMotoristaDto: UpdateMotoristaDto): Promise<{
         setor: {
             id: number;
-            nome: string;
             deleted: boolean;
+            nome: string;
         };
         movimentos: {
             id: number;
+            deleted: boolean;
             dataSaida: string;
             dataRetorno: string;
             kmSaida: number;
@@ -163,47 +164,47 @@ export declare class MotoristasController {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
-            deleted: boolean;
         }[];
         uploads: {
             id: number;
-            filename: string;
-            mimetype: string;
+            deleted: boolean;
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
-            deleted: boolean;
+            filename: string;
+            mimetype: string;
         }[];
         infracoes: {
             id: number;
+            deleted: boolean;
             data: string;
-            descricao: string;
-            valor: number;
             motoristaId: number;
             veiculoId: number;
-            deleted: boolean;
+            descricao: string;
+            valor: number;
         }[];
     } & {
+        categoriaCNH: string;
+        setorId: number;
         id: number;
+        deleted: boolean;
         nome: string;
         cpf: string;
         rg: string;
-        categoriaCNH: string;
         numeroCNH: string;
         validadeCNH: Date;
         telefone: string;
         endereco: string;
-        setorId: number;
-        deleted: boolean;
     }>;
     remove(id: string): Promise<{
         setor: {
             id: number;
-            nome: string;
             deleted: boolean;
+            nome: string;
         };
         movimentos: {
             id: number;
+            deleted: boolean;
             dataSaida: string;
             dataRetorno: string;
             kmSaida: number;
@@ -211,37 +212,36 @@ export declare class MotoristasController {
             itinerario: string;
             motoristaId: number;
             veiculoId: number;
-            deleted: boolean;
         }[];
         uploads: {
             id: number;
-            filename: string;
-            mimetype: string;
+            deleted: boolean;
             motoristaId: number | null;
             veiculoId: number | null;
             itemId: number | null;
-            deleted: boolean;
+            filename: string;
+            mimetype: string;
         }[];
         infracoes: {
             id: number;
+            deleted: boolean;
             data: string;
-            descricao: string;
-            valor: number;
             motoristaId: number;
             veiculoId: number;
-            deleted: boolean;
+            descricao: string;
+            valor: number;
         }[];
     } & {
+        categoriaCNH: string;
+        setorId: number;
         id: number;
+        deleted: boolean;
         nome: string;
         cpf: string;
         rg: string;
-        categoriaCNH: string;
         numeroCNH: string;
         validadeCNH: Date;
         telefone: string;
         endereco: string;
-        setorId: number;
-        deleted: boolean;
     }>;
 }

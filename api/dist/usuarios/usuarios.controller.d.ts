@@ -7,63 +7,63 @@ export declare class UsuariosController {
     create(createUsuarioDto: CreateUsuarioDto): Promise<{
         setor: {
             id: number;
-            nome: string;
             deleted: boolean;
+            nome: string;
         };
+        setorId: number;
         id: number;
+        deleted: boolean;
         nome: string;
         email: string;
-        setorId: number;
-        deleted: boolean;
     }>;
     findAll(): Promise<({
         setor: {
             id: number;
-            nome: string;
             deleted: boolean;
+            nome: string;
         };
     } & {
+        setorId: number;
         id: number;
+        deleted: boolean;
         nome: string;
         email: string;
         senha: string;
-        setorId: number;
-        deleted: boolean;
     })[]>;
     findOne(id: string): Promise<{
         setor: {
             id: number;
-            nome: string;
             deleted: boolean;
+            nome: string;
         };
+        setorId: number;
         id: number;
+        deleted: boolean;
         nome: string;
         email: string;
-        setorId: number;
-        deleted: boolean;
     }>;
     update(id: string, updateUsuarioDto: UpdateUsuarioDto): Promise<{
         setor: {
             id: number;
-            nome: string;
             deleted: boolean;
+            nome: string;
         };
+        setorId: number;
         id: number;
+        deleted: boolean;
         nome: string;
         email: string;
-        setorId: number;
-        deleted: boolean;
     }>;
     remove(id: string): Promise<{
         setor: {
             id: number;
-            nome: string;
             deleted: boolean;
+            nome: string;
         };
+        setorId: number;
         id: number;
+        deleted: boolean;
         nome: string;
         email: string;
-        setorId: number;
-        deleted: boolean;
     }>;
 }

@@ -7,39 +7,39 @@ export declare class UploadsController {
     constructor(uploadsService: UploadsService);
     create(createUploadDto: CreateUploadDto, file: Express.Multer.File): Promise<{
         id: number;
-        filename: string;
-        mimetype: string;
+        deleted: boolean;
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
-        deleted: boolean;
+        filename: string;
+        mimetype: string;
     }>;
     findAll(): Promise<{
         id: number;
-        filename: string;
-        mimetype: string;
+        deleted: boolean;
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
-        deleted: boolean;
+        filename: string;
+        mimetype: string;
     }[]>;
     findOne(id: string, res: Response): Promise<void>;
     update(id: string, updateUploadDto: UpdateUploadDto, file: Express.Multer.File): Promise<{
         id: number;
-        filename: string;
-        mimetype: string;
+        deleted: boolean;
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
-        deleted: boolean;
+        filename: string;
+        mimetype: string;
     }>;
     remove(id: string): Promise<{
         id: number;
-        filename: string;
-        mimetype: string;
+        deleted: boolean;
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
-        deleted: boolean;
+        filename: string;
+        mimetype: string;
     }>;
 }

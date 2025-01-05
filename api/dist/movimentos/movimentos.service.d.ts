@@ -6,6 +6,7 @@ export declare class MovimentosService {
     constructor(prisma: PrismaService);
     create(createMovimentoDto: CreateMovimentoDto): Promise<{
         id: number;
+        deleted: boolean;
         dataSaida: string;
         dataRetorno: string;
         kmSaida: number;
@@ -13,11 +14,9 @@ export declare class MovimentosService {
         itinerario: string;
         motoristaId: number;
         veiculoId: number;
-        deleted: boolean;
     }>;
     findAll(): Promise<({
         veiculo: {
-            id: number;
             placa: string;
             marca: string;
             modelo: string;
@@ -31,23 +30,25 @@ export declare class MovimentosService {
             categoriaCNH: string;
             status: string;
             setorId: number;
+            id: number;
             deleted: boolean;
         };
         motorista: {
+            categoriaCNH: string;
+            setorId: number;
             id: number;
+            deleted: boolean;
             nome: string;
             cpf: string;
             rg: string;
-            categoriaCNH: string;
             numeroCNH: string;
             validadeCNH: Date;
             telefone: string;
             endereco: string;
-            setorId: number;
-            deleted: boolean;
         };
     } & {
         id: number;
+        deleted: boolean;
         dataSaida: string;
         dataRetorno: string;
         kmSaida: number;
@@ -55,11 +56,9 @@ export declare class MovimentosService {
         itinerario: string;
         motoristaId: number;
         veiculoId: number;
-        deleted: boolean;
     })[]>;
     findOne(id: number): Promise<({
         veiculo: {
-            id: number;
             placa: string;
             marca: string;
             modelo: string;
@@ -73,23 +72,25 @@ export declare class MovimentosService {
             categoriaCNH: string;
             status: string;
             setorId: number;
+            id: number;
             deleted: boolean;
         };
         motorista: {
+            categoriaCNH: string;
+            setorId: number;
             id: number;
+            deleted: boolean;
             nome: string;
             cpf: string;
             rg: string;
-            categoriaCNH: string;
             numeroCNH: string;
             validadeCNH: Date;
             telefone: string;
             endereco: string;
-            setorId: number;
-            deleted: boolean;
         };
     } & {
         id: number;
+        deleted: boolean;
         dataSaida: string;
         dataRetorno: string;
         kmSaida: number;
@@ -97,11 +98,9 @@ export declare class MovimentosService {
         itinerario: string;
         motoristaId: number;
         veiculoId: number;
-        deleted: boolean;
     }) | null>;
     update(id: number, updateMovimentoDto: UpdateMovimentoDto): Promise<{
         veiculo: {
-            id: number;
             placa: string;
             marca: string;
             modelo: string;
@@ -115,23 +114,25 @@ export declare class MovimentosService {
             categoriaCNH: string;
             status: string;
             setorId: number;
+            id: number;
             deleted: boolean;
         };
         motorista: {
+            categoriaCNH: string;
+            setorId: number;
             id: number;
+            deleted: boolean;
             nome: string;
             cpf: string;
             rg: string;
-            categoriaCNH: string;
             numeroCNH: string;
             validadeCNH: Date;
             telefone: string;
             endereco: string;
-            setorId: number;
-            deleted: boolean;
         };
     } & {
         id: number;
+        deleted: boolean;
         dataSaida: string;
         dataRetorno: string;
         kmSaida: number;
@@ -139,11 +140,9 @@ export declare class MovimentosService {
         itinerario: string;
         motoristaId: number;
         veiculoId: number;
-        deleted: boolean;
     }>;
     remove(id: number): Promise<{
         veiculo: {
-            id: number;
             placa: string;
             marca: string;
             modelo: string;
@@ -157,23 +156,25 @@ export declare class MovimentosService {
             categoriaCNH: string;
             status: string;
             setorId: number;
+            id: number;
             deleted: boolean;
         };
         motorista: {
+            categoriaCNH: string;
+            setorId: number;
             id: number;
+            deleted: boolean;
             nome: string;
             cpf: string;
             rg: string;
-            categoriaCNH: string;
             numeroCNH: string;
             validadeCNH: Date;
             telefone: string;
             endereco: string;
-            setorId: number;
-            deleted: boolean;
         };
     } & {
         id: number;
+        deleted: boolean;
         dataSaida: string;
         dataRetorno: string;
         kmSaida: number;
@@ -181,6 +182,5 @@ export declare class MovimentosService {
         itinerario: string;
         motoristaId: number;
         veiculoId: number;
-        deleted: boolean;
     }>;
 }

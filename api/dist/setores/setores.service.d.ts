@@ -6,27 +6,27 @@ export declare class SetoresService {
     constructor(prisma: PrismaService);
     create(createSetorDto: CreateSetorDto): Promise<{
         id: number;
-        nome: string;
         deleted: boolean;
+        nome: string;
     }>;
     findAll(): Promise<{
         id: number;
-        nome: string;
         deleted: boolean;
+        nome: string;
     }[]>;
     findOne(id: number): Promise<{
         id: number;
-        nome: string;
         deleted: boolean;
+        nome: string;
     } | null>;
     update(id: number, updateSetorDto: UpdateSetorDto): Promise<{
         id: number;
-        nome: string;
         deleted: boolean;
+        nome: string;
     }>;
     remove(id: number): Promise<{
         id: number;
-        nome: string;
         deleted: boolean;
+        nome: string;
     }>;
 }

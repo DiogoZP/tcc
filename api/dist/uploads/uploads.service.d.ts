@@ -6,47 +6,47 @@ export declare class UploadsService {
     constructor(prisma: PrismaService);
     create(createUploadDto: CreateUploadDto, filename: string, mimetype: string): Promise<{
         id: number;
-        filename: string;
-        mimetype: string;
+        deleted: boolean;
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
-        deleted: boolean;
+        filename: string;
+        mimetype: string;
     }>;
     findAll(): Promise<{
         id: number;
-        filename: string;
-        mimetype: string;
+        deleted: boolean;
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
-        deleted: boolean;
+        filename: string;
+        mimetype: string;
     }[]>;
     findOne(id: number): Promise<{
         id: number;
-        filename: string;
-        mimetype: string;
+        deleted: boolean;
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
-        deleted: boolean;
+        filename: string;
+        mimetype: string;
     } | null>;
     update(id: number, updateUploadDto: UpdateUploadDto, filename?: string, mimetype?: string): Promise<{
         id: number;
-        filename: string;
-        mimetype: string;
+        deleted: boolean;
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
-        deleted: boolean;
+        filename: string;
+        mimetype: string;
     }>;
     remove(id: number): Promise<{
         id: number;
-        filename: string;
-        mimetype: string;
+        deleted: boolean;
         motoristaId: number | null;
         veiculoId: number | null;
         itemId: number | null;
-        deleted: boolean;
+        filename: string;
+        mimetype: string;
     }>;
 }
