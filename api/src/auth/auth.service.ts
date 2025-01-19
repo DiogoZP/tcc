@@ -21,7 +21,7 @@ export class AuthService {
             throw new HttpException('Autenticação inválida', HttpStatus.UNAUTHORIZED);
         }
 
-        const payload = { email: usuario.email, id: usuario.id };
-        return this.jwt.sign(payload);
+        const user = { id: usuario.id, email: usuario.email, nome: usuario.nome };
+        return { token: this.jwt.sign(user), user };
     }
 }

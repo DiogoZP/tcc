@@ -28,8 +28,8 @@ let AuthService = class AuthService {
         if (!senhaValida) {
             throw new common_1.HttpException('Autenticação inválida', common_1.HttpStatus.UNAUTHORIZED);
         }
-        const payload = { email: usuario.email, id: usuario.id };
-        return this.jwt.sign(payload);
+        const user = { id: usuario.id, email: usuario.email, nome: usuario.nome };
+        return { token: this.jwt.sign(user), user };
     }
 };
 exports.AuthService = AuthService;

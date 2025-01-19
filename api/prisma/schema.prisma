@@ -5,7 +5,7 @@ generator client {
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
-}
+} 
 
 model Setor {
   id        Int      @id @default(autoincrement())
@@ -19,7 +19,7 @@ model Setor {
 model Usuario {
   id              Int     @id @default(autoincrement())
   nome            String
-  email           String  
+  email           String  @unique
   senha           String
   setor           Setor    @relation(fields: [setorId], references: [id])
   setorId         Int

@@ -3,6 +3,12 @@ import { LoginDto } from './dto/login.dto';
 export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
-    login(loginDto: LoginDto): Promise<string>;
-    validate(): Promise<boolean>;
+    login(loginDto: LoginDto): Promise<{
+        token: string;
+        user: {
+            id: number;
+            email: string;
+            nome: string;
+        };
+    }>;
 }

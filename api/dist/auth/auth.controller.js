@@ -24,11 +24,9 @@ let AuthController = class AuthController {
         this.authService = authService;
     }
     async login(loginDto) {
-        const token = await this.authService.login(loginDto.email, loginDto.senha);
-        return token;
-    }
-    async validate() {
-        return true;
+        console.log('aaaa');
+        const authData = await this.authService.login(loginDto.email, loginDto.senha);
+        return authData;
     }
 };
 exports.AuthController = AuthController;
@@ -37,22 +35,12 @@ __decorate([
     (0, common_1.HttpCode)(200),
     (0, public_decorator_1.Public)(),
     (0, common_1.Post)('/login'),
-    openapi.ApiResponse({ status: 200, type: String }),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [login_dto_1.LoginDto]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
-__decorate([
-    (0, swagger_1.ApiOkResponse)({ description: 'Autenticação válida' }),
-    (0, swagger_1.ApiUnauthorizedResponse)({ description: 'Autenticação inválida' }),
-    (0, common_1.HttpCode)(200),
-    (0, common_1.Get)('/validate'),
-    openapi.ApiResponse({ status: 200, type: Boolean }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], AuthController.prototype, "validate", null);
 exports.AuthController = AuthController = __decorate([
     (0, swagger_1.ApiTags)('Auth'),
     (0, common_1.Controller)('auth'),

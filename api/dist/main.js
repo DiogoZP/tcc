@@ -8,10 +8,10 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors({
         origin: [
-            'http://127.0.0.1:5173/',
-            'http://localhost:5173/',
-            'http://127.0.0.1:5173',
-            'http://localhost:5173',
+            'http://127.0.0.1:4000/',
+            'http://localhost:4000/',
+            'http://127.0.0.1:4000',
+            'http://localhost:4000',
         ],
     });
     const config = new swagger_1.DocumentBuilder()

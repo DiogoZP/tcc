@@ -14,15 +14,8 @@ export class AuthController {
     @Public()
     @Post('/login')
     async login(@Body() loginDto: LoginDto) {
-        const token = await this.authService.login(loginDto.email, loginDto.senha);
-        return token;
-    }
-
-    @ApiOkResponse({ description: 'Autenticação válida' })
-    @ApiUnauthorizedResponse({ description: 'Autenticação inválida' })
-    @HttpCode(200)
-    @Get('/validate')
-    async validate() {
-        return true;
+        console.log('aaaa');
+        const authData = await this.authService.login(loginDto.email, loginDto.senha);
+        return authData;
     }
 }
